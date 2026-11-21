@@ -48,7 +48,9 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;
+  const isSameOrigin = url.origin === self.location.origin;
+  const isOpenMojiCdn = url.hostname === 'cdn.jsdelivr.net' && url.pathname.includes('openmoji');
+  if (!isSameOrigin && !isOpenMojiCdn) return;
 
   if (request.mode === 'navigate') {
     event.respondWith(
@@ -69,7 +71,7 @@ self.addEventListener('fetch', (event) => {
         cached ||
         fetch(request)
           .then((res) => {
-            if (res.ok) {
+            if (res.ok || res.type === 'opaque') {
               const copy = res.clone();
               caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
             }
