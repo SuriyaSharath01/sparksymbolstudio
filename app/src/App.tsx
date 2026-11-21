@@ -851,7 +851,7 @@ export function App() {
                   }`}
                 >
                   <Upload className="h-3.5 w-3.5" />
-                  <span title="Open Board Format (AAC standard): load an existing .obf or .json board">Import .obf Board</span>
+                  <span title="Load a saved board file (Open Board Format .obf or .json)">Load Board</span>
                   <input type="file" accept=".obf,.json,application/json" onChange={handleImportObf} className="hidden" />
                 </label>
 
@@ -865,7 +865,7 @@ export function App() {
                   }`}
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span title="Open Board Format (AAC standard): save a portable board file for AAC apps">Export .obf Board</span>
+                  <span title="Save this board as a portable Open Board Format (.obf) file">Save Board</span>
                 </button>
 
                 <button

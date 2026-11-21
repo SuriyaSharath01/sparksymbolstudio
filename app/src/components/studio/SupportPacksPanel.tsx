@@ -123,7 +123,7 @@ export function SupportPacksPanel({ packs, symbols, onLoadSupportPack, renderTil
               <span className="font-semibold text-slate-700">Available formats:</span>
               <span className="inline-flex items-center gap-1.5"><FileText className="h-3.5 w-3.5 text-rose-600" />Print PDF</span>
               <span className="inline-flex items-center gap-1.5"><Eye className="h-3.5 w-3.5 text-sky-600" />Focus Mode</span>
-              <span className="inline-flex items-center gap-1.5"><FileDown className="h-3.5 w-3.5 text-emerald-600" />.obf Board</span>
+              <span className="inline-flex items-center gap-1.5"><FileDown className="h-3.5 w-3.5 text-emerald-600" />Portable Board (.obf)</span>
             </div>
           </div>
 
@@ -186,7 +186,7 @@ export function SupportPacksPanel({ packs, symbols, onLoadSupportPack, renderTil
                           <span className="font-semibold text-slate-700">Formats:</span>
                           <span className="shrink-0 inline-flex items-center gap-1 rounded border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[11px] font-medium text-rose-700"><FileText className="h-3 w-3" />PDF</span>
                           <span className="shrink-0 inline-flex items-center gap-1 rounded border border-sky-200 bg-sky-50 px-1.5 py-0.5 text-[11px] font-medium text-sky-700"><Eye className="h-3 w-3" />Focus</span>
-                          <span className="shrink-0 inline-flex items-center gap-1 rounded border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[11px] font-medium text-emerald-700"><FileDown className="h-3 w-3" />.obf</span>
+                          <span className="shrink-0 inline-flex items-center gap-1 rounded border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[11px] font-medium text-emerald-700"><FileDown className="h-3 w-3" />Portable</span>
                         </div>
                         <button
                           type="button"
