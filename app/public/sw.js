@@ -10,7 +10,16 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      await cache.addAll(['/', '/index.html', '/favicon.svg', '/icons.svg', '/openmoji-index.json', '/symbol-info.csv']);
+      await cache.addAll([
+        '/',
+        '/index.html',
+        '/favicon.svg',
+        '/icons.svg',
+        '/openmoji-index.json',
+        '/symbol-info.csv',
+        '/fonts/OpenDyslexic-Regular.woff2',
+        '/fonts/OpenDyslexic-Bold.woff2',
+      ]);
       try {
         const res = await fetch('/index.html', { cache: 'no-store' });
         const html = await res.text();
