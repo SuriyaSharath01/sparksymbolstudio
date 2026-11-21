@@ -49,6 +49,18 @@ function isUsableImageSrc(src?: string): src is string {
   return trimmed.startsWith('/') || trimmed.startsWith('data:');
 }
 
+function detectImageContentType(src: string): string {
+  if (src.startsWith('data:')) {
+    const match = src.match(/^data:([a-zA-Z0-9/+.-]+)[;,]/);
+    if (match?.[1]) return match[1].toLowerCase();
+    return 'image/png';
+  }
+  if (src.toLowerCase().endsWith('.svg')) return 'image/svg+xml';
+  if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) return 'image/jpeg';
+  if (src.toLowerCase().endsWith('.webp')) return 'image/webp';
+  return 'image/png';
+}
+
 export function buildOpenBoardJson(
   title: string,
   description: string,
@@ -80,16 +92,11 @@ export function buildOpenBoardJson(
       if (isUsableImageSrc(tile.imageSrc)) {
         imageId = `img_${r}_${c}_${tile.id}`;
         const isDataUrl = tile.imageSrc.startsWith('data:');
-        const isSvg = tile.imageSrc.toLowerCase().endsWith('.svg');
         images.push({
           id: imageId,
           width: 256,
           height: 256,
-          content_type: isDataUrl
-            ? 'image/jpeg'
-            : isSvg
-              ? 'image/svg+xml'
-              : 'image/png',
+          content_type: detectImageContentType(tile.imageSrc),
           ...(isDataUrl ? { data_url: tile.imageSrc } : { url: tile.imageSrc }),
         });
       }
@@ -157,6 +164,9 @@ export async function parseOpenBoardFile(file: File): Promise<ParsedOpenBoardRes
   const text = await file.text();
   const data = JSON.parse(text) as {
     name?: string;
+    default_layout?: {
+      order?: (string | null)[][];
+    };
     buttons?: {
       id: string;
       label?: string;
@@ -179,7 +189,28 @@ export async function parseOpenBoardFile(file: File): Promise<ParsedOpenBoardRes
   }
 
   const rawButtons = Array.isArray(data.buttons) ? data.buttons : [];
-  const tiles: ObfExportTileInput[] = rawButtons.map((btn, idx) => {
+  const byId = new Map(rawButtons.map((b) => [b.id, b]));
+  const orderedIds: string[] = [];
+
+  if (Array.isArray(data.default_layout?.order)) {
+    for (const row of data.default_layout.order) {
+      if (!Array.isArray(row)) continue;
+      for (const cellId of row) {
+        if (cellId && byId.has(cellId) && !orderedIds.includes(cellId)) {
+          orderedIds.push(cellId);
+        }
+      }
+    }
+  }
+
+  for (const btn of rawButtons) {
+    if (!orderedIds.includes(btn.id)) {
+      orderedIds.push(btn.id);
+    }
+  }
+
+  const orderedButtons = orderedIds.map((id) => byId.get(id)!).filter(Boolean);
+  const tiles: ObfExportTileInput[] = orderedButtons.map((btn, idx) => {
     const label = (btn.label || btn.vocalization || `Item ${idx + 1}`).trim();
     const resolvedSrc = btn.image_id ? imageMap.get(btn.image_id) : undefined;
     return {
@@ -190,7 +221,7 @@ export async function parseOpenBoardFile(file: File): Promise<ParsedOpenBoardRes
     };
   });
 
-  const fallbackTitle = file.name.replace(/.(obf|json)$/i, '').replace(/[-_]+/g, ' ').trim();
+  const fallbackTitle = file.name.replace(/\.(obf|json)$/i, '').replace(/[-_]+/g, ' ').trim();
   return {
     title: (data.name || fallbackTitle || 'Imported OBF Board').trim(),
     tiles,
