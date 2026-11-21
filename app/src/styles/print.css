@@ -1,0 +1,72 @@
+/* Print & Pocket-Card Stylesheet (A4 sheets + wallet/pocket cards) */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print-only-header {
+    display: block !important;
+    margin-bottom: 12pt;
+    padding-bottom: 6pt;
+    border-bottom: 2px solid #0f172a;
+  }
+
+  .print-card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10pt !important;
+    width: 100% !important;
+  }
+
+  .print-pocket-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8pt !important;
+    width: 100% !important;
+  }
+
+  .printable-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 2pt solid #0f172a !important;
+    border-radius: 8pt !important;
+    padding: 10pt !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .printable-card.pocket-size {
+    min-height: 78mm !important;
+    padding: 6pt !important;
+  }
+
+  .printable-card img {
+    max-height: 42mm !important;
+    width: auto !important;
+    object-fit: contain !important;
+    margin-bottom: 6pt !important;
+  }
+}
+
+.print-only-header {
+  display: none;
+}

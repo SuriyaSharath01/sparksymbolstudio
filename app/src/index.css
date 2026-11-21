@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+body {
+  margin: 0;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+svg.lucide {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.print-container {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print-container {
+    display: block !important;
+    width: 100%;
+    padding: 16mm;
+    box-sizing: border-box;
+    background: #ffffff !important;
+  }
+
+  .print-header {
+    border-bottom: 3px solid #000000;
+    padding-bottom: 4mm;
+    margin-bottom: 8mm;
+  }
+
+  .print-header h1 {
+    font-size: 22pt;
+    font-weight: 800;
+    margin: 0;
+    color: #000000;
+  }
+
+  .print-header p {
+    font-size: 11pt;
+    margin: 2mm 0 0 0;
+    color: #334155;
+  }
+
+  .print-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8mm;
+    width: 100%;
+  }
+
+  .print-grid.pocket {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6mm;
+  }
+
+  .print-card {
+    border: 4px solid #000000;
+    border-radius: 8px;
+    padding: 8mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 62mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: #ffffff;
+  }
+
+  .print-grid.pocket .print-card {
+    min-height: 54mm;
+    padding: 5mm;
+  }
+
+  .print-card img {
+    max-width: 36mm;
+    max-height: 36mm;
+    margin-bottom: 4mm;
+    object-fit: contain;
+  }
+
+  .print-card h3 {
+    font-size: 20pt;
+    font-weight: 800;
+    margin: 0 0 3mm 0;
+    color: #000000;
+    text-align: center;
+  }
+
+  .print-card p {
+    font-size: 12pt;
+    margin: 0;
+    color: #1e293b;
+    text-align: center;
+  }
+}
+
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.print-card svg {
+  width: 64px !important;
+  height: 64px !important;
+}
+
+.print-card h3 {
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 800 !important;
+}
+
+.print-card p {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================
+   A4 PRINT POLISH - SPARK STUDIO
+   ========================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+
+  .no-print,
+  nav,
+  header,
+  .SafetyExitBar,
+  .SymbolPointPopover {
+    display: none !important;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  .print-container,
+  .main-workspace {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .print-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10mm !important;
+  }
+
+  .print-card,
+  .choice-tile,
+  .routine-step {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 2px solid #000 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Spark Full-Page Low-Arousal Theme */
+[data-low-arousal="true"] {
+  background-color: #eef2ef !important;
+  color: #1e293b !important;
+}
+[data-low-arousal="true"] .bg-white,
+[data-low-arousal="true"] .bg-slate-50 {
+  background-color: #f7f9f7 !important;
+}
+[data-low-arousal="true"] .bg-orange-50\/30,
+[data-low-arousal="true"] .bg-orange-100 {
+  background-color: #e3ece6 !important;
+  color: #1e3a2f !important;
+}
+[data-low-arousal="true"] .border-slate-900 {
+  border-color: #475569 !important;
+}
+[data-sensory-locked="true"] .spark-hide-on-lock {
+  display: none !important;
+}
+
+.spark-logo-wrap:hover .spark-beacon-star { fill: #10B981; }
+@media (prefers-reduced-motion: reduce) { .spark-logo-wrap, .spark-beacon-star, * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }

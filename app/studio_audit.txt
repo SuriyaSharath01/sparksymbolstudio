@@ -1,0 +1,67 @@
+=== LINE COUNTS (src/components/studio) ===
+ChoiceBoardTab.tsx: 58 lines
+CoreCardsTab.tsx: 71 lines
+CustomBoardWorkspace.tsx: 291 lines
+FocusModeTab.tsx: 47 lines
+MediaLibraryPanel.tsx: 121 lines
+RoutinePresetsPanel.tsx: 147 lines
+SocialStoriesTab.tsx: 22 lines
+SupportPacksPanel.tsx: 210 lines
+SymbolPointPopover.tsx: 315 lines
+VisualStepTimer.tsx: 81 lines
+
+=== App.tsx total lines: 1254 ===
+App.tsx:61: import { ChoiceBoardTab } from './components/studio/ChoiceBoardTab';
+App.tsx:62: import { CoreCardsTab } from './components/studio/CoreCardsTab';
+App.tsx:63: import { FocusModeTab } from './components/studio/FocusModeTab';
+App.tsx:64: import { SocialStoriesTab } from './components/studio/SocialStoriesTab';
+App.tsx:352: const [activeTab, setActiveTab] = useState<AppTab>('templates');
+App.tsx:512: setActiveTab('templates');
+App.tsx:526: setActiveTab('templates');
+App.tsx:574: setActiveTab('community');
+App.tsx:582: setActiveTab(action.tab);
+App.tsx:628: setActiveTab('templates');
+App.tsx:711: setActiveTab('templates');
+App.tsx:808: setActiveTab(item.targetTab);
+App.tsx:850: setActiveTab(activeDropdown.targetTab);
+App.tsx:920: setActiveTab('templates');
+App.tsx:935: setActiveTab('packs');
+App.tsx:950: setActiveTab('wants');
+App.tsx:965: setActiveTab('community');
+App.tsx:980: setActiveTab('stories');
+App.tsx:995: setActiveTab('anchors');
+App.tsx:1010: setActiveTab('focus');
+App.tsx:1025: setActiveTab('media');
+App.tsx:1085: setActiveTab('templates');
+App.tsx:1107: <SocialStoriesTab
+App.tsx:1129: setActiveTab={setActiveTab}
+App.tsx:1157: <ChoiceBoardTab
+App.tsx:1161: setActiveTab('templates');
+App.tsx:1178: <CoreCardsTab
+App.tsx:1182: setActiveTab('templates');
+App.tsx:1188: <FocusModeTab
+App.tsx:1207: setActiveTab={setActiveTab}
+
+=== SocialStoriesTab.tsx ===
+import { SocialStoryViewer } from '../SocialStoryViewer';
+import type { SocialStory } from '../../data/social-stories';
+
+export interface SocialStoriesTabProps {
+  stories: SocialStory[];
+  selectedStoryId: string;
+  onSelectStory: (storyId: string) => void;
+  onResetStories: () => void;
+  onAddStoryToGrid: (story: SocialStory) => void;
+  onCreateCustomStory: (
+    title: string,
+    category: SocialStory['category'],
+    sentence: string,
+    symbol: string
+  ) => void;
+  onUpdateStory: (updatedStory: SocialStory) => void;
+}
+
+export function SocialStoriesTab(props: SocialStoriesTabProps) {
+  return <SocialStoryViewer {...props} />;
+}
+
