@@ -117,6 +117,13 @@ export function findSymbolMatches(
   return results;
 }
 
+function formatPopoverLabel(raw: string): string {
+  const trimmed = raw.trim();
+  const commaMatch = trimmed.match(/^([^,]+),\s*(.+)$/);
+  const reordered = commaMatch ? `${commaMatch[2].trim()} ${commaMatch[1].trim()}` : trimmed;
+  return reordered.charAt(0).toUpperCase() + reordered.slice(1);
+}
+
 export interface SymbolPointPopoverProps {
   word: string;
   symbols: PointPopoverSymbol[];
@@ -227,7 +234,7 @@ export function SymbolPointPopover({
                     loading="lazy"
                   />
                   <span className="mt-1 line-clamp-2 text-center text-[11px] font-medium leading-tight text-slate-800">
-                    {sym.label}
+                    {formatPopoverLabel(sym.label)}
                   </span>
                 </>
               );

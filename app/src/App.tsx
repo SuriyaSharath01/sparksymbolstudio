@@ -1248,6 +1248,12 @@ export function App() {
                 onClick: () => setActiveTab('stories'),
               },
               {
+                title: 'Studio Canvas',
+                desc: 'Per-cell display modes, independent captions, Fitzgerald borders & offline OpenDyslexic.',
+                badge: 'Widgit Studio',
+                onClick: () => setActiveTab('studio'),
+              },
+              {
                 title: 'Real Resident Photos & Media',
                 desc: 'Pair familiar local photos of staff, rooms & items with Mulberry symbols.',
                 badge: 'Local-First Private',
