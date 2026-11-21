@@ -1419,17 +1419,19 @@ export function App() {
                     {seqBadge}
                   </div>
                 )}
-                <div className="mb-2 flex h-16 w-16 items-center justify-center">
+                <div className="mb-3 flex h-32 w-32 items-center justify-center">
                   <SymbolTileVisual
                     src={card.imageSrc}
                     alt={card.title}
                     label={card.title}
                     coreCardId={card.coreCardId}
-                    sizeClass="h-16 w-16"
+                    sizeClass="h-32 w-32"
                   />
                 </div>
                 <h3>{card.title}</h3>
-                <p>{card.subtitle}</p>
+                {!seqBadge && card.subtitle && !/^STEP\s+\d+$/i.test(card.subtitle.trim()) && (
+                  <p>{card.subtitle}</p>
+                )}
               </div>
             );
           })}

@@ -95,12 +95,15 @@
   }
 
   .printable-card img,
-  .print-card img {
-    max-height: 40mm !important;
+  .print-card img,
+  .printable-card svg,
+  .print-card svg {
     width: auto !important;
-    max-width: 100% !important;
+    height: auto !important;
+    max-width: 54mm !important;
+    max-height: 50mm !important;
     object-fit: contain !important;
-    margin-bottom: 5pt !important;
+    margin-bottom: 6pt !important;
   }
 
   .print-card p,
