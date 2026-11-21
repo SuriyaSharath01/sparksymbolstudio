@@ -56,6 +56,7 @@ export const PassportBundleModal: React.FC<Props> = ({
       setStatusMsg(
         `Restored Passport (${parsed.passport.residentInitials}) and ${restoredCount} custom word mapping(s).`
       );
+      window.dispatchEvent(new CustomEvent('spark:bundle-imported', { detail: parsed }));
       onImportedBundle?.(parsed, restoredCount);
     } catch {
       setStatusMsg('Could not read JSON bundle.');

@@ -178,11 +178,21 @@ export const LiveTalkerOverlay: React.FC<Props> = ({ page, onExit }) => {
               </span>
             )}
             {cell.displayMode !== 'text-only' && cell.symbolSrc && (
-              <img
-                src={cell.symbolSrc}
-                alt={cell.caption}
-                className="max-h-28 w-auto max-w-full object-contain"
-              />
+              <div className="relative inline-flex items-center justify-center">
+                <img
+                  src={cell.symbolSrc}
+                  alt={cell.caption}
+                  style={cell.symbolTintColor ? { filter: 'contrast(1.08)' } : undefined}
+                  className="max-h-28 w-auto max-w-full object-contain"
+                />
+                {cell.symbolTintColor && (
+                  <span
+                    aria-hidden="true"
+                    style={{ backgroundColor: cell.symbolTintColor }}
+                    className="pointer-events-none absolute inset-0 rounded-lg mix-blend-multiply opacity-45"
+                  />
+                )}
+              </div>
             )}
             {cell.displayMode !== 'symbol-only' && (
               <span className="mt-2.5 text-base font-extrabold text-slate-900 sm:text-lg">

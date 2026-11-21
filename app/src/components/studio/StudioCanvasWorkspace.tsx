@@ -87,7 +87,12 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
   const [savedBindingNotice, setSavedBindingNotice] = useState<boolean>(false);
 
   useEffect(() => {
-    void getAllWordMappings().then(setWordMappings).catch(() => {});
+    const loadMappings = () => {
+      void getAllWordMappings().then(setWordMappings).catch(() => {});
+    };
+    loadMappings();
+    window.addEventListener('spark:bundle-imported', loadMappings);
+    return () => window.removeEventListener('spark:bundle-imported', loadMappings);
   }, []);
 
   useEffect(() => {
