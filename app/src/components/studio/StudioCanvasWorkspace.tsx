@@ -10,6 +10,7 @@ import type { CommunicationPassport } from '../../types/passport';
 import type { StudioCell, StudioPage } from '../../types/studio';
 import { StudioCellCard } from './StudioCellCard';
 import { CellInspector } from './CellInspector';
+import { LiveTalkerOverlay } from './LiveTalkerOverlay';
 import { getAllWordMappings, saveWordMapping, type CustomWordMapping } from '../../utils/wordListDb';
 
 interface Props {
@@ -80,6 +81,7 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
   const [symbolQuery, setSymbolQuery] = useState<string>('');
   const [showBulkPaste, setShowBulkPaste] = useState<boolean>(false);
   const [showTemplatesDrawer, setShowTemplatesDrawer] = useState<boolean>(false);
+  const [liveTalkerActive, setLiveTalkerActive] = useState<boolean>(false);
   const [bulkText, setBulkText] = useState<string>('');
   const [wordMappings, setWordMappings] = useState<Record<string, CustomWordMapping>>({});
   const [savedBindingNotice, setSavedBindingNotice] = useState<boolean>(false);
@@ -402,6 +404,13 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
           </button>
           <button
             type="button"
+            onClick={() => setLiveTalkerActive(true)}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-extrabold text-white hover:bg-emerald-800"
+          >
+            Live Talker (PIN)
+          </button>
+          <button
+            type="button"
             onClick={() => window.print()}
             className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-extrabold text-white hover:bg-slate-800"
           >
@@ -596,6 +605,12 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
           />
         </div>
       </div>
+      {liveTalkerActive && (
+        <LiveTalkerOverlay
+          page={page}
+          onExit={() => setLiveTalkerActive(false)}
+        />
+      )}
     </section>
   );
 };

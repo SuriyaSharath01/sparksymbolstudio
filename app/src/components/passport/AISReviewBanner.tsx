@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PassportBundleModal } from './PassportBundleModal';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import type { CommunicationPassport } from '../../types/passport';
 
@@ -11,6 +12,7 @@ interface Props {
 export const AISReviewBanner: React.FC<Props> = ({ passport, onLogReview, onExportCqc }) => {
   const [initials, setInitials] = useState('');
   const [justLogged, setJustLogged] = useState(false);
+  const [showBundleModal, setShowBundleModal] = useState(false);
 
   const isOverdue = new Date(passport.nextReviewDue) < new Date();
 
@@ -74,6 +76,13 @@ export const AISReviewBanner: React.FC<Props> = ({ passport, onLogReview, onExpo
           </button>
         </form>
 
+        <button
+          type="button"
+          onClick={() => setShowBundleModal(true)}
+          className="h-8 rounded-lg border border-slate-300 bg-white px-3 text-xs font-bold text-slate-800 transition hover:bg-slate-100"
+        >
+          Bundle &amp; QR
+        </button>
         {onExportCqc && (
           <button
             type="button"
@@ -84,6 +93,12 @@ export const AISReviewBanner: React.FC<Props> = ({ passport, onLogReview, onExpo
           </button>
         )}
       </div>
+      {showBundleModal && (
+        <PassportBundleModal
+          passport={passport}
+          onClose={() => setShowBundleModal(false)}
+        />
+      )}
     </div>
   );
 };
