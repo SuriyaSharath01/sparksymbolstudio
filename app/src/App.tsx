@@ -60,6 +60,7 @@ import {
   WANTS_BOARD_ITEMS,
 } from './data/studio-presets';
 import { CustomBoardWorkspace } from './components/studio/CustomBoardWorkspace';
+import { StudioCanvasWorkspace } from './components/studio/StudioCanvasWorkspace';
 import { RoutinePresetsPanel } from './components/studio/RoutinePresetsPanel';
 import { SupportPacksPanel } from './components/studio/SupportPacksPanel';
 import { MediaLibraryPanel } from './components/studio/MediaLibraryPanel';
@@ -68,7 +69,7 @@ import { CoreCardsTab } from './components/studio/CoreCardsTab';
 import { FocusModeTab } from './components/studio/FocusModeTab';
 import { SocialStoriesTab } from './components/studio/SocialStoriesTab';
 export type { QuickCard } from './data/studio-presets';
-export type AppTab = 'templates' | 'packs' | 'wants' | 'community' | 'anchors' | 'focus' | 'stories' | 'media';
+export type AppTab = 'templates' | 'studio' | 'packs' | 'wants' | 'community' | 'anchors' | 'focus' | 'stories' | 'media';
 type PrintFormat = 'a4' | 'pocket';
 interface ResourceTemplate {
   id: ResourceTemplateId;
@@ -1435,6 +1436,15 @@ export function App() {
             steps={focusSteps}
           />
         )}
+        {activeTab === 'studio' && (
+          <StudioCanvasWorkspace
+            symbols={symbols}
+            activePassport={activePassport}
+            careInitials={careInitials}
+            careReviewNote={careReviewNote}
+          />
+        )}
+
         {activeTab === 'media' && (
           <MediaLibraryPanel
             photos={photos}
