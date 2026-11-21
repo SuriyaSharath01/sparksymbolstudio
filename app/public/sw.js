@@ -1,10 +1,16 @@
-const CACHE_NAME = 'spark-offline-v3';
+const CACHE_NAME = 'spark-offline-v4';
+
+const FALLBACK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect x="6" y="6" width="108" height="108" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="6 4"/>
+  <circle cx="60" cy="48" r="18" fill="none" stroke="#64748B" stroke-width="3.5"/>
+  <path d="M34 86c5-12 15-18 26-18s21 6 26 18" fill="none" stroke="#64748B" stroke-width="3.5" stroke-linecap="round"/>
+</svg>`;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      await cache.addAll(['/', '/index.html', '/mulberry-symbols.json']);
+      await cache.addAll(['/', '/index.html', '/favicon.svg', '/icons.svg', '/openmoji-index.json', '/symbol-info.csv']);
       try {
         const res = await fetch('/index.html', { cache: 'no-store' });
         const html = await res.text();
@@ -60,7 +66,15 @@ self.addEventListener('fetch', (event) => {
             }
             return res;
           })
-          .catch(() => new Response('', { status: 503, statusText: 'Offline' }))
+          .catch(() => {
+            if (url.pathname.endsWith('.svg')) {
+              return new Response(FALLBACK_SVG, {
+                status: 200,
+                headers: { 'Content-Type': 'image/svg+xml; charset=utf-8' },
+              });
+            }
+            return new Response('', { status: 503, statusText: 'Offline' });
+          })
     )
   );
 });
