@@ -1,52 +1,78 @@
 /* Print & Pocket-Card Stylesheet (A4 sheets + wallet/pocket cards) */
 
+.print-only-header {
+  display: none;
+}
+
 @media print {
   @page {
     size: A4 portrait;
     margin: 10mm;
   }
 
+  html,
   body {
     background: #ffffff !important;
     color: #0f172a !important;
     margin: 0 !important;
     padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .no-print,
-  .print\:hidden {
+  .print\:hidden,
+  nav,
+  header,
+  .SafetyExitBar,
+  .SymbolPointPopover {
     display: none !important;
   }
 
   .print-only-header {
     display: block !important;
-    margin-bottom: 12pt;
+    margin-bottom: 10pt;
     padding-bottom: 6pt;
-    border-bottom: 2px solid #0f172a;
+    border-bottom: 1.5pt solid #0f172a;
   }
 
+  .print-container,
+  .main-workspace {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .print-grid,
   .print-card-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10pt !important;
+    gap: 8pt !important;
     width: 100% !important;
   }
 
   .print-pocket-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8pt !important;
+    gap: 6pt !important;
     width: 100% !important;
   }
 
+  .print-card,
+  .choice-tile,
+  .routine-step,
   .printable-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    border: 2pt solid #0f172a !important;
-    border-radius: 8pt !important;
-    padding: 10pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border: 1.5pt solid #0f172a !important;
+    border-radius: 6pt !important;
+    padding: 8pt !important;
     background: #ffffff !important;
     color: #0f172a !important;
+    box-shadow: none !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -54,19 +80,34 @@
     text-align: center !important;
   }
 
+  .cut-guides .print-card,
+  .cut-guides .choice-tile,
+  .cut-guides .routine-step,
+  .cut-guides .printable-card {
+    border-style: dashed !important;
+    border-width: 1pt !important;
+    border-color: #475569 !important;
+  }
+
   .printable-card.pocket-size {
-    min-height: 78mm !important;
+    min-height: 76mm !important;
     padding: 6pt !important;
   }
 
-  .printable-card img {
-    max-height: 42mm !important;
+  .printable-card img,
+  .print-card img {
+    max-height: 40mm !important;
     width: auto !important;
+    max-width: 100% !important;
     object-fit: contain !important;
-    margin-bottom: 6pt !important;
+    margin-bottom: 5pt !important;
   }
-}
 
-.print-only-header {
-  display: none;
+  .print-card p,
+  .printable-card p {
+    font-size: 12pt !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+  }
 }

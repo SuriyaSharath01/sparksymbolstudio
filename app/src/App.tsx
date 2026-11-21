@@ -135,6 +135,7 @@ const ANCHOR_CARD_IDS: CoreCardId[] = [
   'hot_drink',
 ];
 import { getCachedSymbolBlobUrlBySrc } from './utils/symbolCacheDb';
+import OfflineStatusPanel from './components/studio/OfflineStatusPanel';
 import { persistRemoteSymbolOffline } from './utils/remoteSymbolSearch';
 
 function SymbolTileVisual({
@@ -1435,6 +1436,7 @@ export function App() {
         </div>
       </section>
       <ParkItPocket />
+      <OfflineStatusPanel />
     </div>
   );
 }
