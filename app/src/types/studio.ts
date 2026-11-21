@@ -30,7 +30,8 @@ export interface StudioPage {
   title: string;
   orientation: 'portrait' | 'landscape';
   background: string;
-  columns: 2 | 3 | 4;
+  columns: 2 | 3 | 4 | 5;
   gapPx: number;
+  templateBadge?: string;
   cells: StudioCell[];
 }
