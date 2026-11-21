@@ -43,6 +43,24 @@ svg.lucide {
 
   .print-container {
     display: block !important;
+
+  [data-active-tab="studio"] .print-container,
+  [data-active-tab="easyread"] .print-container {
+    display: none !important;
+  }
+
+  [data-active-tab="studio"] main,
+  [data-active-tab="easyread"] main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  [data-active-tab="studio"] main > div:first-child,
+  [data-active-tab="easyread"] main > div:first-child {
+    display: none !important;
+  }
+
     width: 100%;
     padding: 16mm;
     box-sizing: border-box;

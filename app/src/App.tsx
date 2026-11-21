@@ -801,7 +801,7 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
   return (
-    <div data-low-arousal={lowArousalMode ? "true" : "false"} className={`min-h-screen text-slate-900 transition-colors ${lowArousalMode ? "bg-[#eef2ef]" : "bg-[#f4f5f7]"}`}>
+    <div data-active-tab={activeTab} data-low-arousal={lowArousalMode ? "true" : "false"} className={`min-h-screen text-slate-900 transition-colors ${lowArousalMode ? "bg-[#eef2ef]" : "bg-[#f4f5f7]"}`}>
       {/* Context-Aware Obsidian Glass Studio Header */}
       <header className="no-print sticky top-0 z-40">
         {activeTab === 'focus' ? (
