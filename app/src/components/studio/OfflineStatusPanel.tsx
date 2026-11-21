@@ -1,11 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
-import { ShieldCheck, Wifi, WifiOff, Database, HardDrive, X, RefreshCw } from 'lucide-react';
+import { ShieldCheck, Wifi, WifiOff, Database, HardDrive, X, RefreshCw, Download, CheckCircle2 } from 'lucide-react';
 
 interface TelemetryState {
   isOnline: boolean;
   swActive: boolean;
   swScript: string;
   cachedBlobCount: number | null;
+  cachedSwSymbols: number;
   usageMb: string | null;
   quotaMb: string | null;
 }
@@ -41,13 +42,26 @@ function readSymbolBlobCount(): Promise<number | null> {
   });
 }
 
+async function countCachedSwSymbols(): Promise<number> {
+  try {
+    const cache = await caches.open('spark-offline-v4');
+    const keys = await cache.keys();
+    return keys.filter((req) => new URL(req.url).pathname.startsWith('/symbols/')).length;
+  } catch {
+    return 0;
+  }
+}
+
 export default function OfflineStatusPanel() {
   const [isOpen, setIsOpen] = useState(false);
+  const [precaching, setPrecaching] = useState(false);
+  const [precacheProgress, setPrecacheProgress] = useState<{ done: number; total: number } | null>(null);
   const [telemetry, setTelemetry] = useState<TelemetryState>({
     isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true,
     swActive: false,
     swScript: 'Not registered',
     cachedBlobCount: null,
+    cachedSwSymbols: 0,
     usageMb: null,
     quotaMb: null,
   });
@@ -66,7 +80,10 @@ export default function OfflineStatusPanel() {
       }
     }
 
-    const cachedBlobCount = await readSymbolBlobCount();
+    const [cachedBlobCount, cachedSwSymbols] = await Promise.all([
+      readSymbolBlobCount(),
+      countCachedSwSymbols(),
+    ]);
 
     let usageMb: string | null = null;
     let quotaMb: string | null = null;
@@ -85,6 +102,7 @@ export default function OfflineStatusPanel() {
       swActive,
       swScript,
       cachedBlobCount,
+      cachedSwSymbols,
       usageMb,
       quotaMb,
     });
@@ -107,6 +125,59 @@ export default function OfflineStatusPanel() {
       void refreshTelemetry();
     }
   }, [isOpen, refreshTelemetry]);
+
+  const handleDownloadFullOfflinePack = async () => {
+    if (precaching || !navigator.onLine) return;
+    setPrecaching(true);
+    try {
+      const csvRes = await fetch('/symbol-info.csv');
+      const csvText = await csvRes.text();
+      const lines = csvText.split(/\r?\n/).slice(1).filter(Boolean);
+      const urls = Array.from(
+        new Set(
+          lines
+            .map((line) => line.split(',')[5]?.trim())
+            .filter(Boolean)
+            .map((name) => `/symbols/${encodeURIComponent(name)}.svg`)
+        )
+      );
+
+      const cache = await caches.open('spark-offline-v4');
+      await cache.addAll([
+        '/fonts/OpenDyslexic-Regular.woff2',
+        '/fonts/OpenDyslexic-Bold.woff2',
+      ]);
+
+      const batchSize = 40;
+      let done = 0;
+      setPrecacheProgress({ done: 0, total: urls.length });
+
+      for (let i = 0; i < urls.length; i += batchSize) {
+        const batch = urls.slice(i, i + batchSize);
+        await Promise.all(
+          batch.map(async (url) => {
+            try {
+              const existing = await cache.match(url);
+              if (!existing) {
+                const res = await fetch(url);
+                if (res.ok) {
+                  await cache.put(url, res);
+                }
+              }
+            } catch {
+              // skip any missing individual file
+            }
+          })
+        );
+        done = Math.min(i + batch.length, urls.length);
+        setPrecacheProgress({ done, total: urls.length });
+      }
+
+      await refreshTelemetry();
+    } finally {
+      setPrecaching(false);
+    }
+  };
 
   return (
     <div className="no-print fixed bottom-4 left-4 z-40">
@@ -178,10 +249,10 @@ export default function OfflineStatusPanel() {
             <div className="flex items-center justify-between border-b border-slate-800 pb-2">
               <span className="flex items-center gap-1.5 text-slate-300">
                 <Database className="h-3.5 w-3.5 text-sky-400" />
-                IDB Symbol Blobs
+                Offline SVGs / Blobs
               </span>
               <span className="font-mono font-bold text-sky-400">
-                {telemetry.cachedBlobCount !== null ? `${telemetry.cachedBlobCount} stored` : 'Checking...'}
+                {telemetry.cachedSwSymbols} SVGs · {telemetry.cachedBlobCount ?? 0} IDB
               </span>
             </div>
 
@@ -204,9 +275,41 @@ export default function OfflineStatusPanel() {
             </div>
           </div>
 
-          <p className="mt-3 rounded-lg bg-slate-800/70 p-2 text-[11px] leading-snug text-slate-300">
-            Local Mulberry symbols &amp; shell cache in browser storage; remote symbol blobs persist in IndexedDB.
-          </p>
+          <div className="mt-3 space-y-2">
+            <button
+              type="button"
+              disabled={precaching || !telemetry.isOnline}
+              onClick={() => void handleDownloadFullOfflinePack()}
+              className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-extrabold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {telemetry.cachedSwSymbols >= 3400 ? (
+                <>
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  All 3,435+ Symbols Cached Offline
+                </>
+              ) : precaching && precacheProgress ? (
+                <span>
+                  Caching Symbols ({precacheProgress.done} / {precacheProgress.total})...
+                </span>
+              ) : (
+                <>
+                  <Download className="h-3.5 w-3.5" />
+                  Download Full Offline Symbol Pack
+                </>
+              )}
+            </button>
+
+            {precacheProgress && (
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                <div
+                  style={{
+                    width: `${Math.round((precacheProgress.done / Math.max(precacheProgress.total, 1)) * 100)}%`,
+                  }}
+                  className="h-full bg-emerald-400 transition-all"
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
