@@ -1429,7 +1429,7 @@ export function App() {
                   />
                 </div>
                 <h3>{card.title}</h3>
-                {!seqBadge && card.subtitle && !/^STEP\s+\d+$/i.test(card.subtitle.trim()) && (
+                {!seqBadge && card.subtitle && !/^STEP\s+\d+$/i.test(card.subtitle.trim()) && sequenceMode !== 'now_next' && sequenceMode !== 'now_next_then' && (
                   <p>{card.subtitle}</p>
                 )}
               </div>
