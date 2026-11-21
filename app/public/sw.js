@@ -1,10 +1,10 @@
-const CACHE_NAME = 'spark-offline-v2';
+const CACHE_NAME = 'spark-offline-v3';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      await cache.addAll(['/', '/index.html']);
+      await cache.addAll(['/', '/index.html', '/mulberry-symbols.json']);
       try {
         const res = await fetch('/index.html', { cache: 'no-store' });
         const html = await res.text();
@@ -52,13 +52,15 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then(
       (cached) =>
         cached ||
-        fetch(request).then((res) => {
-          if (res.ok) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          }
-          return res;
-        })
+        fetch(request)
+          .then((res) => {
+            if (res.ok) {
+              const copy = res.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+            }
+            return res;
+          })
+          .catch(() => new Response('', { status: 503, statusText: 'Offline' }))
     )
   );
 });
