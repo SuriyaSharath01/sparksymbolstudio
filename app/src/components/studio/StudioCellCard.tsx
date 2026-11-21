@@ -52,8 +52,8 @@ export const StudioCellCard: React.FC<Props> = ({
         onChange={(e) => onCaptionChange(cell.id, e.target.value)}
         onClick={(e) => e.stopPropagation()}
         aria-label="Cell caption"
-        className={`w-full rounded bg-transparent px-1 text-center font-extrabold text-slate-900 focus:bg-white/80 focus:outline-none ${
-          displayMode === 'text-only' ? 'text-lg sm:text-xl' : 'text-sm sm:text-base'
+        className={`min-w-0 w-full rounded bg-transparent px-1 text-center font-extrabold leading-tight text-slate-900 focus:bg-white/80 focus:outline-none ${
+          displayMode === 'text-only' ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
         } ${displayMode === 'symbol-text-below' ? 'mt-2' : ''} ${
           displayMode === 'symbol-text-above' ? 'mb-2' : ''
         }`}

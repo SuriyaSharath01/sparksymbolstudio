@@ -215,7 +215,7 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
   const handleAddBlankPage = () => {
     const newPage: StudioPage = {
       id: `studio-page-${Date.now()}`,
-      title: `Page ${pages.length + 1} • Visual Support Sheet`,
+      title: `Page ${pages.length + 1} · Visual Support Sheet`,
       orientation: 'landscape',
       background: activePassport?.profile.requiresLowArousal ? '#FAFAF5' : '#FFFFFF',
       columns: 3,
@@ -547,7 +547,7 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
               </div>
               {(careInitials || careReviewNote) && (
                 <span className="text-[11px] font-semibold text-slate-500">
-                  {careInitials ? `${careInitials} • ` : ''}
+                  {careInitials ? `${careInitials} · ` : ''}
                   {careReviewNote}
                 </span>
               )}
