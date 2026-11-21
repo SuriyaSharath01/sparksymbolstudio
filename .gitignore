@@ -1,4 +1,6 @@
-node_modules/
-dist/
+assets-temp/
+app/node_modules/
+app/dist/
+app/.vercel/
 .vercel/
 .DS_Store
