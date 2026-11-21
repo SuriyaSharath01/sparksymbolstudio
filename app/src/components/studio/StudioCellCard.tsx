@@ -20,11 +20,21 @@ export const StudioCellCard: React.FC<Props> = ({
     displayMode !== 'text-only' && (
       <div className="flex flex-1 items-center justify-center p-1">
         {symbolSrc ? (
-          <img
-            src={symbolSrc}
-            alt={caption}
-            className="max-h-24 w-auto max-w-full object-contain print:max-h-28"
-          />
+          <div className="relative inline-flex items-center justify-center">
+            <img
+              src={symbolSrc}
+              alt={caption}
+              style={cell.symbolTintColor ? { filter: 'contrast(1.08)' } : undefined}
+              className="max-h-24 w-auto max-w-full object-contain print:max-h-28"
+            />
+            {cell.symbolTintColor && (
+              <span
+                aria-hidden="true"
+                style={{ backgroundColor: cell.symbolTintColor }}
+                className="pointer-events-none absolute inset-0 rounded-lg mix-blend-multiply opacity-45"
+              />
+            )}
+          </div>
         ) : (
           <div className="flex h-20 w-20 items-center justify-center rounded-lg border border-dashed border-slate-300 text-[11px] font-semibold text-slate-400">
             No symbol
@@ -75,6 +85,11 @@ export const StudioCellCard: React.FC<Props> = ({
           : 'hover:shadow-sm'
       }`}
     >
+      {cell.negated && (
+        <span className="absolute top-2 right-2 z-10 rounded-md bg-red-600 px-1.5 py-0.5 text-[10px] font-black tracking-wide text-white shadow-2xs">
+          NO / NOT
+        </span>
+      )}
       {displayMode === 'symbol-text-above' && renderCaption()}
       {renderSymbol()}
       {displayMode === 'symbol-text-below' && renderCaption()}

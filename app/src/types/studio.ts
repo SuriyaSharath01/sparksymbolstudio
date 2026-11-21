@@ -20,6 +20,8 @@ export interface StudioCell {
   symbolSrc: string;
   caption: string;
   displayMode: CellDisplayMode;
+  negated?: boolean;
+  symbolTintColor?: string;
   style: CellStyle;
 }
 

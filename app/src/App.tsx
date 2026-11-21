@@ -22,6 +22,7 @@ import {
   BookOpen,
   Download,
   Upload,
+  Sparkles,
 } from 'lucide-react';
 import { type FocusStep } from './components/FocusCard';
 import SparkLogo from './components/SparkLogo';
@@ -975,6 +976,7 @@ export function App() {
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-1.5 px-6 py-2">
             {[
               { id: 'templates' as AppTab, label: 'Board Builder', icon: LayoutTemplate },
+              { id: 'studio' as AppTab, label: 'Studio Canvas', icon: Sparkles },
               { id: 'packs' as AppTab, label: 'Clinical Support Packs', icon: FolderOpen },
               { id: 'wants' as AppTab, label: 'Choice & Request', icon: HeartHandshake },
               { id: 'community' as AppTab, label: 'Visual Schedules', icon: Compass },

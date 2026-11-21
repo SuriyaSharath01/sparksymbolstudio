@@ -251,7 +251,7 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
             return (
               <div
                 key={`${item.id}-${idx}`}
-                className={`group relative flex w-28 flex-col items-center justify-between overflow-hidden rounded-lg border-2 p-2 shadow-2xs transition hover:-translate-y-0.5 hover:border-[#D45A1A] focus:ring-2 focus:ring-[#D45A1A] focus:outline-none sm:w-32 ${borderTone}`}
+                className={`group relative flex w-32 flex-col items-center justify-between overflow-hidden rounded-lg border-2 p-2 shadow-2xs transition hover:-translate-y-0.5 hover:border-[#D45A1A] focus:ring-2 focus:ring-[#D45A1A] focus:outline-none sm:w-36 ${borderTone}`}
               >
                 <button
                   type="button"
@@ -276,7 +276,7 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
                         title="Tap word to swap symbol meaning"
                         className="inline-flex max-w-full flex-wrap items-center justify-center gap-0.5 break-words text-center text-xs font-extrabold leading-tight text-slate-900 hover:text-[#C85A1E] sm:text-sm"
                       >
-                        <span className="break-words">{formatWord(item.label)}</span>
+                        <span className="block w-full break-words text-center">{formatWord(item.label)}</span>
                         {altCount > 1 && (
                           <span className="shrink-0 text-[10px] font-bold text-[#E36C2B]" aria-hidden="true">
                             ▾
@@ -286,7 +286,7 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
                     </SymbolPointPopover>
                   </div>
                 ) : (
-                  <span className="mt-1.5 w-full break-words border-t border-slate-200 pt-1 text-center text-xs font-extrabold leading-tight text-slate-900 sm:text-sm">
+                  <span className="mt-1.5 block w-full break-words border-t border-slate-200 pt-1 text-center text-xs font-extrabold leading-tight text-slate-900 sm:text-sm">
                     {formatWord(item.label)}
                   </span>
                 )}

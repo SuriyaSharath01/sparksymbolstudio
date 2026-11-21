@@ -7,6 +7,8 @@ interface Props {
   onUpdate: (patch: Partial<StudioCell>) => void;
   onDuplicate: (id: string) => void;
   onDelete: (id: string) => void;
+  onSaveWordBinding?: (cell: StudioCell) => void;
+  savedBindingNotice?: boolean;
 }
 
 const DISPLAY_MODES: { value: CellDisplayMode; label: string }[] = [
@@ -14,6 +16,17 @@ const DISPLAY_MODES: { value: CellDisplayMode; label: string }[] = [
   { value: 'symbol-text-above', label: 'Symbol + Text Above' },
   { value: 'symbol-only', label: 'Symbol Only (Guess / AAC)' },
   { value: 'text-only', label: 'Text Only' },
+];
+
+const SKIN_TONE_SWATCHES = [
+  { label: 'Default', color: '' },
+  { label: 'Light', color: '#FDE2D2' },
+  { label: 'Medium-Light', color: '#E8B89A' },
+  { label: 'Medium', color: '#C68642' },
+  { label: 'Medium-Dark', color: '#8D5524' },
+  { label: 'Deep', color: '#5C3824' },
+  { label: 'Yellow Bus', color: '#FACC15' },
+  { label: 'Sky Blue', color: '#38BDF8' },
 ];
 
 const FITZGERALD_SWATCHES = [
@@ -30,6 +43,8 @@ export const CellInspector: React.FC<Props> = ({
   onUpdate,
   onDuplicate,
   onDelete,
+  onSaveWordBinding,
+  savedBindingNotice,
 }) => {
   if (!cell) {
     return (
@@ -95,6 +110,16 @@ export const CellInspector: React.FC<Props> = ({
       </div>
 
       <div>
+        <button
+          type="button"
+          onClick={() => onUpdate({ negated: !cell.negated })}
+          className={`w-full rounded-lg border px-2.5 py-1.5 text-xs font-extrabold transition ${cell.negated ? 'border-red-600 bg-red-600 text-white' : 'border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100'}`}
+        >
+          {cell.negated ? 'Negation Badge Active (No / Not)' : 'Mark as Negative (No / Not)'}
+        </button>
+      </div>
+
+      <div>
         <label className="block text-[11px] font-bold text-slate-600">
           Independent Cell Caption
         </label>
@@ -106,6 +131,41 @@ export const CellInspector: React.FC<Props> = ({
           className="mt-1 w-full rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-900 focus:border-slate-600 focus:outline-none"
         />
       </div>
+
+      <div>
+        <span className="block text-[11px] font-bold text-slate-600">
+          SVG Skin Tone &amp; Object Recolour
+        </span>
+        <div className="mt-1.5 flex flex-wrap gap-1.5">
+          {SKIN_TONE_SWATCHES.map((tone) => (
+            <button
+              key={tone.label}
+              type="button"
+              title={tone.label}
+              onClick={() => onUpdate({ symbolTintColor: tone.color || undefined })}
+              className={`flex h-6 items-center gap-1 rounded-md border px-1.5 text-[10px] font-bold ${(cell.symbolTintColor || '') === tone.color ? 'border-[#E36C2B] bg-orange-50 text-slate-900' : 'border-slate-200 bg-white text-slate-700'}`}
+            >
+              <span
+                className="h-3 w-3 rounded-full border border-slate-300"
+                style={{ backgroundColor: tone.color || '#FFFFFF' }}
+              />
+              <span>{tone.label === 'Default' ? 'Reset' : ''}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {onSaveWordBinding && (
+        <div>
+          <button
+            type="button"
+            onClick={() => onSaveWordBinding(cell)}
+            className="w-full rounded-lg border border-emerald-600 bg-emerald-50 px-2.5 py-1.5 text-xs font-extrabold text-emerald-900 hover:bg-emerald-100"
+          >
+            {savedBindingNotice ? 'Saved to Device Word List ✓' : 'Save Word → Symbol to Device'}
+          </button>
+        </div>
+      )}
 
       <div>
         <span className="block text-[11px] font-bold text-slate-600">

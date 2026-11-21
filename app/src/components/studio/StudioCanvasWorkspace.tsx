@@ -5,6 +5,7 @@ import type { CommunicationPassport } from '../../types/passport';
 import type { StudioCell, StudioPage } from '../../types/studio';
 import { StudioCellCard } from './StudioCellCard';
 import { CellInspector } from './CellInspector';
+import { getAllWordMappings, saveWordMapping, type CustomWordMapping } from '../../utils/wordListDb';
 
 interface Props {
   symbols: MulberrySymbol[];
@@ -61,6 +62,14 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
   );
   const [dyslexicFont, setDyslexicFont] = useState<boolean>(false);
   const [symbolQuery, setSymbolQuery] = useState<string>('');
+  const [showBulkPaste, setShowBulkPaste] = useState<boolean>(false);
+  const [bulkText, setBulkText] = useState<string>('');
+  const [wordMappings, setWordMappings] = useState<Record<string, CustomWordMapping>>({});
+  const [savedBindingNotice, setSavedBindingNotice] = useState<boolean>(false);
+
+  useEffect(() => {
+    void getAllWordMappings().then(setWordMappings).catch(() => {});
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle('font-dyslexic', dyslexicFont);
@@ -124,6 +133,54 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
     };
     setPage((prev) => ({ ...prev, cells: [...prev.cells, copy] }));
     setSelectedCellId(copy.id);
+  };
+
+  const handleBulkPasteGenerate = () => {
+    const lines = bulkText
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter(Boolean);
+    if (lines.length === 0) return;
+    const generated: StudioCell[] = lines.map((line, i) => {
+      const saved = wordMappings[line.toLowerCase()];
+      const hit = saved ? undefined : searchMulberrySymbols(symbols, line, 'All', 1)[0];
+      return {
+        id: `bulk-${Date.now()}-${i}`,
+        symbolId: saved?.symbolId || hit?.id || `bulk-sym-${i}`,
+        symbolSrc: saved?.symbolSrc || hit?.svgPath || '',
+        caption: line,
+        symbolTintColor: saved?.tintColor,
+        displayMode: 'symbol-text-below',
+        style: {
+          borderColor: '#334155',
+          borderWidth: 2,
+          borderStyle: 'solid',
+          borderRadius: 14,
+          backgroundColor: '#FFFFFF',
+        },
+      };
+    });
+    setPage((prev) => ({ ...prev, cells: [...prev.cells, ...generated] }));
+    setBulkText('');
+    setShowBulkPaste(false);
+    if (generated[0]) setSelectedCellId(generated[0].id);
+  };
+
+  const handleSaveWordBinding = async (target: StudioCell) => {
+    const key = target.caption.trim().toLowerCase();
+    if (!key) return;
+    const entry: CustomWordMapping = {
+      word: key,
+      symbolId: target.symbolId,
+      symbolSrc: target.symbolSrc,
+      caption: target.caption.trim(),
+      tintColor: target.symbolTintColor,
+      updatedAt: new Date().toISOString(),
+    };
+    await saveWordMapping(entry);
+    setWordMappings((prev) => ({ ...prev, [key]: entry }));
+    setSavedBindingNotice(true);
+    window.setTimeout(() => setSavedBindingNotice(false), 2200);
   };
 
   const deleteCell = (id: string) => {
@@ -200,6 +257,31 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
           Print Studio Sheet
         </button>
       </div>
+
+      {showBulkPaste && (
+        <div className="rounded-2xl border border-slate-300 bg-white p-4 shadow-2xs print:hidden">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs font-extrabold text-slate-900">Bulk Paste-to-Grid (One item per line)</span>
+            <button type="button" onClick={() => setShowBulkPaste(false)} className="text-xs font-bold text-slate-500 hover:text-slate-800">Close</button>
+          </div>
+          <textarea
+            rows={4}
+            value={bulkText}
+            onChange={(e) => setBulkText(e.target.value)}
+            placeholder={"Wash hands\nChoose breakfast\nTake medication\nMorning walk"}
+            className="mt-2 w-full rounded-xl border border-slate-300 p-2.5 text-xs font-semibold text-slate-800 focus:border-slate-600 focus:outline-none"
+          />
+          <div className="mt-2 flex justify-end">
+            <button
+              type="button"
+              onClick={handleBulkPasteGenerate}
+              className="rounded-lg bg-[#E36C2B] px-3.5 py-1.5 text-xs font-extrabold text-white hover:bg-[#c85a1e]"
+            >
+              Add Lines to Grid
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main 3-Column Studio Workspace: Symbol Tray | Live Sheet Canvas | Cell Inspector */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
@@ -295,6 +377,8 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
             }}
             onDuplicate={duplicateCell}
             onDelete={deleteCell}
+            onSaveWordBinding={(c) => void handleSaveWordBinding(c)}
+            savedBindingNotice={savedBindingNotice}
           />
         </div>
       </div>
