@@ -1,4 +1,7 @@
 import { useRef } from 'react';
+import type { CommunicationPassport, ReviewLog } from './types/passport';
+import { AISReviewBanner } from './components/passport/AISReviewBanner';
+import { exportCQCEvidence } from './utils/cqcExport';
 import { ParkItPocket } from './components/layout/ParkItPocket';
 import React,
   { useEffect,
@@ -341,6 +344,74 @@ export function App() {
   const [careInitials, setCareInitials] = useState<string>('');
   const [careReviewNote, setCareReviewNote] = useState<string>('Person-Centred Visual Support');
   const [selectedProfileId, setSelectedProfileId] = useState<string>('default');
+  const [aisReviewRecords, setAisReviewRecords] = useState<
+    Record<string, { createdAt: string; lastReviewedAt: string | null; nextReviewDue: string; reviewLog: ReviewLog[] }>
+  >(() => {
+    try {
+      const raw = localStorage.getItem('spark_ais_review_records');
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  const allProfiles = [...DEFAULT_SUPPORT_PROFILES, ...customProfiles];
+
+  const toCommunicationPassport = (p: SupportProfileDNA): CommunicationPassport => {
+    const rec = aisReviewRecords[p.id];
+    const defaultDue = new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    return {
+      id: p.id,
+      residentInitials: (p.id === selectedProfileId && careInitials.trim()) ? careInitials.trim() : p.initials || p.label,
+      profile: {
+        fontFamily: 'system',
+        pageBackground: p.defaultLowArousal ? '#FAFAF5' : '#FFFFFF',
+        symbolSet: 'mixed',
+        requiresLowArousal: p.defaultLowArousal,
+        requiresHighContrast: false,
+        customPhotoBindings: {},
+      },
+      createdAt: rec?.createdAt || new Date().toISOString().split('T')[0],
+      lastReviewedAt: rec?.lastReviewedAt || null,
+      nextReviewDue: rec?.nextReviewDue || defaultDue,
+      reviewLog: rec?.reviewLog || [],
+    };
+  };
+
+  const activePassport: CommunicationPassport | null = (() => {
+    if (selectedProfileId === 'default' && customProfiles.length === 0) return null;
+    const found = allProfiles.find((p) => p.id === selectedProfileId);
+    return found ? toCommunicationPassport(found) : null;
+  })();
+
+  const handleLogPassportReview = (staffInitials: string, notes?: string) => {
+    if (!activePassport) return;
+    const today = new Date().toISOString().split('T')[0];
+    const nextDue = new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const entry: ReviewLog = { reviewedAt: today, reviewedBy: staffInitials, notes };
+    setAisReviewRecords((prev) => {
+      const existing = prev[activePassport.id];
+      const updated = {
+        ...prev,
+        [activePassport.id]: {
+          createdAt: existing?.createdAt || today,
+          lastReviewedAt: today,
+          nextReviewDue: nextDue,
+          reviewLog: [entry, ...(existing?.reviewLog || [])],
+        },
+      };
+      try {
+        localStorage.setItem('spark_ais_review_records', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+    setCareReviewNote(`AIS Reviewed ${today} by ${staffInitials}`);
+  };
+
+  const handleExportAllCqcEvidence = () => {
+    const tracked = allProfiles.filter((p) => p.id !== 'default').map(toCommunicationPassport);
+    exportCQCEvidence(tracked.length > 0 ? tracked : allProfiles.map(toCommunicationPassport));
+  };
 
   const handleSelectSupportProfile = (profileId: string) => {
     setSelectedProfileId(profileId);
@@ -1000,6 +1071,16 @@ export function App() {
               />
             </div>
           </div>
+
+          {activePassport && (
+            <div className="mt-3">
+              <AISReviewBanner
+                passport={activePassport}
+                onLogReview={handleLogPassportReview}
+                onExportCqc={handleExportAllCqcEvidence}
+              />
+            </div>
+          )}
 
           {/* 6 Outcome-Focused Quick Launch Cards for SALTs, LD Nurses & Support Staff */}
 
