@@ -24,7 +24,7 @@ export const StudioCellCard: React.FC<Props> = ({
             <img
               src={symbolSrc}
               alt={caption}
-              style={cell.symbolTintColor ? { filter: 'contrast(1.08)' } : undefined}
+              style={{ filter: cell.symbolTintColor ? 'contrast(1.15)' : 'contrast(1.08) saturate(1.12)' }}
               className="max-h-24 w-auto max-w-full object-contain print:max-h-28"
             />
             {cell.symbolTintColor && (

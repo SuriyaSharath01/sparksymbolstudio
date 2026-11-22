@@ -33,14 +33,21 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
   careReviewNote,
 }) => {
   const initialCells: StudioCell[] = useMemo(() => {
-    const starterWords = ['I want', 'tea', 'toilet', 'break', 'happy', 'help'];
-    return starterWords.map((word, idx) => {
-      const hit = searchMulberrySymbols(symbols, word, 'All', 1)[0];
+    const starters = [
+      { label: 'I want', query: 'want', fallbackSrc: '/symbols/want_,_to.svg' },
+      { label: 'Tea', query: 'tea', fallbackSrc: '/symbols/drink_hot.svg' },
+      { label: 'Toilet', query: 'toilet', fallbackSrc: '/symbols/toilet.svg' },
+      { label: 'Break', query: 'break', fallbackSrc: '/symbols/break_time_1.svg' },
+      { label: 'Happy', query: 'happy', fallbackSrc: '/symbols/happy_lady.svg' },
+      { label: 'Help', query: 'help', fallbackSrc: '/symbols/help_,_to.svg' },
+    ];
+    return starters.map((item, idx) => {
+      const hit = searchMulberrySymbols(symbols, item.query, 'All', 1)[0];
       return {
         id: `cell-init-${idx}`,
-        symbolId: hit?.id || `custom-${idx}`,
-        symbolSrc: hit?.svgPath || '',
-        caption: hit?.label || word,
+        symbolId: hit?.id || `starter-${idx}`,
+        symbolSrc: hit?.svgPath || item.fallbackSrc,
+        caption: item.label,
         displayMode: 'symbol-text-below',
         style: {
           borderColor: idx === 0 ? '#D97706' : idx === 1 || idx === 2 ? '#E36C2B' : '#0284C7',

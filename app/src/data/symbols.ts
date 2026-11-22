@@ -24,6 +24,7 @@ const PHOTO_STORE = 'resident_photos';
 
 function formatDisplayLabel(symbolEn: string): string {
   return symbolEn
+    .replace(/_,_to$/i, '')
     .replace(/_,_/g, ', ')
     .replace(/_-_/g, ' - ')
     .replace(/_\d+$/g, '')
