@@ -910,6 +910,21 @@ function StudioWorkspace() {
                 </span>
               </button>
 
+              <nav aria-label="Site pages" className="hidden md:flex items-center gap-1 rounded-lg bg-slate-800/70 p-1 text-xs font-bold">
+                <Link to="/" className="rounded-md px-2.5 py-1 text-slate-300 hover:bg-slate-700 hover:text-white transition">
+                  Home
+                </Link>
+                <Link to="/resources" className="rounded-md px-2.5 py-1 text-slate-300 hover:bg-slate-700 hover:text-white transition">
+                  Resources
+                </Link>
+                <span className="rounded-md bg-slate-950 px-2.5 py-1 text-amber-300">
+                  Studio
+                </span>
+                <Link to="/kiosk" className="rounded-md px-2.5 py-1 text-slate-300 hover:bg-slate-700 hover:text-white transition">
+                  Kiosk
+                </Link>
+              </nav>
+
               <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto">
                 <div className="relative hidden sm:block">
                   <input
@@ -1268,7 +1283,7 @@ function StudioWorkspace() {
               ))}
             </div>
 
-            <div className="border-t border-slate-200 p-3 space-y-1.5 text-xs font-bold">
+            <div className="border-t border-slate-200 p-3 pb-16 space-y-1.5 text-xs font-bold">
               <Link
                 to="/kiosk"
                 className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2 text-slate-700 hover:bg-slate-100 transition"
@@ -1617,7 +1632,7 @@ function StudioWorkspace() {
 
           {activeTab !== 'focus' && (
             <footer
-              className={`shrink-0 border-t px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs ${
+              className={`shrink-0 border-t pl-4 pr-28 py-2 flex flex-wrap items-center justify-between gap-2 text-xs ${
                 lowArousalMode
                   ? 'border-slate-300 bg-[#e6ece8] text-slate-800'
                   : 'border-slate-200 bg-white text-slate-700'
