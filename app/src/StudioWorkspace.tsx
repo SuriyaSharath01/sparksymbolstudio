@@ -353,6 +353,7 @@ function StudioWorkspace() {
   const [careInitials, setCareInitials] = useState<string>('');
   const [careReviewNote, setCareReviewNote] = useState<string>('Person-Centred Visual Support');
   const [selectedProfileId, setSelectedProfileId] = useState<string>('default');
+  const [showGovernanceDrawer, setShowGovernanceDrawer] = useState<boolean>(false);
   const [aisReviewRecords, setAisReviewRecords] = useState<
     Record<string, { createdAt: string; lastReviewedAt: string | null; nextReviewDue: string; reviewLog: ReviewLog[] }>
   >(() => {
@@ -1145,140 +1146,246 @@ function StudioWorkspace() {
         })()}
       </header>
 
-      {/* Calm Clinical Launchpad */}
-      <section className={`no-print border-b border-slate-200 ${lowArousalMode ? 'bg-slate-100' : 'bg-[#f4f5f7]'}`}>
-        <div className="mx-auto max-w-6xl px-6 py-5">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
-                Person-Centred Visual Support • CQC Reg 9 &amp; Accessible Information Standard
-              </p>
-              <h1 className="mt-1 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
-                Clinical Visual Communication Workspace
-              </h1>
-            </div>
+      {/* Slim Workspace Utility Strip + Slide-Over Governance & DNA Drawer */}
+      <section className={`no-print border-b border-slate-200 ${lowArousalMode ? "bg-slate-100" : "bg-white"}`}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 font-bold text-slate-800">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              Profile: {[...DEFAULT_SUPPORT_PROFILES, ...customProfiles].find((p) => p.id === selectedProfileId)?.label || "General Shift Board"}
+            </span>
+            {activePassport && (
+              <button
+                type="button"
+                onClick={() => setShowGovernanceDrawer(true)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 font-bold text-emerald-900 hover:bg-emerald-100 transition"
+              >
+                AIS Step 6: Up to Date
+              </button>
+            )}
+            <span className="hidden md:inline text-[11px] font-medium text-slate-500">
+              Zero-PII local session • CQC Reg. 9
+            </span>
+          </div>
 
-            {/* Toggle Quick Launch Cards */}
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => setShowLaunchpad((v) => !v)}
-              className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-extrabold text-slate-700 shadow-2xs hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-slate-100 transition"
             >
-              {showLaunchpad ? 'Hide Quick Launch' : 'Show Quick Launch'}
+              {showLaunchpad ? "Hide Quick Launch" : "Quick Launch"}
             </button>
+            <button
+              type="button"
+              onClick={() => setShowGovernanceDrawer(true)}
+              className="rounded-lg bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800 transition"
+            >
+              AIS, DNA &amp; Print Stamp
+            </button>
+          </div>
+        </div>
 
-            {/* Optional A4 / Pocket Print Stamp (Local-only, never uploaded) */}
-            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-2xs">
-              <span className="text-[11px] font-bold text-slate-500">Support Profile:</span>
-              <select
-                value={selectedProfileId}
-                onChange={(e) => handleSelectSupportProfile(e.target.value)}
-                aria-label="Select resident support profile"
-                className="rounded border border-slate-300 bg-slate-50 px-2 py-1 text-xs font-extrabold text-slate-800 focus:border-slate-500 focus:bg-white focus:outline-none"
-              >
-                {[...DEFAULT_SUPPORT_PROFILES, ...customProfiles].map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.label}{p.ageBand ? ` (${p.ageBand})` : ''}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                onClick={() => setShowProfileCreator((v) => !v)}
-                className="rounded border border-slate-300 bg-slate-100 px-2 py-1 text-[11px] font-extrabold text-slate-800 hover:bg-slate-200"
-              >
-                {showProfileCreator ? 'Close' : '+ Resident DNA'}
-              </button>
-              <span className="text-[11px] font-bold text-slate-500">Print Stamp:</span>
-              <input
-                type="text"
-                maxLength={12}
-                value={careInitials}
-                onChange={(e) => setCareInitials(e.target.value)}
-                placeholder="Initials (e.g. A.B.)"
-                aria-label="Service user initials for printout"
-                className="w-28 rounded border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-800 focus:border-slate-400 focus:bg-white focus:outline-none"
-              />
-              <input
-                type="text"
-                maxLength={48}
-                value={careReviewNote}
-                onChange={(e) => setCareReviewNote(e.target.value)}
-                placeholder="Support profile / review note"
-                aria-label="Care plan print note"
-                className="w-48 rounded border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-800 focus:border-slate-400 focus:bg-white focus:outline-none"
-              />
+        {showLaunchpad && (
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 pb-4 pt-1 border-t border-slate-100">
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  title: "Immediate Calm & De-escalation",
+                  desc: "Low-demand pause, ear defenders, quiet space & core anchor prompts.",
+                  badge: "PBS & Sensory",
+                  onClick: () => {
+                    const tpl = RESOURCE_TEMPLATES.find((t) => t.id === "flashcards");
+                    if (tpl) applyTemplate(tpl);
+                    setActiveTab("anchors");
+                    setShowLaunchpad(false);
+                  },
+                },
+                {
+                  title: "Now / Next / Then Strip",
+                  desc: "Three-step transition strip to reduce anxiety during daily changes.",
+                  badge: "Transitions",
+                  onClick: () => {
+                    const tpl = RESOURCE_TEMPLATES.find((t) => t.id === "now_next_then");
+                    if (tpl) applyTemplate(tpl);
+                    setActiveTab("templates");
+                    setShowLaunchpad(false);
+                  },
+                },
+                {
+                  title: "Choice & Request Board",
+                  desc: "Dignified everyday options supporting autonomy and clear consent.",
+                  badge: "Communication",
+                  onClick: () => { setActiveTab("wants"); setShowLaunchpad(false); },
+                },
+                {
+                  title: "Community & Outing Schedules",
+                  desc: "Step-by-step routines for shops, walks, appointments & group sessions.",
+                  badge: "Outings",
+                  onClick: () => { setActiveTab("community"); setShowLaunchpad(false); },
+                },
+                {
+                  title: "Social Stories & Easy Read",
+                  desc: "Multi-page predictable explanations built for adult care & autism support.",
+                  badge: "SALT & Comprehension",
+                  onClick: () => { setActiveTab("stories"); setShowLaunchpad(false); },
+                },
+                {
+                  title: "Studio Canvas",
+                  desc: "Per-cell display modes, independent captions, Fitzgerald borders & offline OpenDyslexic.",
+                  badge: "Widgit Studio",
+                  onClick: () => { setActiveTab("studio"); setShowLaunchpad(false); },
+                },
+              ].map((card) => (
+                <button
+                  key={card.title}
+                  type="button"
+                  onClick={card.onClick}
+                  className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-3 text-left shadow-2xs transition hover:border-slate-400 hover:shadow-sm"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-extrabold text-slate-900 group-hover:text-[#D45A1A]">
+                      {card.title}
+                    </span>
+                    <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-600">
+                      {card.badge}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[11px] leading-relaxed text-slate-600">{card.desc}</p>
+                </button>
+              ))}
             </div>
           </div>
+        )}
+      </section>
 
-          {activePassport && (
-            <div className="mt-3">
-              <AISReviewBanner
-                passport={activePassport}
-                onLogReview={handleLogPassportReview}
-                onExportCqc={handleExportAllCqcEvidence}
-              />
-            </div>
-          )}
-
-          {/* 6 Outcome-Focused Quick Launch Cards for SALTs, LD Nurses & Support Staff */}
-
-          {showProfileCreator && (
-            <div className="mt-3 rounded-xl border border-slate-300 bg-white p-3.5 shadow-xs">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
-                <span className="text-xs font-extrabold text-slate-900">
-                  Save Local Resident DNA Profile (Stored 100% on Device)
-                </span>
-                <span className="text-[11px] font-semibold text-slate-500">
-                  Calibrates age band (5–70), support demand &amp; Low-Arousal defaults
-                </span>
+      {showGovernanceDrawer && (
+        <div className="no-print fixed inset-0 z-50 flex justify-end">
+          <div
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs"
+            onClick={() => setShowGovernanceDrawer(false)}
+          />
+          <aside className="relative z-10 flex h-full w-full max-w-lg flex-col bg-white shadow-2xl border-l border-slate-200">
+            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+              <div>
+                <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#D45A1A]">
+                  CQC Reg. 9 • NHS AIS • Zero-PII Local
+                </p>
+                <h2 className="text-base font-extrabold text-slate-900">
+                  Resident DNA, Print Stamp &amp; AIS Audit
+                </h2>
               </div>
-              <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-6">
-                <input
-                  type="text"
-                  value={newProfileLabel}
-                  onChange={(e) => setNewProfileLabel(e.target.value)}
-                  placeholder="Profile Name (e.g. Curtis • Quiet Routine)"
-                  className="rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-800 lg:col-span-2"
-                />
-                <input
-                  type="text"
-                  maxLength={6}
-                  value={newProfileInitials}
-                  onChange={(e) => setNewProfileInitials(e.target.value)}
-                  placeholder="Initials (e.g. C.M.)"
-                  className="rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-800"
-                />
+              <button
+                type="button"
+                onClick={() => setShowGovernanceDrawer(false)}
+                className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-extrabold text-slate-700 hover:bg-slate-100"
+              >
+                Done
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-5 space-y-5">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold text-slate-900">Active Support Profile</span>
+                  <button
+                    type="button"
+                    onClick={() => setShowProfileCreator((v) => !v)}
+                    className="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-extrabold text-slate-800 hover:bg-slate-100"
+                  >
+                    {showProfileCreator ? "Close Creator" : "+ New Resident DNA"}
+                  </button>
+                </div>
                 <select
-                  value={newProfileAge}
-                  onChange={(e) => setNewProfileAge(e.target.value as AgeBand)}
-                  aria-label="Resident age band"
-                  className="rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800"
+                  value={selectedProfileId}
+                  onChange={(e) => handleSelectSupportProfile(e.target.value)}
+                  aria-label="Select resident support profile"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-extrabold text-slate-800"
                 >
-                  <option value="5-11">Age 5–11 (Child)</option>
-                  <option value="12-17">Age 12–17 (Youth)</option>
-                  <option value="18-59">Age 18–59 (Adult)</option>
-                  <option value="60-70+">Age 60–70+ (Older Adult)</option>
+                  {[...DEFAULT_SUPPORT_PROFILES, ...customProfiles].map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.label}{p.ageBand ? ` (${p.ageBand})` : ""}
+                    </option>
+                  ))}
                 </select>
-                <select
-                  value={newProfileLevel}
-                  onChange={(e) => setNewProfileLevel(e.target.value as SupportLevel)}
-                  aria-label="Support complexity level"
-                  className="rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800"
-                >
-                  <option value="high_nonverbal">High • Non-Verbal 2-Card</option>
-                  <option value="moderate_step">Moderate • Step-by-Step</option>
-                  <option value="low_choice">Low • Independent Choice</option>
-                </select>
-                <div className="flex items-center gap-2">
-                  <label className="flex cursor-pointer items-center gap-1.5 text-xs font-bold text-slate-700">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                  <div>
+                    <label className="block text-[11px] font-bold text-slate-600 mb-1">Print Initials</label>
                     <input
-                      type="checkbox"
-                      checked={newProfileLowArousal}
-                      onChange={(e) => setNewProfileLowArousal(e.target.checked)}
+                      type="text"
+                      maxLength={12}
+                      value={careInitials}
+                      onChange={(e) => setCareInitials(e.target.value)}
+                      placeholder="e.g. A.B."
+                      className="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800"
                     />
-                    Low-Arousal
-                  </label>
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-bold text-slate-600 mb-1">Care Plan Print Note</label>
+                    <input
+                      type="text"
+                      maxLength={48}
+                      value={careReviewNote}
+                      onChange={(e) => setCareReviewNote(e.target.value)}
+                      placeholder="Support profile / review note"
+                      className="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {showProfileCreator && (
+                <div className="rounded-xl border border-slate-300 bg-white p-4 space-y-3 shadow-xs">
+                  <div className="text-xs font-extrabold text-slate-900">
+                    Save Local Resident DNA Profile (Stored 100% on Device)
+                  </div>
+                  <input
+                    type="text"
+                    value={newProfileLabel}
+                    onChange={(e) => setNewProfileLabel(e.target.value)}
+                    placeholder="Profile Name (e.g. Curtis • Quiet Routine)"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-800"
+                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      maxLength={6}
+                      value={newProfileInitials}
+                      onChange={(e) => setNewProfileInitials(e.target.value)}
+                      placeholder="Initials (e.g. C.M.)"
+                      className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-800"
+                    />
+                    <select
+                      value={newProfileAge}
+                      onChange={(e) => setNewProfileAge(e.target.value as AgeBand)}
+                      className="rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800"
+                    >
+                      <option value="5-11">Age 5–11 (Child)</option>
+                      <option value="12-17">Age 12–17 (Youth)</option>
+                      <option value="18-59">Age 18–59 (Adult)</option>
+                      <option value="60-70+">Age 60–70+ (Older Adult)</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <select
+                      value={newProfileLevel}
+                      onChange={(e) => setNewProfileLevel(e.target.value as SupportLevel)}
+                      className="flex-1 rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800"
+                    >
+                      <option value="high_nonverbal">High • Non-Verbal 2-Card</option>
+                      <option value="moderate_step">Moderate • Step-by-Step</option>
+                      <option value="low_choice">Low • Independent Choice</option>
+                    </select>
+                    <label className="flex cursor-pointer items-center gap-1.5 text-xs font-bold text-slate-700">
+                      <input
+                        type="checkbox"
+                        checked={newProfileLowArousal}
+                        onChange={(e) => setNewProfileLowArousal(e.target.checked)}
+                      />
+                      Low-Arousal
+                    </label>
+                  </div>
                   <button
                     type="button"
                     onClick={() => {
@@ -1291,134 +1398,47 @@ function StudioWorkspace() {
                         supportLevel: newProfileLevel,
                         defaultLowArousal: newProfileLowArousal,
                         defaultPackId:
-                          newProfileLevel === 'high_nonverbal'
-                            ? 'pack_everyday_living'
-                            : newProfileLevel === 'moderate_step'
-                              ? 'pack_pantry_to_pot'
-                              : 'pack_morning_autonomy',
+                          newProfileLevel === "high_nonverbal"
+                            ? "pack_everyday_living"
+                            : newProfileLevel === "moderate_step"
+                              ? "pack_pantry_to_pot"
+                              : "pack_morning_autonomy",
                         reviewNote:
                           newProfileNote.trim() ||
-                          `Age ${newProfileAge} • ${newProfileLevel === 'high_nonverbal' ? '2-Card Now/Next' : newProfileLevel === 'moderate_step' ? 'Step Routine' : 'Autonomy Choice'}`,
+                          `Age ${newProfileAge} • ${newProfileLevel === "high_nonverbal" ? "2-Card Now/Next" : newProfileLevel === "moderate_step" ? "Step Routine" : "Autonomy Choice"}`,
                         isCustom: true,
                       };
                       const next = [...customProfiles, created];
                       setCustomProfiles(next);
-                      localStorage.setItem('spark_custom_resident_profiles', JSON.stringify(next));
+                      localStorage.setItem("spark_custom_resident_profiles", JSON.stringify(next));
                       handleSelectSupportProfile(created.id);
-                      setNewProfileLabel('');
-                      setNewProfileInitials('');
-                      setNewProfileNote('');
+                      setNewProfileLabel("");
+                      setNewProfileInitials("");
+                      setNewProfileNote("");
                       setShowProfileCreator(false);
                     }}
-                    className="ml-auto rounded-lg bg-[#E36C2B] px-3 py-1.5 text-xs font-extrabold text-white hover:bg-[#c85a1e]"
+                    className="w-full rounded-lg bg-[#E36C2B] px-3 py-2 text-xs font-extrabold text-white hover:bg-[#c85a1e]"
                   >
-                    Save Profile
+                    Save Resident Profile
                   </button>
                 </div>
-              </div>
-              {customProfiles.length > 0 && (
-                <div className="mt-2.5 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
-                  <span className="text-[11px] font-bold text-slate-500">Saved Residents:</span>
-                  {customProfiles.map((cp) => (
-                    <span
-                      key={cp.id}
-                      className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-bold text-slate-700"
-                    >
-                      {cp.label} ({cp.ageBand})
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const filtered = customProfiles.filter((item) => item.id !== cp.id);
-                          setCustomProfiles(filtered);
-                          localStorage.setItem('spark_custom_resident_profiles', JSON.stringify(filtered));
-                        }}
-                        className="text-red-600 hover:text-red-800"
-                        title="Remove saved profile"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
               )}
-            </div>
-          )}
 
-          {showLaunchpad && (
-          <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: 'Immediate Calm & De-escalation',
-                desc: 'Low-demand pause, ear defenders, quiet space & core anchor prompts.',
-                badge: 'PBS & Sensory',
-                onClick: () => {
-                  const tpl = RESOURCE_TEMPLATES.find((t) => t.id === 'flashcards');
-                  if (tpl) applyTemplate(tpl);
-                  setActiveTab('anchors');
-                },
-              },
-              {
-                title: 'Now / Next / Then Strip',
-                desc: 'Three-step transition strip to reduce anxiety during daily changes.',
-                badge: 'Transitions',
-                onClick: () => {
-                  const tpl = RESOURCE_TEMPLATES.find((t) => t.id === 'now_next_then');
-                  if (tpl) applyTemplate(tpl);
-                  setActiveTab('templates');
-                },
-              },
-              {
-                title: 'Choice & Request Board',
-                desc: 'Dignified everyday options supporting autonomy and clear consent.',
-                badge: 'Communication',
-                onClick: () => setActiveTab('wants'),
-              },
-              {
-                title: 'Community & Outing Schedules',
-                desc: 'Step-by-step routines for shops, walks, appointments & group sessions.',
-                badge: 'Outings',
-                onClick: () => setActiveTab('community'),
-              },
-              {
-                title: 'Social Stories & Easy Read',
-                desc: 'Multi-page predictable explanations built for adult care & autism support.',
-                badge: 'SALT & Comprehension',
-                onClick: () => setActiveTab('stories'),
-              },
-              {
-                title: 'Studio Canvas',
-                desc: 'Per-cell display modes, independent captions, Fitzgerald borders & offline OpenDyslexic.',
-                badge: 'Widgit Studio',
-                onClick: () => setActiveTab('studio'),
-              },
-              {
-                title: 'Real Resident Photos & Media',
-                desc: 'Pair familiar local photos of staff, rooms & items with Mulberry symbols.',
-                badge: 'Local-First Private',
-                onClick: () => setActiveTab('media'),
-              },
-            ].map((card) => (
-              <button
-                key={card.title}
-                type="button"
-                onClick={card.onClick}
-                className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-3.5 text-left shadow-2xs transition hover:border-slate-400 hover:shadow-sm"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-extrabold text-slate-900 group-hover:text-[#D45A1A]">
-                    {card.title}
-                  </span>
-                  <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-600">
-                    {card.badge}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-slate-600">{card.desc}</p>
-              </button>
-            ))}
-          </div>
-          )}
+              {activePassport && (
+                <AISReviewBanner
+                  passport={activePassport}
+                  onLogReview={handleLogPassportReview}
+                  onExportCqc={handleExportAllCqcEvidence}
+                />
+              )}
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-xs text-slate-600 leading-relaxed">
+                <strong className="font-bold text-slate-800">Zero-PII Local Guarantee:</strong> All boards, Resident DNA settings, and symbol packs run 100% locally in your browser. No personal care records are ever transmitted to external servers.
+              </div>
+            </div>
+          </aside>
         </div>
-      </section>
+      )}
 
       {/* Main Resource Studio */}
       <main className="no-print mx-auto max-w-6xl px-6 py-6">
@@ -1531,21 +1551,7 @@ function StudioWorkspace() {
 
           return (
             <>
-            <div className="no-print mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/90 bg-slate-50 px-4 py-2 text-[11px] text-slate-600">
-              <span><strong className="font-bold text-slate-800">Zero-PII local session:</strong> Boards and symbols run locally in your browser with no personal care records uploaded.</span>
-              <div className="flex items-center gap-3">
-                <span className="font-semibold text-slate-500">CQC Reg. 9 • NHS AIS • OBF</span>
-                {sentenceStripItems.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => setSentenceStripItems([])}
-                    className="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:bg-slate-100 transition"
-                  >
-                    Clear Strip
-                  </button>
-                )}
-              </div>
-            </div>
+
             <TemplateLayoutEngine
               cards={layoutSourceCards}
               lowArousalMode={lowArousalMode}
