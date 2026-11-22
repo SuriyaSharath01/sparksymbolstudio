@@ -208,6 +208,35 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
     ],
   },
 
+
+  shift_handover_review: {
+    id: 'shift_handover_review',
+    title: 'Shift Handover & Care Review Check',
+    category: 'Communication & Interaction',
+    sector: 'Adult Social Care',
+    layout: 'vertical-strip',
+    steps: [
+      {
+        id: 'sh_1',
+        label: 'Current Mood & Comfort',
+        symbol: '/symbols/feelings.svg',
+        instruction: 'Confirm how the person is feeling, resting, or engaging at handover.',
+      },
+      {
+        id: 'sh_2',
+        label: 'Key Support & Safety Notes',
+        symbol: '/symbols/note.svg',
+        instruction: 'Highlight active routines, sensory triggers, and non-PII support adjustments.',
+      },
+      {
+        id: 'sh_3',
+        label: 'Next Planned Activity',
+        symbol: '/symbols/next.svg',
+        instruction: 'Agree the immediate next step for the incoming support lead or team.',
+      },
+    ],
+  },
+
   sensory_calm: {
     id: 'sensory_calm',
     title: 'Sensory & Calm Support',

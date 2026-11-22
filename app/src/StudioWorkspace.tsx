@@ -1530,6 +1530,11 @@ function StudioWorkspace() {
                   }));
 
           return (
+            <>
+            <div className="no-print mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/90 bg-slate-50 px-4 py-2 text-[11px] text-slate-600">
+              <span><strong className="font-bold text-slate-800">Zero-PII local session:</strong> Boards and symbols run locally in your browser with no personal care records uploaded.</span>
+              <span className="font-semibold text-slate-500">CQC Reg. 9 • NHS AIS • OBF</span>
+            </div>
             <TemplateLayoutEngine
               cards={layoutSourceCards}
               lowArousalMode={lowArousalMode}
@@ -1554,6 +1559,7 @@ function StudioWorkspace() {
                 ]);
               }}
             />
+            </>
           );
         })()}
 
