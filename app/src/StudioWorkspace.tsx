@@ -1240,7 +1240,7 @@ function StudioWorkspace() {
                 {
                   group: 'Documents & Easy Read',
                   items: [
-                    { id: 'easyread' as AppTab, label: 'Easy Read (Zero-PII)', icon: BookOpen },
+                    { id: 'easyread' as AppTab, label: 'Symbol Writer (A4)', icon: BookOpen },
                     { id: 'stories' as AppTab, label: 'Social Stories', icon: BookOpen },
                   ],
                 },

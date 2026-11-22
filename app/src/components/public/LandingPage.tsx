@@ -93,7 +93,8 @@ export const LandingPage: React.FC = () => {
     .slice(0, 12);
 
   const HERO_VERIFIED_FALLBACKS: Record<string, string> = {
-    want: '/symbols/want_,_to.svg',
+    want: '/symbols/spark_want.svg',
+    help: '/symbols/spark_help.svg',
     wait: '/symbols/wait_,_to.svg',
     quiet: '/symbols/quiet.svg',
     stop: '/symbols/stop_sign.svg',
@@ -111,7 +112,7 @@ export const LandingPage: React.FC = () => {
     const lower = (clean || rawWord).toLowerCase();
     const isAbstract = ABSTRACT_WORDS.has(lower);
     const match = isAbstract ? undefined : searchLocalSymbols(clean || rawWord, symbols)[0];
-    const resolvedSrc = isAbstract ? undefined : (match?.imagePath || HERO_VERIFIED_FALLBACKS[lower]);
+    const resolvedSrc = isAbstract ? undefined : (HERO_VERIFIED_FALLBACKS[lower] || match?.imagePath);
     return {
       word: clean || rawWord,
       label: match?.label || clean || rawWord,
@@ -177,7 +178,7 @@ export const LandingPage: React.FC = () => {
 
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200/80 text-xs">
               <div>
-                <div className="text-lg font-extrabold text-slate-900">4,865+</div>
+                <div className="text-lg font-extrabold text-slate-900">20,500+</div>
                 <div className="text-slate-500">Commercial-safe symbols</div>
               </div>
               <div>
