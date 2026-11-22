@@ -765,7 +765,7 @@ export function App() {
         coreCardId: p.coreCardId,
       }));
     }
-    if (sentenceStripItems.length > 0 && customBoard.length === 0) {
+    if (activeTab === "templates" && sentenceStripItems.length > 0) {
       return sentenceStripItems.map((item, i) => ({
         id: item.id,
         title: item.label,
@@ -1497,7 +1497,7 @@ export function App() {
                   ? 'Core Anchor Cards'
                   : activeTab === 'wants'
                     ? 'Choice Board'
-                    : sentenceStripItems.length > 0 && customBoard.length === 0
+                    : activeTab === "templates" && sentenceStripItems.length > 0
                       ? "Communication Sentence Strip"
                       : activePreset.name}
           </h1>

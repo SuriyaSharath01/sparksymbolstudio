@@ -86,6 +86,11 @@ svg.lucide {
     color: #334155;
   }
 
+  .print-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   .print-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
