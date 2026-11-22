@@ -121,14 +121,7 @@ export const LandingPage: React.FC = () => {
 
   const openInStudio = () => {
     const phrase = visibleTokens.map((t) => t.word).join(' ').trim();
-    if (phrase) {
-      try {
-        window.sessionStorage.setItem('spark_hero_seed_phrase', phrase);
-      } catch {
-        // ignore storage restrictions
-      }
-    }
-    navigate('/studio');
+    navigate(phrase ? `/studio?sentence=${encodeURIComponent(phrase)}` : '/studio');
   };
 
   return (

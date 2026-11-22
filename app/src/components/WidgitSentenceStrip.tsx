@@ -25,6 +25,7 @@ type FitzgeraldCategory = "person" | "verb" | "noun" | "descriptor" | "social";
 const PRONOUN_OR_PERSON = new Set(["i", "me", "my", "you", "your", "he", "him", "she", "her", "we", "us", "they", "them", "mum", "dad", "staff", "carer", "doctor", "nurse"]);
 const COMMON_VERBS = new Set(["want", "need", "go", "stop", "eat", "drink", "help", "like", "look", "see", "wash", "sleep", "walk", "sit", "give", "take", "open", "close", "play", "listen", "wait", "feel"]);
 const DESCRIPTORS = new Set(["happy", "sad", "tired", "hungry", "thirsty", "hot", "cold", "good", "bad", "big", "small", "quiet", "loud", "more", "finished", "hurt", "pain"]);
+const ABSTRACT_STRIP_WORDS = new Set(["a", "an", "the", "to", "of", "in", "on", "at", "for", "with", "is", "are", "was", "were", "by", "from"]);
 const SOCIAL_WORDS = new Set(["please", "thank", "thanks", "hello", "hi", "bye", "goodbye", "yes", "no", "what", "where", "when", "who", "why", "how"]);
 
 export function formatCleanSymbolLabel(rawLabel: string): string {
@@ -79,6 +80,7 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [fitzgeraldEnabled, setFitzgeraldEnabled] = useState(true);
   const [phraseInput, setPhraseInput] = useState("");
+  const [hideAbstractWords, setHideAbstractWords] = useState(false);
 
   const formatWord = (raw: string) => {
     const clean = formatCleanSymbolLabel(raw);
@@ -236,6 +238,57 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
         </form>
       )}
 
+      {(() => {
+        const displayItems = hideAbstractWords
+          ? items.filter((it) => !ABSTRACT_STRIP_WORDS.has(formatCleanSymbolLabel(it.label).toLowerCase().trim()))
+          : items;
+        const hiddenCount = items.length - displayItems.length;
+        const exceedsLimit = displayItems.length > 8;
+        return (
+          <>
+            {exceedsLimit && (
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2.5 text-xs text-amber-950">
+                <div>
+                  <span className="font-extrabold">Accessible Symbol Guideline:</span>{" "}
+                  This sentence has {displayItems.length} symbols. Keep sentences to 8 symbols or fewer for clear comprehension.
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setHideAbstractWords((v) => !v)}
+                    className="rounded-lg border border-amber-400 bg-white px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 transition"
+                  >
+                    {hideAbstractWords ? "Show All Words" : "Hide Small Words"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClearAll}
+                    className="rounded-lg border border-amber-300 bg-white px-2.5 py-1 text-[11px] font-bold text-amber-900 hover:bg-amber-100 transition"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            )}
+            {!exceedsLimit && items.length > 0 && (
+              <div className="mb-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setHideAbstractWords((v) => !v)}
+                  className={`rounded-lg border px-2.5 py-1 text-[11px] font-bold transition ${
+                    hideAbstractWords
+                      ? "border-slate-900 bg-slate-900 text-white"
+                      : "border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100"
+                  }`}
+                >
+                  {hideAbstractWords ? `Small Words Hidden (${hiddenCount})` : "Hide Small Words"}
+                </button>
+              </div>
+            )}
+          </>
+        );
+      })()}
+
       {items.length === 0 ? (
         <div className="flex min-h-[112px] items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-4 py-6 text-center">
           <p className="text-xs font-semibold text-slate-500 sm:text-sm">
@@ -244,7 +297,7 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
         </div>
       ) : (
         <div role="list" className="flex min-h-[112px] flex-wrap items-end gap-2.5 rounded-lg border border-slate-200 bg-[#FAFAF8] p-3 sm:gap-3">
-          {items.map((item, idx) => {
+          {(hideAbstractWords ? items.filter((it) => !ABSTRACT_STRIP_WORDS.has(formatCleanSymbolLabel(it.label).toLowerCase().trim())) : items).map((item, idx) => {
             const cleanLabel = formatCleanSymbolLabel(item.label);
             const altCount = onSwapSymbol && symbols.length > 0 ? findSymbolMatches(cleanLabel, symbols, 5).length : 0;
             const borderTone = getFitzgeraldBorderClass(item.label, fitzgeraldEnabled);

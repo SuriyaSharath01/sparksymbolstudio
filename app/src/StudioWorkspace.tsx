@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import type { CommunicationPassport, ReviewLog } from './types/passport';
 import { AISReviewBanner } from './components/passport/AISReviewBanner';
 import { exportCQCEvidence } from './utils/cqcExport';
@@ -280,7 +281,11 @@ const DEFAULT_SUPPORT_PROFILES: SupportProfileDNA[] = [
   },
 ];
 
-export function StudioWorkspace() {
+import { getMulberryCatalog, loadOpenMojiCatalog, searchLocalSymbols } from './utils/symbolSearch';
+
+function StudioWorkspace() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const seededFromUrlRef = useRef<string | null>(null);
   const [heroSearchQuery, setHeroSearchQuery] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [liveSearchResults, setLiveSearchResults] = useState<SymbolAsset[]>([]);
@@ -783,6 +788,48 @@ export function StudioWorkspace() {
   }, [activeTab, customBoard, activeTemplate, activePreset, activeStory, sentenceStripItems]);
   const quickSearchInputRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
+    const rawSentence = searchParams.get("sentence")?.trim();
+    if (!rawSentence || seededFromUrlRef.current === rawSentence) return;
+    seededFromUrlRef.current = rawSentence;
+    let cancelled = false;
+
+    const applySeed = (catalog: ReturnType<typeof getMulberryCatalog>) => {
+      if (cancelled) return;
+      const words = rawSentence.split(/\s+/).filter(Boolean).slice(0, 12);
+      const seeded: StripSymbolItem[] = words.map((w, idx) => {
+        const clean = w.replace(/[^\w]+/g, "") || w;
+        const match = searchLocalSymbols(clean, catalog)[0];
+        return {
+          id: `url_seed_${idx}_${clean.toLowerCase()}`,
+          label: match?.label || clean,
+          imageSrc: match?.imagePath || "",
+          imageAlt: match?.label || clean,
+        };
+      });
+      if (seeded.length > 0) {
+        setSentenceStripItems(seeded);
+        setActiveTab("templates");
+      }
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete("sentence");
+      setSearchParams(nextParams, { replace: true });
+    };
+
+    const baseCatalog = getMulberryCatalog();
+    applySeed(baseCatalog);
+    loadOpenMojiCatalog()
+      .then((extra) => {
+        if (!cancelled && extra.length > 0) {
+          applySeed([...baseCatalog, ...extra]);
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [searchParams, setSearchParams]);
+  useEffect(() => {
     try {
       const saved = window.localStorage.getItem('spark_low_arousal_mode');
       if (saved === 'true') setLowArousalMode(true);
@@ -980,43 +1027,121 @@ export function StudioWorkspace() {
           </div>
         )}
 
-        {/* Unified Clinical Workspace Bar */}
-        <nav aria-label="Workspace modes" className={lowArousalMode ? 'border-b border-slate-700 bg-slate-900 text-slate-200' : 'bg-[#D45A1A] text-white shadow-xs'}>
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-1.5 px-6 py-2">
-            {[
-              { id: 'templates' as AppTab, label: 'Board Builder', icon: LayoutTemplate },
-              { id: 'studio' as AppTab, label: 'Studio Canvas', icon: Sparkles },
-              { id: 'easyread' as AppTab, label: 'Easy Read (Zero-PII)', icon: BookOpen },
-              { id: 'packs' as AppTab, label: 'Clinical Support Packs', icon: FolderOpen },
-              { id: 'wants' as AppTab, label: 'Choice & Request', icon: HeartHandshake },
-              { id: 'community' as AppTab, label: 'Visual Schedules', icon: Compass },
-              { id: 'stories' as AppTab, label: 'Social Stories', icon: BookOpen },
-              { id: 'anchors' as AppTab, label: 'Core Anchor Cards', icon: Zap },
-              { id: 'focus' as AppTab, label: '1-Step Focus Mode', icon: Layers },
-              { id: 'media' as AppTab, label: 'Real Resident Photos', icon: Camera },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
-                    isActive
-                      ? lowArousalMode
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-white text-[#E36C2B]'
-                      : 'text-white/90 hover:bg-white/15 hover:text-white'
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+        {/* Calm 3-Mode Master Navigation + Contextual Sub-Bar */}
+        {(() => {
+          type MasterMode = "design" | "documents" | "talker";
+          const currentMode: MasterMode =
+            activeTab === "easyread" || activeTab === "stories"
+              ? "documents"
+              : activeTab === "focus" || activeTab === "anchors"
+                ? "talker"
+                : "design";
+
+          const subTabsByMode: Record<MasterMode, { id: AppTab; label: string; icon: typeof LayoutTemplate }[]> = {
+            design: [
+              { id: "templates", label: "Board Builder", icon: LayoutTemplate },
+              { id: "studio", label: "Studio Canvas", icon: Sparkles },
+              { id: "packs", label: "Support Packs", icon: FolderOpen },
+              { id: "wants", label: "Choice & Request", icon: HeartHandshake },
+              { id: "community", label: "Visual Schedules", icon: Compass },
+              { id: "media", label: "Resident Photos", icon: Camera },
+            ],
+            documents: [
+              { id: "easyread", label: "Easy Read (Zero-PII)", icon: BookOpen },
+              { id: "stories", label: "Social Stories", icon: BookOpen },
+            ],
+            talker: [
+              { id: "focus", label: "1-Step Focus Mode", icon: Layers },
+              { id: "anchors", label: "Core Anchor Cards", icon: Zap },
+            ],
+          };
+
+          const handleModeSwitch = (mode: MasterMode) => {
+            if (mode === "design") setActiveTab("templates");
+            else if (mode === "documents") setActiveTab("easyread");
+            else setActiveTab("focus");
+          };
+
+          return (
+            <div className={lowArousalMode ? "border-b border-slate-700 bg-slate-900 text-slate-200" : "border-b border-slate-200 bg-white text-slate-800 shadow-2xs"}>
+              <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6">
+                <div className="flex items-center gap-6">
+                  {[
+                    { id: "design" as MasterMode, label: "Design Studio", icon: LayoutTemplate },
+                    { id: "documents" as MasterMode, label: "Easy Read & Documents", icon: BookOpen },
+                    { id: "talker" as MasterMode, label: "Live Talker & Focus", icon: Zap },
+                  ].map((mode) => {
+                    const Icon = mode.icon;
+                    const active = currentMode === mode.id;
+                    return (
+                      <button
+                        key={mode.id}
+                        type="button"
+                        onClick={() => handleModeSwitch(mode.id)}
+                        className={`flex items-center gap-2 border-b-2 py-3 text-xs sm:text-sm font-extrabold transition ${
+                          active
+                            ? lowArousalMode
+                              ? "border-emerald-400 text-emerald-300"
+                              : "border-[#D45A1A] text-[#D45A1A]"
+                            : lowArousalMode
+                              ? "border-transparent text-slate-400 hover:text-white"
+                              : "border-transparent text-slate-500 hover:text-slate-900"
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                        <span>{mode.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex items-center gap-3 py-2 text-xs font-bold">
+                  <Link
+                    to="/kiosk"
+                    className={lowArousalMode ? "rounded-lg border border-slate-700 px-2.5 py-1 text-emerald-300 hover:bg-slate-800" : "rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1 text-slate-700 hover:bg-slate-100"}
+                  >
+                    Full Kiosk Talker ↗
+                  </Link>
+                  <Link
+                    to="/"
+                    className={lowArousalMode ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"}
+                  >
+                    ← Platform Home
+                  </Link>
+                </div>
+              </div>
+
+              {/* Contextual Sub-Navigation Bar */}
+              <div className={lowArousalMode ? "border-t border-slate-800 bg-slate-950/60" : "border-t border-slate-100 bg-slate-50/90"}>
+                <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-1.5 px-6 py-2">
+                  {subTabsByMode[currentMode].map((tab) => {
+                    const Icon = tab.icon;
+                    const isActive = activeTab === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                          isActive
+                            ? lowArousalMode
+                              ? "bg-emerald-600 text-white"
+                              : "bg-slate-900 text-white shadow-2xs"
+                            : lowArousalMode
+                              ? "text-slate-300 hover:bg-slate-800"
+                              : "text-slate-600 hover:bg-slate-200/70 hover:text-slate-900"
+                        }`}
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        <span>{tab.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </header>
 
       {/* Calm Clinical Launchpad */}
