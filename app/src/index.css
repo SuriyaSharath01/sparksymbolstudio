@@ -188,3 +188,16 @@ body.font-dyslexic * {
     margin: 0 !important;
   }
 }
+
+/* Spark Step 5 Kiosk & Low-Arousal Polish */
+[data-low-arousal="true"] button,
+[data-low-arousal="true"] [role="button"] {
+  transition-duration: 120ms;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #d45a1a;
+  outline-offset: 2px;
+}
