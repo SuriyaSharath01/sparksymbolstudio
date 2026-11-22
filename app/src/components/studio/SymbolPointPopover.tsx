@@ -216,13 +216,13 @@ export function SymbolPointPopover({
           aria-label={`Symbol options for ${word}`}
           onMouseEnter={isHoverMode ? clearTimer : undefined}
           onMouseLeave={isHoverMode ? scheduleClose : undefined}
-          className="absolute left-1/2 top-full z-50 mt-2 w-28 -translate-x-1/2 rounded-md border border-slate-300 bg-[#F3F4F6] p-1.5 shadow-xl"
+          className="absolute bottom-full left-1/2 z-50 mb-2 w-max max-w-[310px] -translate-x-1/2 rounded-xl border border-slate-300 bg-white p-1.5 shadow-xl"
         >
           <span
             aria-hidden="true"
-            className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-slate-300 bg-[#F3F4F6]"
+            className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-slate-300 bg-white"
           />
-          <div className="relative flex max-h-80 flex-col gap-1 overflow-y-auto">
+          <div className="relative flex flex-row gap-1.5 overflow-x-auto">
             {matches.map((sym) => {
               const isSelected = Boolean(activeSvgPath && sym.svgPath === activeSvgPath);
               const content = (
@@ -249,7 +249,7 @@ export function SymbolPointPopover({
                       onSelectSymbol(sym);
                       setOpen(false);
                     }}
-                    className={`flex flex-col items-center rounded border px-1.5 py-2 transition ${
+                    className={`w-20 shrink-0 flex flex-col items-center rounded-lg border px-1.5 py-2 transition ${
                       isSelected
                         ? 'border-[#E36C2B] bg-amber-50 ring-1 ring-[#E36C2B]'
                         : 'border-transparent bg-white/80 hover:border-amber-400 hover:bg-amber-50/70'
@@ -263,7 +263,7 @@ export function SymbolPointPopover({
               return (
                 <div
                   key={sym.id}
-                  className="flex flex-col items-center rounded bg-white/85 px-1.5 py-2"
+                  className="w-20 shrink-0 flex flex-col items-center rounded-lg bg-slate-50 px-1.5 py-2"
                 >
                   {content}
                 </div>

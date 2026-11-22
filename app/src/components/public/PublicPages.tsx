@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { PublicLayout } from './PublicLayout';
 import { RESOURCE_REGISTRY_LIST, type SupportPack } from '../../data/resource-registry';
+import { CORE_CARDS } from '../../data/core-cards';
 import { exportCQCEvidence } from '../../utils/cqcExport';
 
 const NON_READER_WORDS = [
@@ -383,21 +384,40 @@ export const ResourcesPage: React.FC = () => {
                 <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
                   {pack.steps[0]?.instruction || "Structured visual support sequence ready for studio customisation and A4/Pocket printing."}
                 </p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {pack.steps.slice(0, 4).map((step) => (
-                    <span
-                      key={step.id}
-                      className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700"
-                    >
-                      {step.label}
-                    </span>
-                  ))}
-                  {pack.steps.length > 4 && (
-                    <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-500">
-                      +{pack.steps.length - 4} more
-                    </span>
-                  )}
+                <div className="mt-4 grid grid-cols-4 gap-2">
+                  {pack.steps.slice(0, 4).map((step) => {
+                    const thumbSrc = step.symbol || (step.coreCardId ? CORE_CARDS[step.coreCardId]?.imageSrc : undefined);
+                    return (
+                      <div
+                        key={step.id}
+                        className="flex flex-col items-center justify-between rounded-xl border border-slate-200/90 bg-slate-50/80 p-2 text-center"
+                      >
+                        <div className="flex h-10 w-10 items-center justify-center">
+                          {thumbSrc ? (
+                            <img
+                              src={thumbSrc}
+                              alt={step.label}
+                              className="max-h-10 max-w-10 object-contain"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="text-[11px] font-extrabold text-slate-400">
+                              {step.label.slice(0, 3).toUpperCase()}
+                            </span>
+                          )}
+                        </div>
+                        <span className="mt-1.5 line-clamp-1 w-full text-[11px] font-bold text-slate-800">
+                          {step.label}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
+                {pack.steps.length > 4 && (
+                  <div className="mt-2 text-[11px] font-semibold text-slate-500">
+                    +{pack.steps.length - 4} additional symbol steps included in pack
+                  </div>
+                )}
               </div>
 
               <Link
