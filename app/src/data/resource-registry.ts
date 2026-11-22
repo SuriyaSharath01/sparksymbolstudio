@@ -237,6 +237,36 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
     ],
   },
 
+
+  community_safe_travel: {
+    id: 'community_safe_travel',
+    title: 'Community Outing & Safe Travel',
+    category: 'Routines & Transitions',
+    sector: 'Adult Social Care',
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'trv_1',
+        label: 'Check Essentials & Weather',
+        symbol: '/symbols/bag.svg',
+        instruction: 'Confirm coat, water, ID/emergency card, and communication board before leaving.',
+      },
+      {
+        id: 'trv_2',
+        label: 'Stay Together & Calm Pace',
+        symbol: '/symbols/walk.svg',
+        instruction: 'Keep clear visual cues at crossings, transport stops, and busy venues.',
+      },
+      {
+        id: 'trv_3',
+        label: 'Safe Return & Debrief',
+        coreCardId: 'quiet',
+        symbol: CORE_CARDS.quiet.imageSrc,
+        instruction: 'Offer wind-down time on return and note how the outing went.',
+      },
+    ],
+  },
+
   sensory_calm: {
     id: 'sensory_calm',
     title: 'Sensory & Calm Support',
