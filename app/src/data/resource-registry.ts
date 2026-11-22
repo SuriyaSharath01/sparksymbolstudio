@@ -18,6 +18,8 @@ export type SupportPack = {
     | 'Sensory & Physical'
     | 'Cognition';
   layout: 'horizontal-strip' | 'vertical-strip';
+  sector?: "Adult Social Care" | "NHS & Health" | "SEND Education" | "Dual-Language / EAL";
+  languages?: string[];
   steps: RoutineStep[];
 };
 
@@ -174,6 +176,184 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
         label: 'Ear Muffs / Defenders',
         symbol: '/symbols/ear_muffs.svg',
         instruction: 'Put on ear protection if sound feels too loud.',
+      },
+    ],
+  },
+
+  evening_wind_down: {
+    id: 'evening_wind_down',
+    title: 'Evening Wind-Down & Night Comfort',
+    category: 'Routines & Transitions',
+    sector: 'Adult Social Care',
+    layout: 'vertical-strip',
+    steps: [
+      {
+        id: 'eve_1',
+        label: 'Warm Drink or Snack',
+        symbol: '/symbols/drink.svg',
+        instruction: 'Offer a preferred warm decaf drink or light snack before bed.',
+      },
+      {
+        id: 'eve_2',
+        label: 'Bathroom & Wash',
+        symbol: '/symbols/wash_hands.svg',
+        instruction: 'Support personal care, teeth cleaning, and nightwear change.',
+      },
+      {
+        id: 'eve_3',
+        label: CORE_CARDS.quiet.label,
+        coreCardId: 'quiet',
+        symbol: CORE_CARDS.quiet.imageSrc,
+        instruction: 'Dim lights, check room temperature, and keep night checks calm.',
+        waitSeconds: 60,
+      },
+    ],
+  },
+
+  nhs_clinic_checkin: {
+    id: 'nhs_clinic_checkin',
+    title: 'NHS GP & Hospital Clinic Check-In',
+    category: 'Communication & Interaction',
+    sector: 'NHS & Health',
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'nhs_1',
+        label: CORE_CARDS.wait.label,
+        coreCardId: 'wait',
+        symbol: CORE_CARDS.wait.imageSrc,
+        instruction: 'Show waiting area step clearly and confirm expected appointment order.',
+        waitSeconds: 120,
+      },
+      {
+        id: 'nhs_2',
+        label: CORE_CARDS.listen.label,
+        coreCardId: 'listen',
+        symbol: CORE_CARDS.listen.imageSrc,
+        instruction: 'Clinician and support lead explain blood pressure, check, or scan simply.',
+      },
+      {
+        id: 'nhs_3',
+        label: CORE_CARDS.stop.label,
+        coreCardId: 'stop',
+        symbol: CORE_CARDS.stop.imageSrc,
+        instruction: 'Use the Stop card to pause any examination or ask for a break.',
+      },
+    ],
+  },
+
+  pain_comfort_check: {
+    id: 'pain_comfort_check',
+    title: 'Pain, Discomfort & Body Check',
+    category: 'Sensory & Physical',
+    sector: 'NHS & Health',
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'pain_1',
+        label: 'Point to Where It Hurts',
+        symbol: '/symbols/point.svg',
+        instruction: 'Point to head, chest, stomach, back, arm, or leg on the body chart.',
+      },
+      {
+        id: 'pain_2',
+        label: 'Rate Comfort (1–5)',
+        symbol: '/symbols/scale.svg',
+        instruction: 'Check whether discomfort is mild, moderate, or severe before acting.',
+      },
+      {
+        id: 'pain_3',
+        label: 'Ask for Relief or Nurse',
+        symbol: '/symbols/help.svg',
+        instruction: 'Alert senior staff or clinical team for pain relief or assessment.',
+      },
+    ],
+  },
+
+  send_now_next_then: {
+    id: 'send_now_next_then',
+    title: 'Now / Next / Then Transition Board',
+    category: 'Routines & Transitions',
+    sector: 'SEND Education',
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'nnt_1',
+        label: 'NOW: Current Activity',
+        symbol: '/symbols/now.svg',
+        instruction: 'Show the single task happening right now with clear start cue.',
+      },
+      {
+        id: 'nnt_2',
+        label: 'NEXT: Upcoming Step',
+        symbol: '/symbols/next.svg',
+        instruction: 'Give a calm transition warning before changing activity or room.',
+        waitSeconds: 30,
+      },
+      {
+        id: 'nnt_3',
+        label: 'THEN: Preferred Reward',
+        symbol: '/symbols/then.svg',
+        instruction: 'Pair completion with a motivating activity, break, or choice.',
+      },
+    ],
+  },
+
+  send_feelings_wheel: {
+    id: 'send_feelings_wheel',
+    title: 'Feelings & Regulation Check-In',
+    category: 'Cognition',
+    sector: 'SEND Education',
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'feel_1',
+        label: 'How Do I Feel Now?',
+        symbol: '/symbols/feelings.svg',
+        instruction: 'Name or point to calm, tired, worried, frustrated, or uncomfortable.',
+      },
+      {
+        id: 'feel_2',
+        label: 'Breathing & Quiet Space',
+        coreCardId: 'quiet',
+        symbol: CORE_CARDS.quiet.imageSrc,
+        instruction: 'Step into a low-arousal corner and take slow breaths together.',
+        waitSeconds: 45,
+      },
+      {
+        id: 'feel_3',
+        label: 'Choose Safe Next Step',
+        symbol: '/symbols/choice.svg',
+        instruction: 'Pick a safe action card to reset and return when ready.',
+      },
+    ],
+  },
+
+  dual_language_care_mat: {
+    id: 'dual_language_care_mat',
+    title: 'Dual-Language Care & Greeting Phrases',
+    category: 'Communication & Interaction',
+    sector: 'Dual-Language / EAL',
+    languages: ['English', 'Telugu (తెలుగు)', 'Urdu (اردو)', 'Polish (Polski)', 'Bengali (বাংলা)'],
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'lang_1',
+        label: 'Hello & Welcome / నమస్కారం / السلام علیکم / Cześć',
+        symbol: '/symbols/hello.svg',
+        instruction: 'Greet residents and families in their home language alongside English.',
+      },
+      {
+        id: 'lang_2',
+        label: 'Food, Tea & Water / భోజనం & టీ / کھانا اور چائے / Herbata',
+        symbol: '/symbols/drink.svg',
+        instruction: 'Confirm meal and drink preferences clearly with dual-script labels.',
+      },
+      {
+        id: 'lang_3',
+        label: 'Are You Comfortable? / మీకు సౌకర్యంగా ఉందా?',
+        symbol: '/symbols/comfort.svg',
+        instruction: 'Check comfort and pain in a familiar language during care or visits.',
       },
     ],
   },

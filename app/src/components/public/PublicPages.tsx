@@ -308,12 +308,20 @@ export const SectorPage: React.FC<SectorPageProps> = ({ sectorKey }) => {
 
 export const ResourcesPage: React.FC = () => {
   const [query, setQuery] = useState('');
+  const [selectedSector, setSelectedSector] = useState<string>('All');
   const filtered: SupportPack[] = RESOURCE_REGISTRY_LIST.filter((r) => {
+    const sectorMatch =
+      selectedSector === 'All' ||
+      r.sector === selectedSector ||
+      (selectedSector === 'Dual-Language / EAL' && Array.isArray(r.languages) && r.languages.length > 0);
+    if (!sectorMatch) return false;
     const q = query.trim().toLowerCase();
     if (!q) return true;
     return (
       r.title.toLowerCase().includes(q) ||
       r.category.toLowerCase().includes(q) ||
+      (r.sector ? r.sector.toLowerCase().includes(q) : false) ||
+      (r.languages ? r.languages.some((l) => l.toLowerCase().includes(q)) : false) ||
       r.steps.some((s) => s.label.toLowerCase().includes(q) || s.instruction.toLowerCase().includes(q))
     );
   });
@@ -338,13 +346,28 @@ export const ResourcesPage: React.FC = () => {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Filter packs (e.g. routine, care)..."
+              placeholder="Filter packs (e.g. routine, NHS, Telugu)..."
               className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#D45A1A] focus:outline-none"
             />
           </div>
         </div>
+        <div className="mx-auto max-w-7xl mt-6 flex flex-wrap gap-2">
+          {['All', 'Adult Social Care', 'NHS & Health', 'SEND Education', 'Dual-Language / EAL'].map((sec) => (
+            <button
+              key={sec}
+              type="button"
+              onClick={() => setSelectedSector(sec)}
+              className={`rounded-xl px-3.5 py-1.5 text-xs font-bold transition ${
+                selectedSector === sec
+                  ? 'bg-slate-900 text-white'
+                  : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
+              }`}
+            >
+              {sec}
+            </button>
+          ))}
+        </div>
       </section>
-
       <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((pack) => (
