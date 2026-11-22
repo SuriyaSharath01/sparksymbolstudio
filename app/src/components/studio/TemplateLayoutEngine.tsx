@@ -133,9 +133,14 @@ export const TemplateLayoutEngine: React.FC<TemplateLayoutEngineProps> = ({
     >
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200/80">
         <div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#D45A1A]">
-            Template Layout Engine
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D45A1A]">
+              Template Layout Engine
+            </span>
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-700">
+              {cards.length} {cards.length === 1 ? "card" : "cards"} • {layoutMode}
+            </span>
+          </div>
           <h3 className="text-base font-extrabold">
             Shape visual supports around how the person reads
           </h3>
