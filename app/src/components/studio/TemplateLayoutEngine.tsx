@@ -185,7 +185,7 @@ export const TemplateLayoutEngine: React.FC<TemplateLayoutEngineProps> = ({
           {cards.map((card) => (
             <div
               key={card.id}
-              className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 flex flex-col items-center text-center justify-between gap-2 hover:border-[#D45A1A] transition"
+              className="group relative rounded-xl border border-slate-200 bg-white p-3.5 flex flex-col items-center text-center justify-center gap-2 shadow-2xs hover:border-[#D45A1A] hover:shadow-sm transition"
             >
               <button
                 type="button"
@@ -204,10 +204,11 @@ export const TemplateLayoutEngine: React.FC<TemplateLayoutEngineProps> = ({
                 <button
                   type="button"
                   onClick={() => onAddToStrip(card)}
-                  className="inline-flex items-center gap-1 rounded-lg bg-white border border-slate-200 px-2 py-1 text-[11px] font-bold text-slate-700 hover:border-[#D45A1A] hover:text-[#D45A1A] transition"
+                  title={`Add "${card.title}" to Sentence Strip`}
+                  aria-label={`Add "${card.title}" to Sentence Strip`}
+                  className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 hover:border-[#D45A1A] hover:bg-[#D45A1A] hover:text-white transition"
                 >
-                  <PlusCircle className="h-3 w-3" />
-                  <span>Add to Strip</span>
+                  <PlusCircle className="h-3.5 w-3.5" />
                 </button>
               )}
             </div>

@@ -860,7 +860,7 @@ function StudioWorkspace() {
   return (
     <div data-active-tab={activeTab} data-low-arousal={lowArousalMode ? "true" : "false"} className={`min-h-screen text-slate-900 transition-colors ${lowArousalMode ? "bg-[#eef2ef]" : "bg-[#f4f5f7]"}`}>
       {/* Context-Aware Obsidian Glass Studio Header */}
-      <header className="no-print sticky top-0 z-40">
+      <header className="no-print relative z-30">
         {activeTab === 'focus' ? (
           <div className="border-b border-slate-300 bg-[#eef2ef]/95 px-6 py-2.5 text-slate-900 backdrop-blur-md">
             <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
@@ -887,7 +887,7 @@ function StudioWorkspace() {
                 : 'border-b border-slate-800/90 bg-[#0F172A]/95 text-white shadow-[0_8px_30px_rgba(15,23,42,0.25)] backdrop-blur-md transition-colors'
             }
           >
-            <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-3.5">
+            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2.5">
               <button
                 type="button"
                 onClick={() => {
@@ -1441,7 +1441,7 @@ function StudioWorkspace() {
       )}
 
       {/* Main Resource Studio */}
-      <main className="no-print mx-auto max-w-6xl px-6 py-6">
+      <main className="no-print mx-auto max-w-6xl px-6 py-6 pb-24">
         {searchQuery.trim() && (
           <section className="mx-auto my-4 max-w-6xl rounded-xl border-2 border-[#E36C2B] bg-white p-4 px-4 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-2">

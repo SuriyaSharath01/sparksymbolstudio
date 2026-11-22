@@ -78,8 +78,8 @@ export const CORE_CARDS: Record<CoreCardId, CoreCard> = {
     id: 'ear_defenders',
     label: 'Ear Defenders',
     subtext: 'Reduce loud noise',
-    imageSrc: 'lucide:headphones',
-    type: 'ui-icon',
+    imageSrc: '/symbols/ear_muffs.svg',
+    type: 'symbol',
   },
 
   // --- OUTINGS (Verified Mulberry SVGs + crisp Lucide Home icon) ---
@@ -101,8 +101,8 @@ export const CORE_CARDS: Record<CoreCardId, CoreCard> = {
     id: 'home',
     label: 'Go Home',
     subtext: 'Head back to transport or home',
-    imageSrc: 'lucide:home',
-    type: 'ui-icon',
+    imageSrc: '/symbols/house.svg',
+    type: 'symbol',
   },
 };
 

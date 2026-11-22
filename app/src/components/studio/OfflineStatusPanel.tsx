@@ -180,11 +180,11 @@ export default function OfflineStatusPanel() {
   };
 
   return (
-    <div className="no-print fixed bottom-4 left-4 z-40">
+    <div className="no-print fixed bottom-2.5 left-3 z-40">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3.5 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-slate-800"
+        className="flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-[11px] font-bold text-white shadow-md transition hover:bg-slate-800"
       >
         {telemetry.isOnline ? (
           <Wifi className="h-3.5 w-3.5 text-emerald-400" />
