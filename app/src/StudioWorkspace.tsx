@@ -858,9 +858,9 @@ function StudioWorkspace() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
   return (
-    <div data-active-tab={activeTab} data-low-arousal={lowArousalMode ? "true" : "false"} className={`min-h-screen text-slate-900 transition-colors ${lowArousalMode ? "bg-[#eef2ef]" : "bg-[#f4f5f7]"}`}>
-      {/* Context-Aware Obsidian Glass Studio Header */}
-      <header className="no-print relative z-30">
+    <div data-active-tab={activeTab} data-low-arousal={lowArousalMode ? "true" : "false"} className={`flex h-screen flex-col overflow-hidden text-slate-900 transition-colors print:block print:h-auto print:overflow-visible ${lowArousalMode ? "bg-[#eef2ef]" : "bg-[#f4f5f7]"}`}>
+      {/* Slim Single-Row Studio Top Bar */}
+      <header className="no-print relative z-30 shrink-0">
         {activeTab === 'focus' ? (
           <div className="border-b border-slate-300 bg-[#eef2ef]/95 px-6 py-2.5 text-slate-900 backdrop-blur-md">
             <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
@@ -883,48 +883,35 @@ function StudioWorkspace() {
           <div
             className={
               lowArousalMode
-                ? 'border-b border-emerald-900/50 bg-[#14201c]/95 text-slate-100 shadow-lg backdrop-blur-md transition-colors'
-                : 'border-b border-slate-800/90 bg-[#0F172A]/95 text-white shadow-[0_8px_30px_rgba(15,23,42,0.25)] backdrop-blur-md transition-colors'
+                ? 'border-b border-emerald-900/50 bg-[#14201c] text-slate-100 transition-colors'
+                : 'border-b border-slate-800 bg-[#0F172A] text-white transition-colors'
             }
           >
-            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2.5">
+            <div className="flex h-14 items-center justify-between gap-3 px-4">
               <button
                 type="button"
-                onClick={() => {
-                  setActiveTab('templates');
-                }}
-                className="group flex items-center gap-3 text-left"
+                onClick={() => setActiveTab('templates')}
+                className="group flex shrink-0 items-center gap-2.5 text-left"
               >
                 <span className="transition-transform duration-200 group-hover:scale-[1.03]">
-                  <SparkLogo className="h-10 w-10" lowArousal={lowArousalMode} />
+                  <SparkLogo className="h-8 w-8" lowArousal={lowArousalMode} />
                 </span>
-                <span className="flex flex-col leading-none">
-                  <span className="flex items-center gap-2">
-                    <span className="text-xl font-black tracking-tight text-white">Spark</span>
-                    <span
-                      className={
-                        lowArousalMode
-                          ? 'rounded-full border border-emerald-400/30 bg-emerald-950/80 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-200 uppercase'
-                          : 'rounded-full border border-amber-400/30 bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-amber-300 uppercase'
-                      }
-                    >
-                      {symbols.length > 0 ? `${symbols.length.toLocaleString('en-GB')} Symbols` : 'Symbol Studio'}
-                    </span>
-                  </span>
+                <span className="flex items-center gap-2">
+                  <span className="text-lg font-black tracking-tight text-white">Spark</span>
                   <span
                     className={
                       lowArousalMode
-                        ? 'mt-1 hidden text-[11px] font-medium tracking-wide text-emerald-200/80 sm:inline'
-                        : 'mt-1 hidden text-[11px] font-medium tracking-wide text-slate-300 sm:inline'
+                        ? 'hidden sm:inline rounded-full border border-emerald-400/30 bg-emerald-950/80 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-200 uppercase'
+                        : 'hidden sm:inline rounded-full border border-amber-400/30 bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-amber-300 uppercase'
                     }
                   >
-                    Clinical Symbol Studio • UK Care &amp; SALT
+                    {symbols.length > 0 ? `${symbols.length.toLocaleString('en-GB')} Symbols` : 'Symbol Studio'}
                   </span>
                 </span>
               </button>
 
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="relative">
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto">
+                <div className="relative hidden sm:block">
                   <input
                     ref={quickSearchInputRef}
                     type="text"
@@ -944,7 +931,7 @@ function StudioWorkspace() {
                       }
                     }}
                     aria-label="Search symbols"
-                    className="h-9 w-48 rounded-lg border border-slate-700 bg-slate-900/90 px-3 pr-8 text-xs font-medium text-white placeholder:text-slate-400 transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400 focus:outline-none sm:w-56"
+                    className="h-8 w-44 rounded-lg border border-slate-700 bg-slate-900/90 px-3 pr-8 text-xs font-medium text-white placeholder:text-slate-400 transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400 focus:outline-none lg:w-56"
                   />
                   <button
                     type="button"
@@ -954,9 +941,9 @@ function StudioWorkspace() {
                       setHeroSearchQuery(query);
                       setSearchQuery(query);
                     }}
-                    className="absolute top-1.5 right-1.5 flex h-6 w-6 items-center justify-center rounded text-slate-300 transition hover:bg-slate-800 hover:text-amber-300"
+                    className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded text-slate-300 transition hover:bg-slate-800 hover:text-amber-300"
                   >
-                    <Search className="h-4 w-4" />
+                    <Search className="h-3.5 w-3.5" />
                   </button>
                 </div>
 
@@ -965,44 +952,44 @@ function StudioWorkspace() {
                   onClick={() => setLowArousalMode((m) => !m)}
                   aria-pressed={lowArousalMode}
                   title="Switch to calm low-arousal colours when co-creating beside a resident"
-                  className={`flex h-9 items-center gap-1.5 rounded-lg border px-3 text-xs font-bold transition ${
+                  className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
                     lowArousalMode
                       ? 'border-emerald-400/50 bg-emerald-900/70 text-emerald-100 hover:bg-emerald-900'
                       : 'border-slate-700 bg-slate-800/90 text-slate-200 hover:border-amber-400/50 hover:text-white'
                   }`}
                 >
-                  <span>{lowArousalMode ? 'Low-Arousal: ON' : 'Low-Arousal Mode'}</span>
+                  <span>{lowArousalMode ? 'Low-Arousal: ON' : 'Low-Arousal'}</span>
                 </button>
 
                 <label
-                  className={`flex h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-3 text-xs font-bold transition ${
+                  className={`hidden lg:flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
                     lowArousalMode
                       ? 'border-emerald-900/70 bg-slate-800/80 text-slate-100 hover:bg-slate-800'
                       : 'border-slate-700 bg-slate-800/80 text-slate-200 hover:border-slate-600 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
                   <Upload className="h-3.5 w-3.5" />
-                  <span title="Load a saved board file (Open Board Format .obf or .json)">Load Board</span>
+                  <span title="Load a saved board file (Open Board Format .obf or .json)">Load</span>
                   <input type="file" accept=".obf,.json,application/json" onChange={handleImportObf} className="hidden" />
                 </label>
 
                 <button
                   type="button"
                   onClick={handleExportObf}
-                  className={`flex h-9 items-center gap-1.5 rounded-lg border px-3 text-xs font-bold transition ${
+                  className={`hidden lg:flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
                     lowArousalMode
                       ? 'border-emerald-900/70 bg-slate-800/80 text-slate-100 hover:bg-slate-800'
                       : 'border-slate-700 bg-slate-800/80 text-slate-200 hover:border-slate-600 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span title="Save this board as a portable Open Board Format (.obf) file">Save Board</span>
+                  <span title="Save this board as a portable Open Board Format (.obf) file">Save</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => triggerPrint('a4')}
-                  className={`flex h-9 items-center gap-1.5 rounded-lg border px-3 text-xs font-bold transition ${
+                  className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
                     lowArousalMode
                       ? 'border-emerald-500/40 bg-emerald-800/70 text-white hover:bg-emerald-800'
                       : 'border-amber-400/40 bg-slate-800 text-amber-200 hover:border-amber-400 hover:bg-slate-800/90 hover:text-white'
@@ -1015,7 +1002,7 @@ function StudioWorkspace() {
                 <button
                   type="button"
                   onClick={() => triggerPrint('pocket')}
-                  className={`flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-xs font-extrabold shadow-sm transition ${
+                  className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-3 text-xs font-extrabold shadow-sm transition ${
                     lowArousalMode
                       ? 'bg-emerald-300 text-slate-950 hover:bg-emerald-200'
                       : 'bg-gradient-to-r from-amber-500 to-[#E36C2B] text-white hover:from-amber-400 hover:to-[#d45f20]'
@@ -1028,236 +1015,7 @@ function StudioWorkspace() {
             </div>
           </div>
         )}
-
-        {/* Calm 3-Mode Master Navigation + Contextual Sub-Bar */}
-        {(() => {
-          type MasterMode = "design" | "documents" | "talker";
-          const currentMode: MasterMode =
-            activeTab === "easyread" || activeTab === "stories"
-              ? "documents"
-              : activeTab === "focus" || activeTab === "anchors"
-                ? "talker"
-                : "design";
-
-          const subTabsByMode: Record<MasterMode, { id: AppTab; label: string; icon: typeof LayoutTemplate }[]> = {
-            design: [
-              { id: "templates", label: "Board Builder", icon: LayoutTemplate },
-              { id: "studio", label: "Studio Canvas", icon: Sparkles },
-              { id: "packs", label: "Support Packs", icon: FolderOpen },
-              { id: "wants", label: "Choice & Request", icon: HeartHandshake },
-              { id: "community", label: "Visual Schedules", icon: Compass },
-              { id: "media", label: "Resident Photos", icon: Camera },
-            ],
-            documents: [
-              { id: "easyread", label: "Easy Read (Zero-PII)", icon: BookOpen },
-              { id: "stories", label: "Social Stories", icon: BookOpen },
-            ],
-            talker: [
-              { id: "focus", label: "1-Step Focus Mode", icon: Layers },
-              { id: "anchors", label: "Core Anchor Cards", icon: Zap },
-            ],
-          };
-
-          const handleModeSwitch = (mode: MasterMode) => {
-            if (mode === "design") setActiveTab("templates");
-            else if (mode === "documents") setActiveTab("easyread");
-            else setActiveTab("focus");
-          };
-
-          return (
-            <div className={lowArousalMode ? "border-b border-slate-700 bg-slate-900 text-slate-200" : "border-b border-slate-200 bg-white text-slate-800 shadow-2xs"}>
-              <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6">
-                <div className="flex items-center gap-6">
-                  {[
-                    { id: "design" as MasterMode, label: "Design Studio", icon: LayoutTemplate },
-                    { id: "documents" as MasterMode, label: "Easy Read & Documents", icon: BookOpen },
-                    { id: "talker" as MasterMode, label: "Live Talker & Focus", icon: Zap },
-                  ].map((mode) => {
-                    const Icon = mode.icon;
-                    const active = currentMode === mode.id;
-                    return (
-                      <button
-                        key={mode.id}
-                        type="button"
-                        onClick={() => handleModeSwitch(mode.id)}
-                        className={`flex items-center gap-2 border-b-2 py-3 text-xs sm:text-sm font-extrabold transition ${
-                          active
-                            ? lowArousalMode
-                              ? "border-emerald-400 text-emerald-300"
-                              : "border-[#D45A1A] text-[#D45A1A]"
-                            : lowArousalMode
-                              ? "border-transparent text-slate-400 hover:text-white"
-                              : "border-transparent text-slate-500 hover:text-slate-900"
-                        }`}
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span>{mode.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="flex items-center gap-3 py-2 text-xs font-bold">
-                  <Link
-                    to="/kiosk"
-                    className={lowArousalMode ? "rounded-lg border border-slate-700 px-2.5 py-1 text-emerald-300 hover:bg-slate-800" : "rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1 text-slate-700 hover:bg-slate-100"}
-                  >
-                    Full Kiosk Talker ↗
-                  </Link>
-                  <Link
-                    to="/"
-                    className={lowArousalMode ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"}
-                  >
-                    ← Platform Home
-                  </Link>
-                </div>
-              </div>
-
-              {/* Contextual Sub-Navigation Bar */}
-              <div className={lowArousalMode ? "border-t border-slate-800 bg-slate-950/60" : "border-t border-slate-100 bg-slate-50/90"}>
-                <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-1.5 px-6 py-2">
-                  {subTabsByMode[currentMode].map((tab) => {
-                    const Icon = tab.icon;
-                    const isActive = activeTab === tab.id;
-                    return (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
-                          isActive
-                            ? lowArousalMode
-                              ? "bg-emerald-600 text-white"
-                              : "bg-slate-900 text-white shadow-2xs"
-                            : lowArousalMode
-                              ? "text-slate-300 hover:bg-slate-800"
-                              : "text-slate-600 hover:bg-slate-200/70 hover:text-slate-900"
-                        }`}
-                      >
-                        <Icon className="h-3.5 w-3.5" />
-                        <span>{tab.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          );
-        })()}
       </header>
-
-      {/* Slim Workspace Utility Strip + Slide-Over Governance & DNA Drawer */}
-      <section className={`no-print border-b border-slate-200 ${lowArousalMode ? "bg-slate-100" : "bg-white"}`}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 font-bold text-slate-800">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              Profile: {[...DEFAULT_SUPPORT_PROFILES, ...customProfiles].find((p) => p.id === selectedProfileId)?.label || "General Shift Board"}
-            </span>
-            {activePassport && (
-              <button
-                type="button"
-                onClick={() => setShowGovernanceDrawer(true)}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 font-bold text-emerald-900 hover:bg-emerald-100 transition"
-              >
-                AIS Step 6: Up to Date
-              </button>
-            )}
-            <span className="hidden md:inline text-[11px] font-medium text-slate-500">
-              Zero-PII local session • CQC Reg. 9
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setShowLaunchpad((v) => !v)}
-              className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-slate-100 transition"
-            >
-              {showLaunchpad ? "Hide Quick Launch" : "Quick Launch"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowGovernanceDrawer(true)}
-              className="rounded-lg bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800 transition"
-            >
-              AIS, DNA &amp; Print Stamp
-            </button>
-          </div>
-        </div>
-
-        {showLaunchpad && (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 pb-4 pt-1 border-t border-slate-100">
-            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  title: "Immediate Calm & De-escalation",
-                  desc: "Low-demand pause, ear defenders, quiet space & core anchor prompts.",
-                  badge: "PBS & Sensory",
-                  onClick: () => {
-                    const tpl = RESOURCE_TEMPLATES.find((t) => t.id === "flashcards");
-                    if (tpl) applyTemplate(tpl);
-                    setActiveTab("anchors");
-                    setShowLaunchpad(false);
-                  },
-                },
-                {
-                  title: "Now / Next / Then Strip",
-                  desc: "Three-step transition strip to reduce anxiety during daily changes.",
-                  badge: "Transitions",
-                  onClick: () => {
-                    const tpl = RESOURCE_TEMPLATES.find((t) => t.id === "now_next_then");
-                    if (tpl) applyTemplate(tpl);
-                    setActiveTab("templates");
-                    setShowLaunchpad(false);
-                  },
-                },
-                {
-                  title: "Choice & Request Board",
-                  desc: "Dignified everyday options supporting autonomy and clear consent.",
-                  badge: "Communication",
-                  onClick: () => { setActiveTab("wants"); setShowLaunchpad(false); },
-                },
-                {
-                  title: "Community & Outing Schedules",
-                  desc: "Step-by-step routines for shops, walks, appointments & group sessions.",
-                  badge: "Outings",
-                  onClick: () => { setActiveTab("community"); setShowLaunchpad(false); },
-                },
-                {
-                  title: "Social Stories & Easy Read",
-                  desc: "Multi-page predictable explanations built for adult care & autism support.",
-                  badge: "SALT & Comprehension",
-                  onClick: () => { setActiveTab("stories"); setShowLaunchpad(false); },
-                },
-                {
-                  title: "Studio Canvas",
-                  desc: "Per-cell display modes, independent captions, Fitzgerald borders & offline OpenDyslexic.",
-                  badge: "Widgit Studio",
-                  onClick: () => { setActiveTab("studio"); setShowLaunchpad(false); },
-                },
-              ].map((card) => (
-                <button
-                  key={card.title}
-                  type="button"
-                  onClick={card.onClick}
-                  className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-3 text-left shadow-2xs transition hover:border-slate-400 hover:shadow-sm"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-extrabold text-slate-900 group-hover:text-[#D45A1A]">
-                      {card.title}
-                    </span>
-                    <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-600">
-                      {card.badge}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-slate-600">{card.desc}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
 
       {showGovernanceDrawer && (
         <div className="no-print fixed inset-0 z-50 flex justify-end">
@@ -1441,7 +1199,177 @@ function StudioWorkspace() {
       )}
 
       {/* Main Resource Studio */}
-      <main className="no-print mx-auto max-w-6xl px-6 py-6 pb-24">
+      <div className="no-print flex flex-1 min-h-0 overflow-hidden">
+        {activeTab !== 'focus' && (
+          <aside
+            aria-label="Studio navigation"
+            className={`hidden md:flex w-56 lg:w-60 shrink-0 flex-col justify-between border-r overflow-y-auto ${
+              lowArousalMode
+                ? 'border-slate-300 bg-[#e6ece8] text-slate-800'
+                : 'border-slate-200 bg-white text-slate-800'
+            }`}
+          >
+            <div className="p-3 space-y-5">
+              {[
+                {
+                  group: 'Design Studio',
+                  items: [
+                    { id: 'studio' as AppTab, label: 'Studio Canvas', icon: Sparkles },
+                    { id: 'templates' as AppTab, label: 'Board Builder', icon: LayoutTemplate },
+                    { id: 'packs' as AppTab, label: 'Support Packs', icon: FolderOpen },
+                    { id: 'wants' as AppTab, label: 'Choice & Request', icon: HeartHandshake },
+                    { id: 'community' as AppTab, label: 'Visual Schedules', icon: Compass },
+                    { id: 'media' as AppTab, label: 'Resident Photos', icon: Camera },
+                  ],
+                },
+                {
+                  group: 'Documents & Easy Read',
+                  items: [
+                    { id: 'easyread' as AppTab, label: 'Easy Read (Zero-PII)', icon: BookOpen },
+                    { id: 'stories' as AppTab, label: 'Social Stories', icon: BookOpen },
+                  ],
+                },
+                {
+                  group: 'Live Talker & Focus',
+                  items: [
+                    { id: 'focus' as AppTab, label: '1-Step Focus Mode', icon: Layers },
+                    { id: 'anchors' as AppTab, label: 'Core Anchor Cards', icon: Zap },
+                  ],
+                },
+              ].map((section) => (
+                <div key={section.group}>
+                  <p className="px-2.5 mb-1.5 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                    {section.group}
+                  </p>
+                  <div className="space-y-0.5">
+                    {section.items.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = activeTab === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setActiveTab(item.id)}
+                          className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-bold transition ${
+                            isActive
+                              ? lowArousalMode
+                                ? 'bg-emerald-800 text-white shadow-2xs'
+                                : 'bg-slate-900 text-white shadow-2xs'
+                              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                          }`}
+                        >
+                          <Icon className="h-4 w-4 shrink-0" />
+                          <span className="truncate">{item.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t border-slate-200 p-3 space-y-1.5 text-xs font-bold">
+              <Link
+                to="/kiosk"
+                className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2 text-slate-700 hover:bg-slate-100 transition"
+              >
+                <span>Full Kiosk Talker</span>
+                <span>↗</span>
+              </Link>
+              <Link
+                to="/"
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition"
+              >
+                <span>← Platform Home</span>
+              </Link>
+            </div>
+          </aside>
+        )}
+
+        <div className="flex flex-1 flex-col min-w-0 overflow-hidden">
+          {/* Compact Mobile Tab Strip */}
+          {activeTab !== 'focus' && (
+            <div className="md:hidden shrink-0 border-b border-slate-200 bg-white px-3 py-2 flex items-center gap-1.5 overflow-x-auto">
+              {[
+                { id: 'studio' as AppTab, label: 'Canvas' },
+                { id: 'templates' as AppTab, label: 'Builder' },
+                { id: 'packs' as AppTab, label: 'Packs' },
+                { id: 'wants' as AppTab, label: 'Choices' },
+                { id: 'community' as AppTab, label: 'Schedules' },
+                { id: 'easyread' as AppTab, label: 'Easy Read' },
+                { id: 'stories' as AppTab, label: 'Stories' },
+                { id: 'focus' as AppTab, label: 'Focus' },
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
+                  className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-bold ${
+                    activeTab === t.id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Expandable Quick Launch Overlay */}
+          {showLaunchpad && activeTab !== 'focus' && (
+            <div className="shrink-0 border-b border-slate-200 bg-white px-4 sm:px-6 py-3 shadow-xs">
+              <div className="mx-auto max-w-6xl grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  {
+                    title: 'Immediate Calm & De-escalation',
+                    desc: 'Low-demand pause, ear defenders, quiet space & core anchor prompts.',
+                    badge: 'PBS & Sensory',
+                    onClick: () => {
+                      const tpl = RESOURCE_TEMPLATES.find((t) => t.id === 'flashcards');
+                      if (tpl) applyTemplate(tpl);
+                      setActiveTab('anchors');
+                      setShowLaunchpad(false);
+                    },
+                  },
+                  {
+                    title: 'Now / Next / Then Strip',
+                    desc: 'Three-step transition strip to reduce anxiety during daily changes.',
+                    badge: 'Transitions',
+                    onClick: () => {
+                      const tpl = RESOURCE_TEMPLATES.find((t) => t.id === 'now_next_then');
+                      if (tpl) applyTemplate(tpl);
+                      setActiveTab('templates');
+                      setShowLaunchpad(false);
+                    },
+                  },
+                  {
+                    title: 'Studio Canvas',
+                    desc: 'Per-cell display modes, independent captions, Fitzgerald borders & offline OpenDyslexic.',
+                    badge: 'Widgit Studio',
+                    onClick: () => {
+                      setActiveTab('studio');
+                      setShowLaunchpad(false);
+                    },
+                  },
+                ].map((card) => (
+                  <button
+                    key={card.title}
+                    type="button"
+                    onClick={card.onClick}
+                    className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 text-left transition hover:border-slate-400 hover:bg-white"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-extrabold text-slate-900 group-hover:text-[#D45A1A]">{card.title}</span>
+                      <span className="rounded-md bg-white px-2 py-0.5 text-[10px] font-bold text-slate-600 border border-slate-200">{card.badge}</span>
+                    </div>
+                    <p className="mt-1 text-[11px] leading-snug text-slate-600">{card.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <main className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 pb-12">
+            <div className="mx-auto max-w-6xl">
         {searchQuery.trim() && (
           <section className="mx-auto my-4 max-w-6xl rounded-xl border-2 border-[#E36C2B] bg-white p-4 px-4 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -1684,7 +1612,57 @@ function StudioWorkspace() {
             setActiveTab={setActiveTab}
           />
         )}
-      </main>
+                  </div>
+          </main>
+
+          {activeTab !== 'focus' && (
+            <footer
+              className={`shrink-0 border-t px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs ${
+                lowArousalMode
+                  ? 'border-slate-300 bg-[#e6ece8] text-slate-800'
+                  : 'border-slate-200 bg-white text-slate-700'
+              }`}
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-slate-100 px-2 py-0.5 font-bold text-slate-800">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  {[...DEFAULT_SUPPORT_PROFILES, ...customProfiles].find((p) => p.id === selectedProfileId)?.label || 'General Shift Board'}
+                </span>
+                {activePassport && (
+                  <button
+                    type="button"
+                    onClick={() => setShowGovernanceDrawer(true)}
+                    className="inline-flex items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-bold text-emerald-900 hover:bg-emerald-100 transition"
+                  >
+                    AIS Step 6: Up to Date
+                  </button>
+                )}
+                <span className="hidden md:inline text-[11px] font-medium text-slate-500">
+                  Zero-PII local session • CQC Reg. 9
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchpad((v) => !v)}
+                  className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-slate-100 transition"
+                >
+                  {showLaunchpad ? 'Hide Quick Launch' : 'Quick Launch'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowGovernanceDrawer(true)}
+                  className="rounded-md bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800 transition"
+                >
+                  AIS, DNA &amp; Print Stamp
+                </button>
+              </div>
+            </footer>
+          )}
+        </div>
+      </div>
+
       <section aria-label="Printable symbol cards" className="print-container">
         <div className="print-header">
           <h1>
