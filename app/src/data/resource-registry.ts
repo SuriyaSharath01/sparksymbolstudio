@@ -474,6 +474,58 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       },
     ],
   },
+  pecs_core_request_binder: {
+    id: 'pecs_core_request_binder',
+    title: 'PECS Phase I–IV Core Request Binder',
+    category: 'Communication & Interaction',
+    sector: 'SEND Education',
+    layout: 'horizontal-strip',
+    steps: [
+      { id: 'pecs_1', label: 'I want', symbol: '/symbols/spark_want.svg', instruction: 'Place I want at the start of the PECS sentence strip.' },
+      { id: 'pecs_2', label: 'More', symbol: '/symbols/more.svg', instruction: 'Request continuation of a preferred activity or snack.' },
+      { id: 'pecs_3', label: 'Help', symbol: '/symbols/spark_help.svg', instruction: 'Exchange Help card when stuck or needing assistance.' },
+      { id: 'pecs_4', label: 'Finished', symbol: '/symbols/finish.svg', instruction: 'Signal clearly when an activity is complete.' },
+    ],
+  },
+  nhs_hospital_passport: {
+    id: 'nhs_hospital_passport',
+    title: 'NHS Hospital Passport & Pain Check-In',
+    category: 'Sensory & Physical',
+    sector: 'NHS & Health',
+    layout: 'horizontal-strip',
+    steps: [
+      { id: 'nhs_1', label: 'Hospital Passport', symbol: '/symbols/spark_hospital_passport.svg', instruction: 'Share key communication and reasonable adjustments on arrival.' },
+      { id: 'nhs_2', label: 'Pain / Hurt', symbol: '/symbols/spark_pain_scale.svg', instruction: 'Indicate pain or physical discomfort immediately.' },
+      { id: 'nhs_3', label: 'Medication', symbol: '/symbols/spark_medication_round.svg', instruction: 'Check prescribed medication and pain relief options.' },
+      { id: 'nhs_4', label: 'Doctor / Nurse', symbol: '/symbols/doctor_1a.svg', instruction: 'Request a clinician using clear, accessible language.' },
+    ],
+  },
+  iddsi_mealtime_pack: {
+    id: 'iddsi_mealtime_pack',
+    title: 'IDDSI Dysphagia & Safe Mealtime Strip',
+    category: 'Routines & Transitions',
+    sector: 'Adult Social Care',
+    layout: 'horizontal-strip',
+    steps: [
+      { id: 'iddsi_1', label: 'IDDSI Meal', symbol: '/symbols/spark_iddsi_meal.svg', instruction: 'Confirm texture-modified meal level before serving.' },
+      { id: 'iddsi_2', label: 'Safe Drink', symbol: '/symbols/drink.svg', instruction: 'Offer thickened or regular fluids as prescribed.' },
+      { id: 'iddsi_3', label: 'Eat Slowly', symbol: '/symbols/eat_,_to.svg', instruction: 'Support calm, unhurried pacing during meals.' },
+      { id: 'iddsi_4', label: 'All Done', symbol: '/symbols/finish.svg', instruction: 'Respect when the resident signals they have had enough.' },
+    ],
+  },
+  mental_capacity_consent_pack: {
+    id: 'mental_capacity_consent_pack',
+    title: 'Supported Decision-Making & Consent',
+    category: 'Communication & Interaction',
+    sector: 'Adult Social Care',
+    layout: 'horizontal-strip',
+    steps: [
+      { id: 'mca_1', label: 'My Choice', symbol: '/symbols/spark_consent_choice.svg', instruction: 'Present options clearly in line with Mental Capacity Act principles.' },
+      { id: 'mca_2', label: 'Yes, I Agree', symbol: '/symbols/yes.svg', instruction: 'Record clear affirmative consent.' },
+      { id: 'mca_3', label: 'No Thank You', symbol: '/symbols/no.svg', instruction: 'Respect the right to decline or pause.' },
+      { id: 'mca_4', label: 'Explain More', symbol: '/symbols/wait_,_to.svg', instruction: 'Provide accessible information before deciding.' },
+    ],
+  },
 };
 
 export const RESOURCE_REGISTRY_LIST: SupportPack[] = Object.values(RESOURCE_REGISTRY);

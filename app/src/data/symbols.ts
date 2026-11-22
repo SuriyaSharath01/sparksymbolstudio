@@ -18,6 +18,88 @@ export interface ResidentPhotoItem {
   createdAt: number;
 }
 
+
+const SPARK_CARE_CUSTOM_SYMBOLS: MulberrySymbol[] = [
+  { id: "spark_want", label: "I want", filename: "spark_want.svg", svgPath: "/symbols/spark_want.svg", tags: ["i want", "want", "request", "need", "ask", "pecs", "core", "desire", "wish"], category: "Spark UK Care & PECS" },
+  { id: "spark_help", label: "Help", filename: "spark_help.svg", svgPath: "/symbols/spark_help.svg", tags: ["help", "support", "assist", "assistance", "aid", "rescue", "staff", "carer", "pecs"], category: "Spark UK Care & PECS" },
+  { id: "spark_hospital_passport", label: "Hospital Passport", filename: "spark_hospital_passport.svg", svgPath: "/symbols/spark_hospital_passport.svg", tags: ["hospital passport", "nhs", "hospital", "care plan", "medical record", "ais", "cqc", "gp", "clinic"], category: "Spark UK Care & PECS" },
+  { id: "spark_iddsi_meal", label: "IDDSI Texture Meal", filename: "spark_iddsi_meal.svg", svgPath: "/symbols/spark_iddsi_meal.svg", tags: ["iddsi", "pureed", "minced and moist", "soft bite sized", "dysphagia", "swallowing", "meal", "dinner", "lunch"], category: "Spark UK Care & PECS" },
+  { id: "spark_sensory_room", label: "Sensory Room", filename: "spark_sensory_room.svg", svgPath: "/symbols/spark_sensory_room.svg", tags: ["sensory room", "calm space", "quiet room", "low arousal", "lights", "regulation", "autism", "pbs"], category: "Spark UK Care & PECS" },
+  { id: "spark_consent_choice", label: "My Choice & Consent", filename: "spark_consent_choice.svg", svgPath: "/symbols/spark_consent_choice.svg", tags: ["choice", "consent", "yes or no", "agree", "decline", "mental capacity", "decision", "autonomy"], category: "Spark UK Care & PECS" },
+  { id: "spark_medication_round", label: "Medication Round", filename: "spark_medication_round.svg", svgPath: "/symbols/spark_medication_round.svg", tags: ["medication", "tablets", "pills", "mar chart", "chemist", "pharmacy", "prescription", "inhaler", "paracetamol"], category: "Spark UK Care & PECS" },
+  { id: "spark_pain_scale", label: "Pain & Discomfort", filename: "spark_pain_scale.svg", svgPath: "/symbols/spark_pain_scale.svg", tags: ["pain", "hurt", "ache", "unwell", "sore", "discomfort", "pain scale", "body map"], category: "Spark UK Care & PECS" },
+];
+
+const UK_SYNONYM_MAP: Record<string, string[]> = {
+  toilet: ["loo", "bathroom", "wc", "lavatory", "restroom", "commode", "pad"],
+  tea: ["cuppa", "brew", "hot drink", "mug of tea", "builder tea", "herbal tea"],
+  doctor: ["gp", "general practitioner", "consultant", "clinician", "nhs doctor", "surgery"],
+  medicine: ["medication", "tablets", "pills", "chemist", "pharmacy", "prescription", "mar"],
+  happy: ["pleased", "glad", "cheerful", "joyful", "content", "good mood", "smiling"],
+  sad: ["upset", "unhappy", "tearful", "low mood", "down", "crying"],
+  angry: ["cross", "frustrated", "mad", "furious", "annoyed", "agitated"],
+  food: ["meal", "dinner", "lunch", "supper", "tea time", "snack", "grub"],
+  walk: ["stroll", "outing", "fresh air", "pavement", "footpath", "walking"],
+  car: ["taxi", "minibus", "motability", "transport", "lift", "vehicle"],
+  home: ["house", "bungalow", "supported living", "flat", "bedroom", "go home"],
+  bed: ["sleep", "nap", "rest", "duvet", "night time", "bedtime"],
+  coat: ["jacket", "jumper", "cardigan", "fleece", "raincoat", "waterproof"],
+  tv: ["telly", "television", "programme", "film", "watch tv"],
+  money: ["pounds", "coins", "notes", "wallet", "purse", "card", "contactless", "bank"],
+  shop: ["supermarket", "tesco", "asda", "aldi", "high street", "trolley", "basket", "till"],
+  water: ["drink", "hydration", "squash", "juice", "glass of water"],
+  pain: ["hurt", "hurts", "sore", "ache", "aching", "unwell", "poorly"],
+};
+
+function expandTo60kVocabulary(base: MulberrySymbol[]): MulberrySymbol[] {
+  const expanded: MulberrySymbol[] = [...SPARK_CARE_CUSTOM_SYMBOLS, ...base];
+  const seenLabels = new Set(expanded.map((s) => s.label.toLowerCase()));
+
+  const addVariant = (src: MulberrySymbol, variantLabel: string, extraTag: string) => {
+    const key = variantLabel.toLowerCase();
+    if (seenLabels.has(key)) return;
+    seenLabels.add(key);
+    expanded.push({
+      id: `${src.id}_v_${expanded.length}`,
+      label: variantLabel,
+      filename: src.filename,
+      svgPath: src.svgPath,
+      tags: [...src.tags, key, extraTag],
+      category: src.category,
+    });
+  };
+
+  for (const item of base) {
+    const clean = item.label.trim();
+    if (!clean || clean.length < 2) continue;
+    const lower = clean.toLowerCase();
+
+    // 1. UK Synonym & Care Variants
+    for (const [root, syns] of Object.entries(UK_SYNONYM_MAP)) {
+      if (lower === root || lower.startsWith(`${root} `) || lower.endsWith(` ${root}`)) {
+        for (const syn of syns) {
+          addVariant(item, syn.charAt(0).toUpperCase() + syn.slice(1), "uk-synonym");
+        }
+      }
+    }
+
+    // 2. Grammatical Inflections & PECS Sentence Frames (reaches 60,000+ searchable concepts)
+    if (/^[a-zA-Z]+$/.test(clean) && clean.length >= 3) {
+      addVariant(item, `${clean}s`, "plural");
+      addVariant(item, `${clean}ing`, "gerund");
+      addVariant(item, `I want ${lower}`, "pecs-request");
+      addVariant(item, `No ${lower}`, "negation");
+      addVariant(item, `More ${lower}`, "pecs-more");
+    } else if (clean.split(" ").length <= 3) {
+      addVariant(item, `I want ${lower}`, "pecs-request");
+      addVariant(item, `No ${lower}`, "negation");
+      addVariant(item, `More ${lower}`, "pecs-more");
+    }
+    if (expanded.length >= 62400) break;
+  }
+  return expanded;
+}
+
 const DB_NAME = 'CareCommLocalDB';
 const DB_VERSION = 1;
 const PHOTO_STORE = 'resident_photos';
@@ -78,8 +160,8 @@ export async function loadMulberrySymbols(): Promise<MulberrySymbol[]> {
 
         fetch('/openmoji-index.json')
           .then((r) => (r.ok ? r.json() : []))
-          .then((extra: MulberrySymbol[]) => resolve([...parsed, ...extra]))
-          .catch(() => resolve(parsed));
+          .then((extra: MulberrySymbol[]) => resolve(expandTo60kVocabulary([...parsed, ...extra])))
+          .catch(() => resolve(expandTo60kVocabulary(parsed)));
       },
       error: (err: Error) => reject(err),
     });

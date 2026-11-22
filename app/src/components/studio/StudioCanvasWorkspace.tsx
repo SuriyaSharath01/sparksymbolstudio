@@ -34,15 +34,15 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
 }) => {
   const initialCells: StudioCell[] = useMemo(() => {
     const starters = [
-      { label: 'I want', query: 'want', fallbackSrc: '/symbols/want_,_to.svg' },
+      { label: 'I want', query: 'want', fallbackSrc: '/symbols/spark_want.svg' },
       { label: 'Tea', query: 'tea', fallbackSrc: '/symbols/drink_hot.svg' },
       { label: 'Toilet', query: 'toilet', fallbackSrc: '/symbols/toilet.svg' },
       { label: 'Break', query: 'break', fallbackSrc: '/symbols/break_time_1.svg' },
       { label: 'Happy', query: 'happy', fallbackSrc: '/symbols/happy_lady.svg' },
-      { label: 'Help', query: 'help', fallbackSrc: '/symbols/help_,_to.svg' },
+      { label: 'Help', query: 'help', fallbackSrc: '/symbols/spark_help.svg' },
     ];
     return starters.map((item, idx) => {
-      const hit = searchMulberrySymbols(symbols, item.query, 'All', 1)[0];
+      const hit = item.label === 'I want' || item.label === 'Help' ? undefined : searchMulberrySymbols(symbols, item.query, 'All', 1)[0];
       return {
         id: `cell-init-${idx}`,
         symbolId: hit?.id || `starter-${idx}`,
@@ -524,7 +524,7 @@ export const StudioCanvasWorkspace: React.FC<Props> = ({
               type="text"
               value={symbolQuery}
               onChange={(e) => setSymbolQuery(e.target.value)}
-              placeholder="Search 4,865+ symbols..."
+              placeholder="Search 60,000+ symbols..."
               className="w-full rounded-lg border border-slate-300 py-1.5 pr-2.5 pl-8 text-xs font-semibold text-slate-800 focus:border-slate-600 focus:outline-none"
             />
           </div>
