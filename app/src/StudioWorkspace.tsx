@@ -28,6 +28,7 @@ import {
 import { type FocusStep } from './components/FocusCard';
 import SparkLogo from './components/SparkLogo';
 import { CardVisual } from './components/AnchorCard';
+import { TemplateLayoutEngine, type LayoutCardItem } from './components/studio/TemplateLayoutEngine';
 import { type TemplatePillAction } from './components/TemplateGrid';
 import { type StripSymbolItem } from './components/WidgitSentenceStrip';
 import { CORE_CARDS, type CoreCardId } from './data/core-cards';
@@ -1506,6 +1507,56 @@ function StudioWorkspace() {
             renderTileVisual={(params) => <SymbolTileVisual {...params} />}
           />
         )}
+        {(activeTab === 'templates' || activeTab === 'wants' || activeTab === 'community') && (() => {
+          const layoutSourceCards: LayoutCardItem[] =
+            customBoard.length > 0
+              ? customBoard.map((c) => ({
+                  id: c.id,
+                  title: c.title,
+                  subtitle: undefined,
+                  imageSrc: c.imageSrc,
+                  coreCardId: c.coreCardId,
+                }))
+              : sentenceStripItems.length > 0
+                ? sentenceStripItems.map((s) => ({
+                    id: s.id,
+                    title: s.label,
+                    imageSrc: s.imageSrc,
+                  }))
+                : Object.values(CORE_CARDS).map((cc) => ({
+                    id: cc.id,
+                    title: cc.label,
+                    coreCardId: cc.id,
+                  }));
+
+          return (
+            <TemplateLayoutEngine
+              cards={layoutSourceCards}
+              lowArousalMode={lowArousalMode}
+              onSpeakCard={(phrase) => {
+                if (typeof window !== "undefined" && "speechSynthesis" in window) {
+                  window.speechSynthesis.cancel();
+                  const utter = new SpeechSynthesisUtterance(phrase);
+                  utter.lang = "en-GB";
+                  utter.rate = 0.92;
+                  window.speechSynthesis.speak(utter);
+                }
+              }}
+              onAddToStrip={(card) => {
+                setSentenceStripItems((prev) => [
+                  ...prev,
+                  {
+                    id: `layout_${card.id}_${Date.now()}`,
+                    label: card.title,
+                    imageSrc: card.imageSrc || "",
+                    imageAlt: card.title,
+                  },
+                ]);
+              }}
+            />
+          );
+        })()}
+
         {activeTab === 'templates' && (
           <CustomBoardWorkspace
             customBoard={customBoard}
