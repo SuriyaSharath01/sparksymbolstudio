@@ -150,6 +150,64 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
     ],
   },
 
+
+  morning_care_hydration: {
+    id: 'morning_care_hydration',
+    title: 'Morning Care, Hydration & Medication Check',
+    category: 'Routines & Transitions',
+    sector: 'Adult Social Care',
+    layout: 'vertical-strip',
+    steps: [
+      {
+        id: 'morn_1',
+        label: 'Wake, Stretch & Morning Greeting',
+        symbol: '/symbols/wake.svg',
+        instruction: 'Open curtains gently, offer a calm greeting, and check comfort before rising.',
+      },
+      {
+        id: 'morn_2',
+        label: 'Water, Tea & Breakfast',
+        symbol: '/symbols/drink.svg',
+        instruction: 'Support morning hydration and preferred breakfast or dietary choice.',
+      },
+      {
+        id: 'morn_3',
+        label: 'Medication & Daily Plan',
+        symbol: '/symbols/medicine.svg',
+        instruction: 'Administer prescribed morning medication safely and review the day ahead.',
+      },
+    ],
+  },
+
+  faith_diet_reflection: {
+    id: 'faith_diet_reflection',
+    title: 'Faith, Dietary & Cultural Customs',
+    category: 'Communication & Interaction',
+    sector: 'Dual-Language / EAL',
+    languages: ['English', 'Hindi (हिन्दी)', 'Christianity', 'Islam', 'Hinduism', 'Buddhism', 'Sikhism', 'Jainism'],
+    layout: 'horizontal-strip',
+    steps: [
+      {
+        id: 'faith_1',
+        label: 'Dietary & Fasting Preferences / आहार और व्रत',
+        symbol: '/symbols/food.svg',
+        instruction: 'Record vegetarian, halal, fasting, or special meal rules clearly across shifts.',
+      },
+      {
+        id: 'faith_2',
+        label: 'Prayer & Quiet Time / प्रार्थना और शांति',
+        symbol: '/symbols/quiet.svg',
+        instruction: 'Protect scheduled prayer windows, festivals, or quiet reflection without rushing.',
+      },
+      {
+        id: 'faith_3',
+        label: 'Respectful Family & Community Links / सम्मान और जुड़ाव',
+        symbol: '/symbols/community.svg',
+        instruction: 'Support meaningful cultural visits, music, and familiar symbols with dignity.',
+      },
+    ],
+  },
+
   sensory_calm: {
     id: 'sensory_calm',
     title: 'Sensory & Calm Support',

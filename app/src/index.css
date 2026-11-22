@@ -176,3 +176,15 @@ body.font-dyslexic * {
   letter-spacing: 0.04em;
   word-spacing: 0.12em;
 }
+
+/* Spark Layout Print Rules */
+@media print {
+  .print-container .print-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .print-container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
