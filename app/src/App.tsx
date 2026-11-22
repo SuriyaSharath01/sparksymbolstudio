@@ -765,6 +765,14 @@ export function App() {
         coreCardId: p.coreCardId,
       }));
     }
+    if (sentenceStripItems.length > 0 && customBoard.length === 0) {
+      return sentenceStripItems.map((item, i) => ({
+        id: item.id,
+        title: item.label,
+        subtitle: `Symbol ${i + 1}`,
+        imageSrc: item.imageSrc,
+      }));
+    }
     return activePreset.steps.map((s, idx) => ({
       id: s.id,
       title: s.label,
@@ -772,7 +780,7 @@ export function App() {
       imageSrc: s.imageSrc,
       coreCardId: s.coreCardId,
     }));
-  }, [activeTab, customBoard, activeTemplate, activePreset, activeStory]);
+  }, [activeTab, customBoard, activeTemplate, activePreset, activeStory, sentenceStripItems]);
   const quickSearchInputRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     try {
@@ -1489,7 +1497,9 @@ export function App() {
                   ? 'Core Anchor Cards'
                   : activeTab === 'wants'
                     ? 'Choice Board'
-                    : activePreset.name}
+                    : sentenceStripItems.length > 0 && customBoard.length === 0
+                      ? "Communication Sentence Strip"
+                      : activePreset.name}
           </h1>
           <p>
             {printFormat === 'pocket' ? 'Pocket Symbol Cards' : 'A4 Symbol Support Sheet'}
