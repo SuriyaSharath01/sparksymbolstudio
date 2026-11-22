@@ -92,14 +92,30 @@ export const LandingPage: React.FC = () => {
     .filter(Boolean)
     .slice(0, 12);
 
+  const HERO_VERIFIED_FALLBACKS: Record<string, string> = {
+    want: '/symbols/want_,_to.svg',
+    wait: '/symbols/wait_,_to.svg',
+    quiet: '/symbols/quiet.svg',
+    stop: '/symbols/stop_sign.svg',
+    listen: '/symbols/communication_aid_listen_to_me.svg',
+    cup: '/symbols/cup_non_spill.svg',
+    tea: '/symbols/drink_hot.svg',
+    drink: '/symbols/drink_,_to.svg',
+    break: '/symbols/break_time_1.svg',
+    wash: '/symbols/clean_hands.svg',
+    hands: '/symbols/clean_hands.svg',
+  };
+
   const tokens: DemoToken[] = words.map((rawWord) => {
     const clean = rawWord.replace(/^[^\w]+|[^\w]+$/g, '');
-    const match = searchLocalSymbols(clean || rawWord, symbols)[0];
-    const isAbstract = ABSTRACT_WORDS.has((clean || rawWord).toLowerCase());
+    const lower = (clean || rawWord).toLowerCase();
+    const isAbstract = ABSTRACT_WORDS.has(lower);
+    const match = isAbstract ? undefined : searchLocalSymbols(clean || rawWord, symbols)[0];
+    const resolvedSrc = isAbstract ? undefined : (match?.imagePath || HERO_VERIFIED_FALLBACKS[lower]);
     return {
       word: clean || rawWord,
       label: match?.label || clean || rawWord,
-      imageSrc: match?.imagePath,
+      imageSrc: resolvedSrc,
       toneClass: classifyTone(clean || rawWord),
       isAbstract,
     };
@@ -232,36 +248,41 @@ export const LandingPage: React.FC = () => {
                 </div>
               )}
 
-              <div className="min-h-[146px] rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 flex flex-wrap gap-2.5 items-start">
+              <div className="min-h-[146px] rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 flex flex-wrap gap-2.5 items-end">
                 {visibleTokens.length === 0 ? (
                   <p className="text-xs text-slate-500 m-auto py-8">
                     Type a phrase above to see matching symbol cards appear here.
                   </p>
                 ) : (
-                  visibleTokens.map((tok, idx) => (
-                    <div
-                      key={`${tok.word}-${idx}`}
-                      className={`w-[88px] rounded-xl border-2 p-2 flex flex-col items-center text-center shadow-2xs ${tok.toneClass}`}
-                    >
-                      <div className="h-12 w-12 flex items-center justify-center mb-1.5">
-                        {tok.imageSrc ? (
+                  visibleTokens.map((tok, idx) =>
+                    tok.imageSrc ? (
+                      <div
+                        key={`${tok.word}-${idx}`}
+                        className={`w-[88px] rounded-xl border-2 p-2 flex flex-col items-center text-center shadow-2xs ${tok.toneClass}`}
+                      >
+                        <div className="h-12 w-12 flex items-center justify-center mb-1.5">
                           <img
                             src={tok.imageSrc}
                             alt={tok.label}
                             className="max-h-12 max-w-12 object-contain"
                             loading="lazy"
                           />
-                        ) : (
-                          <span className="text-xs font-extrabold uppercase text-slate-500">
-                            {tok.word.slice(0, 2)}
-                          </span>
-                        )}
+                        </div>
+                        <span className="text-xs font-extrabold leading-tight break-words w-full">
+                          {tok.word}
+                        </span>
                       </div>
-                      <span className="text-xs font-extrabold leading-tight break-words w-full">
-                        {tok.word}
-                      </span>
-                    </div>
-                  ))
+                    ) : (
+                      <div
+                        key={`${tok.word}-${idx}`}
+                        className="px-1.5 pb-2.5 flex items-end justify-center"
+                      >
+                        <span className="text-sm font-bold text-slate-600">
+                          {tok.word}
+                        </span>
+                      </div>
+                    )
+                  )
                 )}
               </div>
 
