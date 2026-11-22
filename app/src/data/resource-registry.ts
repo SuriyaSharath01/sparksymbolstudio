@@ -161,7 +161,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'morn_1',
         label: 'Wake, Stretch & Morning Greeting',
-        symbol: '/symbols/wake.svg',
+        symbol: '/symbols/wake_up_,_to.svg',
         instruction: 'Open curtains gently, offer a calm greeting, and check comfort before rising.',
       },
       {
@@ -225,7 +225,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'sh_2',
         label: 'Key Support & Safety Notes',
-        symbol: '/symbols/note.svg',
+        symbol: '/symbols/notepad.svg',
         instruction: 'Highlight active routines, sensory triggers, and non-PII support adjustments.',
       },
       {
@@ -248,13 +248,13 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'trv_1',
         label: 'Check Essentials & Weather',
-        symbol: '/symbols/bag.svg',
+        symbol: '/symbols/bagel.svg',
         instruction: 'Confirm coat, water, ID/emergency card, and communication board before leaving.',
       },
       {
         id: 'trv_2',
         label: 'Stay Together & Calm Pace',
-        symbol: '/symbols/walk.svg',
+        symbol: '/symbols/walkman.svg',
         instruction: 'Keep clear visual cues at crossings, transport stops, and busy venues.',
       },
       {
@@ -313,7 +313,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'eve_2',
         label: 'Bathroom & Wash',
-        symbol: '/symbols/wash_hands.svg',
+        symbol: '/symbols/wash_hands_,_to.svg',
         instruction: 'Support personal care, teeth cleaning, and nightwear change.',
       },
       {
@@ -369,19 +369,19 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'pain_1',
         label: 'Point to Where It Hurts',
-        symbol: '/symbols/point.svg',
+        symbol: '/symbols/pointed.svg',
         instruction: 'Point to head, chest, stomach, back, arm, or leg on the body chart.',
       },
       {
         id: 'pain_2',
         label: 'Rate Comfort (1–5)',
-        symbol: '/symbols/scale.svg',
+        symbol: '/symbols/scales.svg',
         instruction: 'Check whether discomfort is mild, moderate, or severe before acting.',
       },
       {
         id: 'pain_3',
         label: 'Ask for Relief or Nurse',
-        symbol: '/symbols/help.svg',
+        symbol: '/symbols/help_,_to.svg',
         instruction: 'Alert senior staff or clinical team for pain relief or assessment.',
       },
     ],
@@ -521,8 +521,8 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
     layout: 'horizontal-strip',
     steps: [
       { id: 'mca_1', label: 'My Choice', symbol: '/symbols/spark_consent_choice.svg', instruction: 'Present options clearly in line with Mental Capacity Act principles.' },
-      { id: 'mca_2', label: 'Yes, I Agree', symbol: '/symbols/yes.svg', instruction: 'Record clear affirmative consent.' },
-      { id: 'mca_3', label: 'No Thank You', symbol: '/symbols/no.svg', instruction: 'Respect the right to decline or pause.' },
+      { id: 'mca_2', label: 'Yes, I Agree', symbol: '/symbols/yesterday.svg', instruction: 'Record clear affirmative consent.' },
+      { id: 'mca_3', label: 'No Thank You', symbol: '/symbols/now.svg', instruction: 'Respect the right to decline or pause.' },
       { id: 'mca_4', label: 'Explain More', symbol: '/symbols/wait_,_to.svg', instruction: 'Provide accessible information before deciding.' },
     ],
   },
