@@ -395,6 +395,233 @@ export function buildSymbolLookupIndex(symbols: MulberrySymbol[]): SymbolLookupI
   return { exactLabel, exactTag };
 }
 
+const SPARK_CORE_EASY_READ_OVERRIDES: Record<string, { svgPath: string; label: string }> = {
+  "cup of tea": {
+    "svgPath": "/symbols/spark-core/cup_of_tea.svg",
+    "label": "Cup of Tea"
+  },
+  "tea": {
+    "svgPath": "/symbols/spark-core/cup_of_tea.svg",
+    "label": "Cup of Tea"
+  },
+  "cuppa": {
+    "svgPath": "/symbols/spark-core/cup_of_tea.svg",
+    "label": "Cuppa"
+  },
+  "quiet break": {
+    "svgPath": "/symbols/spark-core/quiet_break.svg",
+    "label": "Quiet Break"
+  },
+  "break": {
+    "svgPath": "/symbols/spark-core/quiet_break.svg",
+    "label": "Quiet Break"
+  },
+  "hospital passport": {
+    "svgPath": "/symbols/spark-core/hospital_passport.svg",
+    "label": "Hospital Passport"
+  },
+  "support worker": {
+    "svgPath": "/symbols/spark-core/support_worker.svg",
+    "label": "Support Worker"
+  },
+  "carer": {
+    "svgPath": "/symbols/spark-core/support_worker.svg",
+    "label": "Carer"
+  },
+  "staff": {
+    "svgPath": "/symbols/spark-core/support_worker.svg",
+    "label": "Staff"
+  },
+  "deep breath": {
+    "svgPath": "/symbols/spark-core/calm.svg",
+    "label": "Deep Breath"
+  },
+  "calm": {
+    "svgPath": "/symbols/spark-core/calm.svg",
+    "label": "Calm"
+  },
+  "breathe": {
+    "svgPath": "/symbols/spark-core/calm.svg",
+    "label": "Breathe"
+  },
+  "ask for help": {
+    "svgPath": "/symbols/spark-core/help.svg",
+    "label": "Ask for Help"
+  },
+  "help": {
+    "svgPath": "/symbols/spark-core/help.svg",
+    "label": "Help"
+  },
+  "support": {
+    "svgPath": "/symbols/spark-core/help.svg",
+    "label": "Support"
+  },
+  "ask": {
+    "svgPath": "/symbols/spark-core/ask.svg",
+    "label": "Ask"
+  },
+  "listen": {
+    "svgPath": "/symbols/spark-core/listen.svg",
+    "label": "Listen"
+  },
+  "doctor": {
+    "svgPath": "/symbols/spark-core/doctor.svg",
+    "label": "Doctor"
+  },
+  "gp": {
+    "svgPath": "/symbols/spark-core/doctor.svg",
+    "label": "GP"
+  },
+  "nurse": {
+    "svgPath": "/symbols/spark-core/nurse.svg",
+    "label": "Nurse"
+  },
+  "clinic": {
+    "svgPath": "/symbols/spark-core/clinic.svg",
+    "label": "Clinic"
+  },
+  "i": {
+    "svgPath": "/symbols/spark-core/i_me.svg",
+    "label": "I / Me"
+  },
+  "me": {
+    "svgPath": "/symbols/spark-core/i_me.svg",
+    "label": "I / Me"
+  },
+  "my": {
+    "svgPath": "/symbols/spark-core/i_me.svg",
+    "label": "My"
+  },
+  "you": {
+    "svgPath": "/symbols/spark-core/you.svg",
+    "label": "You"
+  },
+  "we": {
+    "svgPath": "/symbols/spark-core/we.svg",
+    "label": "We"
+  },
+  "he": {
+    "svgPath": "/symbols/spark-core/he_him.svg",
+    "label": "He"
+  },
+  "him": {
+    "svgPath": "/symbols/spark-core/he_him.svg",
+    "label": "Him"
+  },
+  "she": {
+    "svgPath": "/symbols/spark-core/she_her.svg",
+    "label": "She"
+  },
+  "her": {
+    "svgPath": "/symbols/spark-core/she_her.svg",
+    "label": "Her"
+  },
+  "they": {
+    "svgPath": "/symbols/spark-core/they_them.svg",
+    "label": "They"
+  },
+  "them": {
+    "svgPath": "/symbols/spark-core/they_them.svg",
+    "label": "Them"
+  },
+  "yes": {
+    "svgPath": "/symbols/spark-core/yes.svg",
+    "label": "Yes"
+  },
+  "agree": {
+    "svgPath": "/symbols/spark-core/yes.svg",
+    "label": "Agree"
+  },
+  "no": {
+    "svgPath": "/symbols/spark-core/no.svg",
+    "label": "No"
+  },
+  "not": {
+    "svgPath": "/symbols/spark-core/no.svg",
+    "label": "Not"
+  },
+  "dont": {
+    "svgPath": "/symbols/spark-core/no.svg",
+    "label": "Don't"
+  },
+  "decline": {
+    "svgPath": "/symbols/spark-core/no.svg",
+    "label": "Decline"
+  },
+  "home": {
+    "svgPath": "/symbols/spark-core/home.svg",
+    "label": "Home"
+  },
+  "house": {
+    "svgPath": "/symbols/spark-core/home.svg",
+    "label": "House"
+  },
+  "wait": {
+    "svgPath": "/symbols/spark-core/wait.svg",
+    "label": "Wait"
+  },
+  "time": {
+    "svgPath": "/symbols/spark-core/time.svg",
+    "label": "Time"
+  },
+  "first": {
+    "svgPath": "/symbols/spark-core/first.svg",
+    "label": "First"
+  },
+  "then": {
+    "svgPath": "/symbols/spark-core/then.svg",
+    "label": "Then"
+  },
+  "safe": {
+    "svgPath": "/symbols/spark-core/safe.svg",
+    "label": "Safe"
+  },
+  "decide": {
+    "svgPath": "/symbols/spark-core/decide.svg",
+    "label": "Decide"
+  },
+  "see": {
+    "svgPath": "/symbols/spark-core/see.svg",
+    "label": "See"
+  },
+  "bring": {
+    "svgPath": "/symbols/spark-core/bring.svg",
+    "label": "Bring"
+  },
+  "have": {
+    "svgPath": "/symbols/spark-core/have.svg",
+    "label": "Have"
+  },
+  "going to": {
+    "svgPath": "/symbols/spark-core/going_to.svg",
+    "label": "Going To"
+  },
+  "girl": {
+    "svgPath": "/symbols/spark-core/girl.svg",
+    "label": "Girl"
+  },
+  "boy": {
+    "svgPath": "/symbols/spark-core/boy.svg",
+    "label": "Boy"
+  },
+  "woman": {
+    "svgPath": "/symbols/spark-core/woman.svg",
+    "label": "Woman"
+  },
+  "man": {
+    "svgPath": "/symbols/spark-core/man.svg",
+    "label": "Man"
+  },
+  "older woman": {
+    "svgPath": "/symbols/spark-core/older_woman.svg",
+    "label": "Older Woman"
+  },
+  "older man": {
+    "svgPath": "/symbols/spark-core/older_man.svg",
+    "label": "Older Man"
+  }
+};
+
 export function resolveTokenSymbol(
   rawSegment: string,
   index: SymbolLookupIndex,
@@ -402,6 +629,9 @@ export function resolveTokenSymbol(
 ): { svgPath: string; label: string } | null {
   const clean = normaliseKey(rawSegment);
   if (!clean) return null;
+
+  // 0. Tier-0 Spark Core overrides (always preferred + persona-aware)
+  if (SPARK_CORE_EASY_READ_OVERRIDES[clean]) return SPARK_CORE_EASY_READ_OVERRIDES[clean];
 
   // 1. Locked multi-word phrase match
   if (LOCKED_PHRASES[clean]) return LOCKED_PHRASES[clean];
