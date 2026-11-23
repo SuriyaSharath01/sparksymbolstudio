@@ -1,5 +1,6 @@
 import { SymbolPointPopover, findSymbolMatches, type PointPopoverSymbol } from "./studio/SymbolPointPopover";
 import React, { useState } from "react";
+import { usePersona } from "../context/PersonaContext";
 import { Volume2, Delete, RotateCcw, CaseSensitive, Sparkles, Palette, Plus } from "lucide-react";
 
 export interface StripSymbolItem {
@@ -76,6 +77,12 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
   onClearAll,
   title = "Communication Sentence Strip",
 }) => {
+  const { resolvePersonaSymbol } = usePersona();
+  const resolveStripSrc = (src: string) => {
+    const match = src.match(/^\/symbols\/spark-core\/([^/]+)\.svg$/);
+    if (!match) return src;
+    return `/symbols/spark-core/${resolvePersonaSymbol(match[1])}.svg`;
+  };
   const [isUppercase, setIsUppercase] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [fitzgeraldEnabled, setFitzgeraldEnabled] = useState(true);
@@ -312,7 +319,16 @@ export const WidgitSentenceStrip: React.FC<WidgitSentenceStripProps> = ({
                   title={onRemoveAt ? `Tap symbol to remove "${cleanLabel}"` : cleanLabel}
                   className="flex h-16 w-full cursor-pointer items-center justify-center overflow-hidden focus:outline-none sm:h-20"
                 >
-                  <img src={item.imageSrc} alt={item.imageAlt || cleanLabel} className="max-h-full max-w-full object-contain" />
+                  <img
+                    src={resolveStripSrc(item.imageSrc)}
+                    alt={item.imageAlt || cleanLabel}
+                    className="max-h-full max-w-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/symbols/spark-core/help.svg";
+                      e.currentTarget.style.opacity = "0.55";
+                    }}
+                  />
                 </button>
                 {onSwapSymbol && altCount > 0 ? (
                   <div className="mt-1.5 flex w-full items-center justify-center border-t border-slate-200 pt-1">

@@ -284,6 +284,8 @@ const DEFAULT_SUPPORT_PROFILES: SupportProfileDNA[] = [
 
 import { getMulberryCatalog, loadOpenMojiCatalog, searchLocalSymbols } from './utils/symbolSearch';
 
+import { PersonaSwitcher } from './components/PersonaSwitcher';
+
 function StudioWorkspace() {
   const [searchParams, setSearchParams] = useSearchParams();
   const seededFromUrlRef = useRef<string | null>(null);
@@ -322,15 +324,38 @@ function StudioWorkspace() {
         id: s.id,
         label: s.label,
         imagePath: s.svgPath,
-        source: s.id.startsWith('om_') ? ('openmoji' as any) : 'mulberry',
-        license: 'CC BY-SA' as SymbolAsset['license'], commercialSafe: true,
+        source: s.svgPath.startsWith('/symbols/spark-core/')
+          ? ('ai-generated' as const)
+          : s.id.startsWith('om_')
+            ? ('openmoji' as any)
+            : 'mulberry',
+        license: 'CC BY-SA 4.0' as SymbolAsset['license'],
+        commercialSafe: true,
       }));
       searchSymbolsCommercialSafe(trimmed, { includeRemote: false, timeoutMs: 500 })
         .then((hits) => {
           if (cancelled) return;
-          const seen = new Set(localHits.map((h) => h.label.toLowerCase() + '|' + h.imagePath));
-          const merged = [...localHits, ...hits.filter((h) => !seen.has(h.label.toLowerCase() + '|' + h.imagePath))];
-          setLiveSearchResults(merged);
+          const combined = [...hits, ...localHits];
+          const sparkCore: SymbolAsset[] = [];
+          const others: SymbolAsset[] = [];
+          const seenPaths = new Set<string>();
+          const seenCoreLabels = new Set<string>();
+
+          for (const item of combined) {
+            if (seenPaths.has(item.imagePath)) continue;
+            if (item.imagePath.startsWith('/symbols/spark-core/')) {
+              seenPaths.add(item.imagePath);
+              seenCoreLabels.add(item.label.toLowerCase());
+              sparkCore.push({ ...item, source: 'ai-generated' });
+            }
+          }
+          for (const item of combined) {
+            if (seenPaths.has(item.imagePath)) continue;
+            if (seenCoreLabels.has(item.label.toLowerCase())) continue;
+            seenPaths.add(item.imagePath);
+            others.push(item);
+          }
+          setLiveSearchResults([...sparkCore, ...others]);
         })
         .finally(() => {
           if (!cancelled) setIsSearchingSymbols(false);
@@ -1383,8 +1408,16 @@ function StudioWorkspace() {
             </div>
           )}
 
-          <main className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 pb-12">
+          <main className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 pb-32">
             <div className="mx-auto max-w-6xl">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-xs">
+                <span className="text-[11px] font-extrabold tracking-wide text-slate-600 uppercase">
+                  Active Persona
+                </span>
+                <div className="overflow-x-auto max-w-full">
+                  <PersonaSwitcher />
+                </div>
+              </div>
         {searchQuery.trim() && (
           <section className="mx-auto my-4 max-w-6xl rounded-xl border-2 border-[#E36C2B] bg-white p-4 px-4 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -1410,7 +1443,7 @@ function StudioWorkspace() {
               </button>
             </div>
             {liveSearchResults.length > 0 && (
-              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6">
+              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {liveSearchResults.slice(0, 18).map((item) => (
                   <button
                     key={item.id}
@@ -1426,24 +1459,34 @@ function StudioWorkspace() {
                           imageSrc: item.imagePath,
                         },
                       ]);
-                      if (item.source !== 'mulberry') {
+                      if (item.source !== 'mulberry' && !item.imagePath.startsWith('/symbols/spark-core/')) {
                         void persistRemoteSymbolOffline(item);
                       }
                       appendSymbolToStrip(item.label, item.imagePath);
                       setActiveTab('templates');
                     }}
-                    className="flex flex-col items-center rounded-xl border border-slate-200 bg-slate-50 p-3 text-center transition hover:border-[#E36C2B] hover:bg-orange-50/40"
+                    className={
+                      item.imagePath.startsWith('/symbols/spark-core/')
+                        ? 'flex flex-col items-center rounded-xl border-2 border-[#E36C2B]/70 bg-orange-50/30 p-3 text-center transition hover:border-[#E36C2B] hover:bg-orange-50/70'
+                        : 'flex flex-col items-center rounded-xl border border-slate-200 bg-slate-50 p-3 text-center transition hover:border-[#E36C2B] hover:bg-orange-50/40'
+                    }
                   >
                     <img
                       src={item.imagePath}
                       alt={item.label}
                       className="h-12 w-12 object-contain"
                     />
-                    <span className="mt-2 line-clamp-1 text-xs font-extrabold text-slate-900">
+                    <span className="mt-2 line-clamp-2 text-xs font-extrabold text-slate-900">
                       {item.label}
                     </span>
-                    <span className="mt-1 rounded bg-white px-2 py-0.5 text-[10px] font-bold text-[#D45A1A] ring-1 ring-slate-200">
-                      + Add ({item.source === 'mulberry' ? 'Mulberry' : (item.source as string) === 'openmoji' ? 'OpenMoji' : 'Safe Web'})
+                    <span
+                      className={
+                        item.imagePath.startsWith('/symbols/spark-core/')
+                          ? 'mt-1 rounded bg-[#E36C2B] px-2 py-0.5 text-[10px] font-bold text-white'
+                          : 'mt-1 rounded bg-white px-2 py-0.5 text-[10px] font-bold text-[#D45A1A] ring-1 ring-slate-200'
+                      }
+                    >
+                      + Add ({item.imagePath.startsWith('/symbols/spark-core/') ? 'Spark Core' : item.source === 'mulberry' ? 'Mulberry' : (item.source as string) === 'openmoji' ? 'OpenMoji' : 'Safe Web'})
                     </span>
                   </button>
                 ))}

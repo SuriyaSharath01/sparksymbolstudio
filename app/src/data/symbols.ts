@@ -1,5 +1,6 @@
 import Papa from 'papaparse';
 import healthIconsManifest from './healthicons-manifest.json';
+import { SPARK_CORE_48_SYMBOLS } from './spark-core-symbols';
 
 export interface MulberrySymbol {
   id: string;
@@ -68,7 +69,7 @@ const UK_SYNONYM_MAP: Record<string, string[]> = {
 };
 
 function expandTo60kVocabulary(base: MulberrySymbol[]): MulberrySymbol[] {
-  const expanded: MulberrySymbol[] = [...SPARK_CARE_CUSTOM_SYMBOLS, ...base];
+  const expanded: MulberrySymbol[] = [...SPARK_CORE_48_SYMBOLS, ...SPARK_CARE_CUSTOM_SYMBOLS, ...base];
   const seenLabels = new Set(expanded.map((s) => s.label.toLowerCase()));
 
   const addVariant = (src: MulberrySymbol, variantLabel: string, extraTag: string) => {

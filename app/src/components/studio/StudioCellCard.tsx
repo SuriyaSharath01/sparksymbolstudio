@@ -1,3 +1,4 @@
+import { PersonaImage } from '../PersonaImage';
 import React from 'react';
 import type { StudioCell } from '../../types/studio';
 
@@ -21,7 +22,7 @@ export const StudioCellCard: React.FC<Props> = ({
       <div className="flex flex-1 items-center justify-center p-1">
         {symbolSrc ? (
           <div className="relative inline-flex items-center justify-center">
-            <img
+            <PersonaImage
               src={symbolSrc.startsWith('/') ? encodeURI(symbolSrc) : symbolSrc}
               alt={caption}
               style={{ filter: cell.symbolTintColor ? 'contrast(1.15)' : 'contrast(1.08) saturate(1.12)' }}

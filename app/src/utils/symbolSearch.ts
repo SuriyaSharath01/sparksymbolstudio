@@ -1,6 +1,7 @@
 import { CORE_CARDS } from "../data/core-cards";
 import { RESOURCE_REGISTRY_LIST } from "../data/resource-registry";
 import type { SymbolAsset } from "../types/symbols";
+import { SPARK_CORE_48_SYMBOLS } from "../data/spark-core-symbols";
 
 interface OpenMojiManifestEntry {
   id: string;
@@ -60,7 +61,45 @@ export function filterCommercialSafe(assets: SymbolAsset[]): SymbolAsset[] {
 export function searchLocalSymbols(query: string, openMojiAssets: SymbolAsset[] = getOpenMojiCatalog()): SymbolAsset[] {
   const q = query.toLowerCase().trim();
   if (!q) return [];
-  const mulberryMatches = getMulberryCatalog().filter((s) => s.label.toLowerCase().includes(q));
-  const openMojiMatches = filterCommercialSafe(openMojiAssets).filter((s) => s.label.toLowerCase().includes(q)).map((s) => ({ ...s, source: "openmoji" as const, license: "CC BY-SA 4.0", commercialSafe: true }));
-  return filterCommercialSafe([...mulberryMatches, ...openMojiMatches]);
+
+  const coreMatches: SymbolAsset[] = SPARK_CORE_48_SYMBOLS
+    .filter((item) =>
+      item.label.toLowerCase().includes(q) ||
+      item.id.toLowerCase().includes(q) ||
+      item.tags.some((t) => t.toLowerCase().includes(q))
+    )
+    .map((item) => ({
+      id: item.id,
+      label: item.label,
+      imagePath: item.svgPath,
+      source: "ai-generated" as const,
+      license: "CC BY-SA 4.0",
+      commercialSafe: true,
+    }));
+
+  const corePaths = new Set(coreMatches.map((m) => m.imagePath));
+  const coreLabels = new Set(coreMatches.map((m) => m.label.toLowerCase()));
+
+  const mulberryMatches = getMulberryCatalog().filter(
+    (sym) =>
+      !corePaths.has(sym.imagePath) &&
+      !coreLabels.has(sym.label.toLowerCase()) &&
+      sym.label.toLowerCase().includes(q)
+  );
+
+  const openMojiMatches = filterCommercialSafe(openMojiAssets)
+    .filter(
+      (sym) =>
+        !corePaths.has(sym.imagePath) &&
+        !coreLabels.has(sym.label.toLowerCase()) &&
+        sym.label.toLowerCase().includes(q)
+    )
+    .map((sym) => ({
+      ...sym,
+      source: "openmoji" as const,
+      license: "CC BY-SA 4.0",
+      commercialSafe: true,
+    }));
+
+  return filterCommercialSafe([...coreMatches, ...mulberryMatches, ...openMojiMatches]);
 }

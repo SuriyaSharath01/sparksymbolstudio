@@ -1,3 +1,4 @@
+import { PersonaImage } from '../PersonaImage';
 import React, { useState } from 'react';
 import {
   LayoutGrid,
@@ -104,7 +105,7 @@ export const TemplateLayoutEngine: React.FC<TemplateLayoutEngineProps> = ({
   const renderTileArt = (card: LayoutCardItem, sizeClass = 'h-14 w-14') => {
     if (card.imageSrc) {
       return (
-        <img
+        <PersonaImage
           src={card.imageSrc}
           alt={card.title}
           className={`${sizeClass} object-contain`}

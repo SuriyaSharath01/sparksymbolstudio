@@ -277,7 +277,7 @@ export const SUPPORT_PACKS: SupportPackItem[] = [
         slotLabel: 'NEXT',
         label: 'Sleep / Rest',
         subtext: 'Uninterrupted rest until feeling steady',
-        imageSrc: '/symbols/sleep_female_,_to.svg',
+        imageSrc: '/symbols/spark-core/quiet_break.svg',
       },
     ],
   },
@@ -697,7 +697,7 @@ export const WANTS_BOARD_ITEMS: QuickCard[] = [
     title: 'Rest / Lie Down',
     actionText: 'Take a quiet rest in bedroom',
     keywords: ['sleep', 'rest', 'tired'],
-    imageSrc: '/symbols/sleep_female_,_to.svg',
+    imageSrc: '/symbols/spark-core/quiet_break.svg',
   },
   {
     id: 'want_music',

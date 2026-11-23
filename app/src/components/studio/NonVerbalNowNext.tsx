@@ -31,7 +31,7 @@ const STARTER_PAIRS: {
   {
     title: 'Quiet Space → Rest',
     now: { label: 'Quiet Space', imageSrc: '/symbols/quiet.svg' },
-    next: { label: 'Rest / Lie Down', imageSrc: '/symbols/sleep_female_,_to.svg' },
+    next: { label: 'Rest / Lie Down', imageSrc: '/symbols/spark-core/quiet_break.svg' },
   },
   {
     title: 'Wash Hands → Food',
