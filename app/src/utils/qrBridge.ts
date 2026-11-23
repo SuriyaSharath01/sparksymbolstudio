@@ -51,12 +51,11 @@ function decodeBase64Url(encoded: string): string {
 
 export function buildKioskQrUrl(payload: QrBridgePayload, origin?: string): string {
   const safePayload: QrBridgePayload = {
-    t: (payload.t || 'Spark Communication Sheet').slice(0, 72),
-    sub: payload.sub ? payload.sub.slice(0, 80) : undefined,
-    th: payload.th || 'color',
-    l: (payload.l || []).slice(0, 6).map((line) => line.slice(0, 140)),
-    c: (payload.c || []).slice(0, 16).map((item) => ({
-      w: item.w.slice(0, 32),
+    t: (payload.t || 'Spark Sheet').slice(0, 48),
+    th: payload.th && payload.th !== 'color' ? payload.th : undefined,
+    l: (payload.l || []).slice(0, 4).map((line) => line.slice(0, 95)),
+    c: (payload.c || []).slice(0, 8).map((item) => ({
+      w: item.w.slice(0, 22),
       s: compactSymbolPath(item.s),
     })),
   };
@@ -94,9 +93,9 @@ export function decodeKioskPayloadFromHash(hash: string): QrBridgePayload | null
 
 export async function generateQrDataUrl(url: string): Promise<string> {
   return QRCode.toDataURL(url, {
-    errorCorrectionLevel: 'M',
-    margin: 1,
-    width: 220,
+    errorCorrectionLevel: 'L',
+    margin: 2,
+    width: 320,
     color: {
       dark: '#0F172A',
       light: '#FFFFFF',

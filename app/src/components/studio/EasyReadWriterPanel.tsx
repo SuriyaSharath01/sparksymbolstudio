@@ -472,7 +472,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
     const qrPrintHtml =
       showQrBridge && qrDataUrl
         ? `<div style="display:flex;align-items:center;gap:10px;border:1.5px solid #0f172a;border-radius:10px;padding:6px 10px;background:#ffffff;">
-             <img src="${qrDataUrl}" alt="Scan for Mobile Live Talker" style="width:54px;height:54px;display:block;" />
+             <img src="${qrDataUrl}" alt="Scan for Mobile Live Talker" style="width:86px;height:86px;display:block;image-rendering:pixelated;" />
              <div style="font-size:10px;line-height:1.35;color:#0f172a;">
                <div style="font-weight:900;text-transform:uppercase;letter-spacing:0.04em;">Scan to Speak</div>
                <div style="color:#475569;font-weight:600;">Opens pocket Live Talker<br/>Zero-PII • Works offline</div>
@@ -1150,7 +1150,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     <img
                       src={qrDataUrl}
                       alt="Scan for Mobile Live Talker"
-                      className="h-14 w-14 shrink-0 rounded-sm"
+                      className="h-24 w-24 shrink-0 rounded-md [image-rendering:pixelated]"
                     />
                     <div className="space-y-1">
                       <p className="text-[10px] font-black uppercase tracking-wider text-slate-900">
