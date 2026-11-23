@@ -12,13 +12,16 @@ import {
 } from 'lucide-react';
 import type { MulberrySymbol } from '../../data/symbols';
 import { scrubClinicalText } from '../../utils/piiScrubber';
+import { AUDIENCE_LENSES, useAudienceLens, type AudienceLens } from '../../context/AudienceLensContext';
 import {
   buildSymbolLookupIndex,
   classifySemanticTone,
-  resolveWordSymbol,
+  resolveTokenSymbol,
   searchRankedSymbols,
   SMALL_FILLER_WORDS,
+  tokeniseLineWithPhrases,
   toneBorderClasses,
+  toneUnderlineClasses,
   type GrammarOverlay,
 } from '../../utils/autoSymbolise';
 
@@ -47,16 +50,48 @@ const PAPER_TINTS: { id: PaperTintId; name: string; hex: string; swatchClass: st
   { id: 'yellow', name: 'Dyslexia Yellow', hex: '#FEFCE8', swatchClass: 'bg-[#FEFCE8] border-yellow-400' },
 ];
 
-const UK_CARE_TEMPLATES: {
+const STARTER_TEMPLATES: {
   id: string;
+  lens: AudienceLens;
   badge: string;
   title: string;
   subtitle: string;
   body: string;
 }[] = [
   {
-    id: 'gp_visit',
-    badge: 'NHS & Health',
+    id: 'kids_school',
+    lens: 'kids',
+    badge: 'Kids & Schools',
+    title: 'My Morning School Routine',
+    subtitle: 'Visual Timetable • Home & Primary Classroom',
+    body: `First eat breakfast and brush your teeth.
+Next get your school bag and packed lunch.
+Then we walk to school and see our teacher.`,
+  },
+  {
+    id: 'teens_adhd',
+    lens: 'teens',
+    badge: 'Teens & ADHD',
+    title: 'Focus Plan & Sensory Exit Pass',
+    subtitle: 'ADHD Step-by-Step Checklist • College & Home',
+    body: `First focus on one small task at a time.
+If it feels too loud, put on ear defenders or headphones.
+You can ask for a quiet break and take a deep breath.`,
+  },
+  {
+    id: 'adults_community',
+    lens: 'adults',
+    badge: 'Adults & Community',
+    title: 'Bus Trip & Going to the Café',
+    subtitle: 'Independent Community Outing Guide',
+    body: `First we take the bus into town.
+Next we go to the cafe and choose a cup of tea or lunch.
+Then we pay with money and walk home together.`,
+  },
+  {
+    id: 'clinical_gp',
+    lens: 'clinical',
+    badge: 'Health & Care',
     title: 'My GP & Clinic Appointment',
     subtitle: 'Accessible Health Information • NHS AIS',
     body: `First we will have a cup of tea at home.
@@ -64,41 +99,24 @@ Then we are going to see the doctor at the clinic.
 You can bring your hospital passport and ask for a quiet break at any time.`,
   },
   {
-    id: 'morning_care',
-    badge: 'Daily Living',
-    title: 'Morning Care Routine',
-    subtitle: 'Predictable Step-by-Step Support',
-    body: `Good morning. First wash your hands and brush your teeth.
-Next have breakfast and drink water.
-Then take your morning medication with staff support.`,
+    id: 'clinical_epilepsy',
+    lens: 'clinical',
+    badge: 'Epilepsy Safety',
+    title: 'Epilepsy & Safe Recovery Plan',
+    subtitle: 'Clear Calm Action Steps • All Ages',
+    body: `Stay calm and check the clock if a seizure starts.
+Help me into the recovery position and give rescue medication if needed.
+Let me rest in a quiet space when I feel tired.`,
   },
   {
-    id: 'consent_mca',
-    badge: 'MCA & Consent',
-    title: 'My Choice & Consent',
-    subtitle: 'Supported Decision-Making • Mental Capacity Act',
-    body: `This is my choice. Please explain more before I decide.
+    id: 'clinical_consent',
+    lens: 'clinical',
+    badge: 'Choice & Consent',
+    title: 'My Choice & Supported Decision',
+    subtitle: 'Dignity, Autonomy & Plain English',
+    body: `This is my choice. Please listen before I decide.
 I can say yes, no, or wait for more time.
-Staff will listen and respect my decision.`,
-  },
-  {
-    id: 'iddsi_meal',
-    badge: 'IDDSI Safety',
-    title: 'Safe Mealtime Support',
-    subtitle: 'SALT & Dysphagia Mealtime Guidance',
-    body: `Please sit upright to eat your IDDSI meal slowly.
-Have a safe drink of water between bites.
-Tell staff when you are finished or if you feel pain.`,
-  },
-  {
-    id: 'clinical_letter',
-    badge: 'Zero-PII Scrubber',
-    title: 'Dental Appointment Letter (Scrubbed)',
-    subtitle: 'Personal Identifiers Automatically Redacted Locally',
-    body: `Dear Resident (NHS: 485 777 3456),
-Your dental appointment is booked for 14/12/2026 at Preston Clinic, PR1 6QD.
-Please bring your toothbrush and drink water before you go.
-If you feel worried or need a quiet break, tell staff on 07700 900123.`,
+You can help me feel calm and safe.`,
   },
 ];
 
@@ -135,7 +153,7 @@ function renderOverlayVisual(overlay: GrammarOverlay) {
   return (
     <span
       aria-hidden="true"
-      className={`pointer-events-none absolute top-0.5 right-0.5 rounded px-1 py-0.2 text-[10px] font-black leading-tight shadow-xs ${cfg.cls}`}
+      className={`pointer-events-none absolute top-0 right-0 rounded px-1 text-[10px] font-black leading-tight shadow-xs ${cfg.cls}`}
     >
       {cfg.text}
     </span>
@@ -154,7 +172,7 @@ function overlayPrintHtml(overlay: GrammarOverlay): string {
     plural: { text: '++', bg: '#d97706' },
   };
   const s = styles[overlay];
-  return `<span style="position:absolute;top:2px;right:2px;background:${s.bg};color:#fff;font-size:10px;font-weight:800;border-radius:4px;padding:1px 4px;line-height:1.1;">${s.text}</span>`;
+  return `<span style="position:absolute;top:0;right:0;background:${s.bg};color:#fff;font-size:10px;font-weight:800;border-radius:4px;padding:1px 4px;line-height:1.1;">${s.text}</span>`;
 }
 
 function escapeHtml(text: string): string {
@@ -170,15 +188,18 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   careInitials,
   careReviewNote,
 }) => {
-  const [docTitle, setDocTitle] = useState<string>(UK_CARE_TEMPLATES[0].title);
-  const [docSubtitle, setDocSubtitle] = useState<string>(UK_CARE_TEMPLATES[0].subtitle);
-  const [rawInput, setRawInput] = useState<string>(UK_CARE_TEMPLATES[0].body);
+  const { lens, setLens } = useAudienceLens();
+
+  const [docTitle, setDocTitle] = useState<string>(STARTER_TEMPLATES[3].title);
+  const [docSubtitle, setDocSubtitle] = useState<string>(STARTER_TEMPLATES[3].subtitle);
+  const [rawInput, setRawInput] = useState<string>(STARTER_TEMPLATES[3].body);
 
   const [viewMode, setViewMode] = useState<DocumentViewMode>('a4-writer');
   const [paperTint, setPaperTint] = useState<PaperTintId>('white');
   const [symbolSize, setSymbolSize] = useState<SymbolSizeId>('md');
   const [hideSmallWords, setHideSmallWords] = useState<boolean>(true);
   const [colourfulSemantics, setColourfulSemantics] = useState<boolean>(true);
+  const [boxedCards, setBoxedCards] = useState<boolean>(false);
   const [openDyslexic, setOpenDyslexic] = useState<boolean>(false);
   const [autoScrubPii, setAutoScrubPii] = useState<boolean>(true);
 
@@ -197,43 +218,45 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   const effectiveText = autoScrubPii ? scrubResult.scrubbedText : rawInput;
 
   const paragraphs = useMemo(() => {
-    const lines = effectiveText.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-    return lines.map((line, pIdx) => {
-      const rawTokens = line.split(/\s+/).filter(Boolean);
-      const tokens = rawTokens.map((raw, wIdx) => {
-        const key = `${pIdx}-${wIdx}`;
-        const cleanWord = raw.replace(/^[^a-zA-Z0-9\[]+|[^a-zA-Z0-9\]]+$/g, '');
-        const lower = cleanWord.toLowerCase();
-        const isRedactedToken = /^\[[A-Z_]+\]$/.test(cleanWord);
-        const isFiller = SMALL_FILLER_WORDS.has(lower);
-        const autoMatch =
-          isRedactedToken || (hideSmallWords && isFiller)
-            ? null
-            : resolveWordSymbol(cleanWord, lookupIndex);
+    const lines = effectiveText
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter(Boolean);
 
-        // Auto-detect explicit negation words ("no", "not", "don't")
+    return lines.map((line, pIdx) => {
+      const segments = tokeniseLineWithPhrases(line);
+      const tokens = segments.map((seg, wIdx) => {
+        const key = `${pIdx}-${wIdx}`;
+        const isFiller = !seg.isPhrase && SMALL_FILLER_WORDS.has(seg.lower);
+        const autoMatch =
+          seg.isRedactedToken || (hideSmallWords && isFiller)
+            ? null
+            : resolveTokenSymbol(seg.clean, lookupIndex, lens);
+
         const autoOverlay: GrammarOverlay =
-          ['no', 'not', "don't", 'dont', 'never'].includes(lower) ? 'negation' : 'none';
+          !seg.isPhrase && ['not', "don't", 'dont', 'never'].includes(seg.lower)
+            ? 'negation'
+            : 'none';
 
         const override = wordOverrides[key];
         const finalSvg = override?.hideSymbol
           ? null
           : override?.svgPath ?? autoMatch?.svgPath ?? null;
-        const finalCaption = override?.caption ?? raw;
+        const finalCaption = override?.caption ?? seg.raw;
         const finalOverlay = override?.overlay ?? autoOverlay;
 
         return {
           key,
-          raw,
-          cleanWord,
-          lower,
-          isRedactedToken,
-          isFiller,
+          raw: seg.raw,
+          cleanWord: seg.clean,
+          lower: seg.lower,
+          isPhrase: seg.isPhrase,
+          isRedactedToken: seg.isRedactedToken,
           svgPath: finalSvg,
-          symbolLabel: override?.label ?? autoMatch?.label ?? cleanWord,
+          symbolLabel: override?.label ?? autoMatch?.label ?? seg.clean,
           caption: finalCaption,
           overlay: finalOverlay,
-          tone: classifySemanticTone(cleanWord),
+          tone: classifySemanticTone(seg.clean),
           hasOverride: Boolean(override),
         };
       });
@@ -241,7 +264,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
       const leadSymbol = tokens.find((t) => t.svgPath)?.svgPath || null;
       return { pIdx, line, tokens, leadSymbol };
     });
-  }, [effectiveText, hideSmallWords, lookupIndex, wordOverrides]);
+  }, [effectiveText, hideSmallWords, lookupIndex, lens, wordOverrides]);
 
   const selectedToken = useMemo(() => {
     if (!selectedTokenKey) return null;
@@ -255,12 +278,14 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   const pickerResults = useMemo(() => {
     if (!selectedTokenKey) return [];
     const q = pickerQuery.trim() || selectedToken?.cleanWord || '';
-    return searchRankedSymbols(symbols, q, 24);
-  }, [symbols, pickerQuery, selectedTokenKey, selectedToken]);
+    return searchRankedSymbols(symbols, q, lens, 28);
+  }, [symbols, pickerQuery, selectedTokenKey, selectedToken, lens]);
 
   const activePaper = PAPER_TINTS.find((t) => t.id === paperTint) || PAPER_TINTS[0];
+  const activeLensMeta = AUDIENCE_LENSES.find((l) => l.id === lens) || AUDIENCE_LENSES[2];
 
-  const loadTemplate = (tpl: (typeof UK_CARE_TEMPLATES)[number]) => {
+  const loadTemplate = (tpl: (typeof STARTER_TEMPLATES)[number]) => {
+    setLens(tpl.lens);
     setDocTitle(tpl.title);
     setDocSubtitle(tpl.subtitle);
     setRawInput(tpl.body);
@@ -308,20 +333,33 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
       year: 'numeric',
     });
 
-    const imgPx = symbolSize === 'lg' ? 68 : symbolSize === 'sm' ? 42 : 54;
+    const imgPx = symbolSize === 'lg' ? 68 : symbolSize === 'sm' ? 44 : 56;
     const fontPx = symbolSize === 'lg' ? 16 : symbolSize === 'sm' ? 12 : 14;
     const fontStack = openDyslexic
       ? '"OpenDyslexic", "Comic Sans MS", Arial, sans-serif'
       : 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+    const toneHex = (tone: string) =>
+      tone === 'who'
+        ? '#f59e0b'
+        : tone === 'doing'
+          ? '#10b981'
+          : tone === 'what'
+            ? '#f97316'
+            : tone === 'where'
+              ? '#0ea5e9'
+              : tone === 'describing'
+                ? '#a855f7'
+                : '#ec4899';
 
     const bodyHtml =
       viewMode === 'easy-read-rows'
         ? paragraphs
             .map(
               (p) => `
-            <div style="display:flex;align-items:center;gap:18px;border:1.5px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:14px;background:#ffffff;break-inside:avoid;">
-              <div style="width:92px;height:92px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;">
-                ${p.leadSymbol ? `<img src="${absUrl(p.leadSymbol)}" alt="" style="width:74px;height:74px;object-fit:contain;" />` : '<span style="font-size:11px;color:#94a3b8;font-weight:700;">TEXT</span>'}
+            <div style="display:flex;align-items:center;gap:18px;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;background:#ffffff;break-inside:avoid;">
+              <div style="width:88px;height:88px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                ${p.leadSymbol ? `<img src="${absUrl(p.leadSymbol)}" alt="" style="width:76px;height:76px;object-fit:contain;" />` : '<span style="font-size:11px;color:#94a3b8;font-weight:700;">TEXT</span>'}
               </div>
               <p style="margin:0;font-size:18px;line-height:1.5;font-weight:600;color:#0f172a;">${escapeHtml(p.line)}</p>
             </div>`
@@ -330,32 +368,28 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
         : paragraphs
             .map(
               (p) => `
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 8px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed #e2e8f0;break-inside:avoid;">
+            <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 12px;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid #e2e8f0;break-inside:avoid;">
               ${p.tokens
                 .map((t) => {
-                  const borderCol = !colourfulSemantics
-                    ? '#cbd5e1'
-                    : t.tone === 'who'
-                      ? '#f59e0b'
-                      : t.tone === 'doing'
-                        ? '#10b981'
-                        : t.tone === 'what'
-                          ? '#f97316'
-                          : t.tone === 'where'
-                            ? '#0ea5e9'
-                            : t.tone === 'describing'
-                              ? '#a855f7'
-                              : '#ec4899';
+                  const col = toneHex(t.tone);
                   if (!t.svgPath) {
-                    return `<span style="padding:4px 4px 6px;font-size:${fontPx}px;font-weight:600;color:#334155;">${escapeHtml(t.caption)}</span>`;
+                    return `<span style="padding:0 2px 5px;font-size:${fontPx}px;font-weight:600;color:#334155;">${escapeHtml(t.caption)}</span>`;
                   }
+                  const wrapperStyle = boxedCards
+                    ? `border:2px solid ${colourfulSemantics ? col : '#cbd5e1'};border-radius:10px;padding:6px 8px;background:#ffffff;`
+                    : `padding:2px 4px;background:transparent;`;
+                  const barHtml =
+                    !boxedCards && colourfulSemantics
+                      ? `<span style="display:block;width:28px;height:3px;border-radius:99px;background:${col};margin-top:3px;"></span>`
+                      : '';
                   return `
-                    <div style="display:inline-flex;flex-direction:column;align-items:center;justify-content:space-between;border:2px solid ${borderCol};border-radius:10px;padding:6px 8px;background:#ffffff;min-width:${imgPx + 18}px;">
+                    <div style="display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:${imgPx + 12}px;${wrapperStyle}">
                       <div style="position:relative;width:${imgPx}px;height:${imgPx}px;display:flex;align-items:center;justify-content:center;">
                         <img src="${absUrl(t.svgPath)}" alt="" style="width:100%;height:100%;object-fit:contain;" />
                         ${overlayPrintHtml(t.overlay)}
                       </div>
-                      <span style="margin-top:4px;font-size:${fontPx}px;font-weight:700;color:#0f172a;text-align:center;">${escapeHtml(t.caption)}</span>
+                      <span style="margin-top:5px;font-size:${fontPx}px;font-weight:700;color:#0f172a;text-align:center;line-height:1.2;">${escapeHtml(t.caption)}</span>
+                      ${barHtml}
                     </div>`;
                 })
                 .join('')}
@@ -373,7 +407,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
     * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body { margin: 0; font-family: ${fontStack}; background: ${activePaper.hex}; color: #0f172a; }
     .sheet { padding: 8px; min-height: 262mm; display: flex; flex-direction: column; justify-content: space-between; }
-    .hdr { border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+    .hdr { border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
     .ftr { border-top: 1px solid #cbd5e1; padding-top: 10px; margin-top: 24px; display: flex; justify-content: space-between; font-size: 11px; color: #475569; }
   </style>
 </head>
@@ -382,20 +416,20 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
     <div>
       <div class="hdr">
         <div>
-          <div style="font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#d45a1a;">Spark Symbol Studio • Accessible Information</div>
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#d45a1a;">Spark Symbol Studio • ${escapeHtml(activeLensMeta.shortLabel)}</div>
           <h1 style="margin:4px 0 2px;font-size:24px;font-weight:900;color:#0f172a;">${escapeHtml(docTitle)}</h1>
           <div style="font-size:12px;font-weight:600;color:#475569;">${escapeHtml(docSubtitle)}</div>
         </div>
         <div style="text-align:right;font-size:11px;color:#475569;font-weight:700;">
-          <div>NHS AIS • CQC Reg. 9</div>
+          <div>Accessible Information</div>
           <div>${todayStr}</div>
         </div>
       </div>
       ${bodyHtml}
     </div>
     <div class="ftr">
-      <span>Prepared by: <strong>${escapeHtml(careInitials || 'Care Team')}</strong> • ${escapeHtml(careReviewNote || 'Zero-PII Local Session')}</span>
-      <span>Spark Symbol Studio • Offline-First UK Care AAC</span>
+      <span>Prepared by: <strong>${escapeHtml(careInitials || 'Spark Studio')}</strong> • ${escapeHtml(careReviewNote || 'Zero-PII Local Session')}</span>
+      <span>Spark Symbol Studio • 360° Accessible Communication</span>
     </div>
   </div>
 </body>
@@ -429,9 +463,9 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   };
 
   const tileImgClass =
-    symbolSize === 'lg' ? 'h-16 w-16' : symbolSize === 'sm' ? 'h-10 w-10' : 'h-12 w-12';
+    symbolSize === 'lg' ? 'h-16 w-16' : symbolSize === 'sm' ? 'h-11 w-11' : 'h-14 w-14';
   const tileTextClass =
-    symbolSize === 'lg' ? 'text-sm' : symbolSize === 'sm' ? 'text-[11px]' : 'text-xs';
+    symbolSize === 'lg' ? 'text-sm' : symbolSize === 'sm' ? 'text-xs' : 'text-[13px]';
 
   return (
     <div className="space-y-4">
@@ -443,16 +477,19 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               <Sparkles className="h-4 w-4" />
             </span>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-base font-black tracking-tight text-slate-900">
-                  Live Auto-Symbolise A4 Editor
+                  Spark Symbol Writer (A4)
                 </h1>
+                <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-extrabold text-slate-700 uppercase">
+                  Phrase-First Engine
+                </span>
                 <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-extrabold text-emerald-800 uppercase">
                   Zero-PII Local
                 </span>
               </div>
               <p className="text-xs text-slate-500">
-                Type plain English and watch symbols snap above every word live. Click any word on the A4 sheet to swap its picture or add grammar overlays.
+                Built for kids, teens, adults, communities, schools &amp; care. Type plain English and click any word or phrase to customise.
               </p>
             </div>
           </div>
@@ -487,7 +524,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
             >
               <Volume2 className="h-3.5 w-3.5 text-[#D45A1A]" />
-              <span>Read Aloud (UK)</span>
+              <span>Read Aloud</span>
             </button>
 
             <button
@@ -501,10 +538,38 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
           </div>
         </div>
 
+        {/* 360° Audience Lens Switcher */}
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50/90 p-2">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="px-1.5 text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+              Audience Lens:
+            </span>
+            {AUDIENCE_LENSES.map((item) => {
+              const active = lens === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setLens(item.id)}
+                  className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                    active
+                      ? 'bg-slate-900 text-white shadow-2xs'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900'
+                  }`}
+                >
+                  {item.shortLabel}
+                </button>
+              );
+            })}
+          </div>
+          <span className="hidden xl:inline text-[11px] font-medium text-slate-500 pr-2">
+            {activeLensMeta.tagline}
+          </span>
+        </div>
+
         {/* Formatting Controls Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-3">
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Paper Tints */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+          <div className="flex flex-wrap items-center gap-2.5">
             <div className="flex items-center gap-1.5">
               <span className="text-[11px] font-bold text-slate-500">Paper:</span>
               {PAPER_TINTS.map((tint) => (
@@ -520,7 +585,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               ))}
             </div>
 
-            {/* Symbol Size */}
             <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-[11px] font-bold">
               {(['sm', 'md', 'lg'] as SymbolSizeId[]).map((sz) => (
                 <button
@@ -536,7 +600,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               ))}
             </div>
 
-            {/* Quick Toggles */}
             <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:bg-slate-100">
               <input
                 type="checkbox"
@@ -560,6 +623,16 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
             <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:bg-slate-100">
               <input
                 type="checkbox"
+                checked={boxedCards}
+                onChange={(e) => setBoxedCards(e.target.checked)}
+                className="accent-slate-900"
+              />
+              <span>Boxed Cards</span>
+            </label>
+
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:bg-slate-100">
+              <input
+                type="checkbox"
                 checked={openDyslexic}
                 onChange={(e) => setOpenDyslexic(e.target.checked)}
                 className="accent-slate-900"
@@ -575,28 +648,33 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 className="accent-emerald-700"
               />
               <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Zero-PII Scrubber</span>
+              <span>Zero-PII</span>
             </label>
           </div>
 
           {redactedMatches > 0 && autoScrubPii && (
             <span className="inline-flex items-center gap-1 rounded-lg bg-emerald-100 px-2.5 py-1 text-[11px] font-extrabold text-emerald-900">
               <ShieldCheck className="h-3.5 w-3.5" />
-              {redactedMatches} personal detail{redactedMatches === 1 ? '' : 's'} auto-redacted
+              {redactedMatches} personal detail{redactedMatches === 1 ? '' : 's'} redacted
             </span>
           )}
         </div>
 
-        {/* Starter UK Care Document Chips */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          <span className="text-[11px] font-bold text-slate-400 mr-1">UK Care Starters:</span>
-          {UK_CARE_TEMPLATES.map((tpl) => (
+        {/* 360° Starter Document Chips */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-1 border-t border-slate-100">
+          <span className="text-[11px] font-bold text-slate-400 mr-1">360° Starters:</span>
+          {STARTER_TEMPLATES.map((tpl) => (
             <button
               key={tpl.id}
               type="button"
               onClick={() => loadTemplate(tpl)}
-              className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:border-amber-400 hover:bg-amber-50 hover:text-slate-900 transition"
+              className={`rounded-lg border px-2.5 py-1 text-[11px] font-bold transition ${
+                tpl.lens === lens
+                  ? 'border-amber-300 bg-amber-50 text-slate-900 hover:bg-amber-100'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white'
+              }`}
             >
+              <span className="text-[10px] text-slate-400 mr-1">{tpl.badge} ·</span>
               {tpl.title}
             </button>
           ))}
@@ -605,7 +683,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
 
       {/* Main Split Workspace: Left Plain-English Input + Right Floating A4 Canvas */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 items-start">
-        {/* Left Column: Plain-English Writer & Word Inspector */}
         <div className="lg:col-span-4 space-y-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs space-y-3">
             <div>
@@ -623,13 +700,13 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
 
             <div>
               <label className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-1">
-                Subtitle / Clinical Purpose
+                Subtitle / Context
               </label>
               <input
                 type="text"
                 value={docSubtitle}
                 onChange={(e) => setDocSubtitle(e.target.value)}
-                placeholder="e.g. Accessible Health Information • NHS AIS"
+                placeholder="e.g. Visual Timetable, ADHD Plan, or NHS AIS..."
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 focus:border-slate-900 focus:bg-white focus:outline-none"
               />
             </div>
@@ -652,12 +729,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm leading-relaxed text-slate-900 focus:border-[#D45A1A] focus:bg-white focus:outline-none"
               />
               <p className="mt-1 text-[11px] text-slate-500">
-                Tip: Start a new line for each visual step. Words like <strong>no</strong> or <strong>not</strong> automatically receive a red negation slash.
+                Smart phrases like <strong>cup of tea</strong>, <strong>hospital passport</strong>, <strong>quiet break</strong>, <strong>ear defenders</strong>, and <strong>brush your teeth</strong> automatically pair into single clean concepts.
               </p>
             </div>
           </div>
 
-          {/* Click-Any-Word Inspector */}
           {selectedToken ? (
             <div className="rounded-2xl border-2 border-slate-900 bg-white p-4 shadow-md space-y-3">
               <div className="flex items-center justify-between">
@@ -690,7 +766,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 </div>
               </div>
 
-              {/* Custom Caption + Hide Symbol */}
               <div className="grid grid-cols-1 gap-2">
                 <input
                   type="text"
@@ -710,7 +785,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 </label>
               </div>
 
-              {/* Visual Grammar Overlays */}
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">
                   Visual Grammar Overlay
@@ -734,7 +808,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 </div>
               </div>
 
-              {/* Swap Symbol Search */}
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 mb-1.5">
                   Swap Symbol ({symbols.length.toLocaleString('en-GB')} available)
@@ -780,16 +853,16 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-center">
               <p className="text-xs font-extrabold text-slate-700">
-                Click any word on the A4 sheet →
+                Click any word or phrase on the A4 sheet →
               </p>
               <p className="mt-1 text-[11px] text-slate-500">
-                Swap its picture from 20,500+ symbols, edit its label, hide the image, or stamp a red negation slash / question / tense badge.
+                Swap from {symbols.length.toLocaleString('en-GB')} symbols (Mulberry + Health Icons CC0 + Spark 360° Core + OpenMoji), edit text, or add grammar overlays.
               </p>
             </div>
           )}
         </div>
 
-        {/* Right Column: Floating A4 Studio Desk */}
+        {/* Right Column: Clean Widgit-Grade Floating A4 Sheet */}
         <div className="lg:col-span-8">
           <div className="rounded-2xl border border-slate-200/80 bg-slate-200/60 p-4 sm:p-6">
             <article
@@ -802,11 +875,10 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               className="mx-auto min-h-[760px] max-w-[794px] rounded-xl border border-slate-200 p-6 sm:p-10 shadow-[0_14px_40px_rgba(15,23,42,0.10)] flex flex-col justify-between transition-colors"
             >
               <div>
-                {/* A4 Document Header */}
-                <header className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-900 pb-4 mb-6">
+                <header className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-900 pb-4 mb-7">
                   <div>
                     <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#D45A1A]">
-                      Spark Symbol Studio • Accessible Information
+                      Spark Symbol Studio • {activeLensMeta.shortLabel}
                     </p>
                     <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-950">
                       {docTitle || 'Untitled Symbol Document'}
@@ -816,12 +888,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     )}
                   </div>
                   <div className="text-right text-[11px] font-bold text-slate-500">
-                    <div>NHS AIS • CQC Reg. 9</div>
+                    <div>Accessible Information</div>
                     <div>{new Date().toLocaleDateString('en-GB')}</div>
                   </div>
                 </header>
 
-                {/* A4 Content Body */}
                 {paragraphs.length === 0 ? (
                   <div className="py-20 text-center text-sm font-semibold text-slate-400">
                     Start typing on the left to watch symbols appear live on your A4 page.
@@ -831,9 +902,9 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     {paragraphs.map((p) => (
                       <div
                         key={p.pIdx}
-                        className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white/90 p-4 shadow-2xs"
+                        className="flex items-center gap-5 rounded-xl border border-slate-200/90 bg-white/90 p-4"
                       >
-                        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-2">
+                        <div className="flex h-20 w-20 shrink-0 items-center justify-center p-1">
                           {p.leadSymbol ? (
                             <img
                               src={p.leadSymbol}
@@ -851,11 +922,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="space-y-6">
+                  <div className="space-y-7">
                     {paragraphs.map((p) => (
                       <div
                         key={p.pIdx}
-                        className="flex flex-wrap items-end gap-x-2 gap-y-3 border-b border-dashed border-slate-200/90 pb-5 last:border-b-0"
+                        className="flex flex-wrap items-end gap-x-3 gap-y-4 border-b border-slate-200/80 pb-6 last:border-b-0"
                       >
                         {p.tokens.map((tok) => {
                           const isSelected = selectedTokenKey === tok.key;
@@ -868,14 +939,14 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                                   setSelectedTokenKey(tok.key);
                                   setPickerQuery(tok.cleanWord);
                                 }}
-                                className={`rounded-lg px-1.5 py-1 font-semibold transition ${tileTextClass} ${
+                                className={`rounded-md px-1 pb-1.5 font-semibold transition ${tileTextClass} ${
                                   tok.isRedactedToken
                                     ? 'bg-emerald-100 text-emerald-900 font-extrabold'
                                     : isSelected
                                       ? 'bg-slate-900 text-white'
-                                      : 'text-slate-700 hover:bg-slate-200/70'
+                                      : 'text-slate-600 hover:bg-slate-200/70'
                                 }`}
-                                title="Click to add or swap a symbol for this word"
+                                title="Click to add a symbol for this word"
                               >
                                 {tok.caption}
                               </button>
@@ -890,13 +961,14 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                                 setSelectedTokenKey(tok.key);
                                 setPickerQuery(tok.cleanWord);
                               }}
-                              className={`group inline-flex flex-col items-center justify-between rounded-xl border-2 px-2 py-1.5 transition ${toneBorderClasses(
-                                tok.tone,
-                                colourfulSemantics
-                              )} ${
+                              className={`group inline-flex flex-col items-center justify-end transition ${
+                                boxedCards
+                                  ? `rounded-xl border-2 px-2.5 py-2 ${toneBorderClasses(tok.tone, colourfulSemantics)}`
+                                  : 'rounded-lg px-1.5 py-1 bg-transparent hover:bg-slate-100/80'
+                              } ${
                                 isSelected
-                                  ? 'ring-2 ring-slate-900 ring-offset-2 scale-[1.03] shadow-sm'
-                                  : 'hover:shadow-sm hover:-translate-y-0.5'
+                                  ? 'ring-2 ring-slate-900 ring-offset-2'
+                                  : ''
                               }`}
                               title={`Click to swap symbol or add grammar overlay for "${tok.caption}"`}
                             >
@@ -909,10 +981,16 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                                 {renderOverlayVisual(tok.overlay)}
                               </span>
                               <span
-                                className={`mt-1 font-bold leading-tight text-slate-900 ${tileTextClass}`}
+                                className={`mt-1.5 font-bold leading-tight text-slate-900 text-center ${tileTextClass}`}
                               >
                                 {tok.caption}
                               </span>
+                              {!boxedCards && colourfulSemantics && (
+                                <span
+                                  aria-hidden="true"
+                                  className={`mt-1 h-[3px] w-7 rounded-full ${toneUnderlineClasses(tok.tone, true)}`}
+                                />
+                              )}
                             </button>
                           );
                         })}
@@ -922,13 +1000,12 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 )}
               </div>
 
-              {/* A4 Governance Footer */}
               <footer className="mt-10 flex flex-wrap items-center justify-between gap-2 border-t border-slate-300/80 pt-3 text-[11px] text-slate-500">
                 <span>
-                  Prepared by <strong className="text-slate-800">{careInitials || 'Care Team'}</strong> •{' '}
+                  Prepared by <strong className="text-slate-800">{careInitials || 'Spark Studio'}</strong> •{' '}
                   {careReviewNote || 'Zero-PII Local Session'}
                 </span>
-                <span className="font-semibold">Spark Symbol Studio • Offline UK Care AAC</span>
+                <span className="font-semibold">Spark Symbol Studio • 360° Accessible Communication</span>
               </footer>
             </article>
           </div>

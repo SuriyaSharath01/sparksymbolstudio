@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import healthIconsManifest from './healthicons-manifest.json';
 
 export interface MulberrySymbol {
   id: string;
@@ -28,6 +29,21 @@ const SPARK_CARE_CUSTOM_SYMBOLS: MulberrySymbol[] = [
   { id: "spark_consent_choice", label: "My Choice & Consent", filename: "spark_consent_choice.svg", svgPath: "/symbols/spark_consent_choice.svg", tags: ["choice", "consent", "yes or no", "agree", "decline", "mental capacity", "decision", "autonomy"], category: "Spark UK Care & PECS" },
   { id: "spark_medication_round", label: "Medication Round", filename: "spark_medication_round.svg", svgPath: "/symbols/spark_medication_round.svg", tags: ["medication", "tablets", "pills", "mar chart", "chemist", "pharmacy", "prescription", "inhaler", "paracetamol"], category: "Spark UK Care & PECS" },
   { id: "spark_pain_scale", label: "Pain & Discomfort", filename: "spark_pain_scale.svg", svgPath: "/symbols/spark_pain_scale.svg", tags: ["pain", "hurt", "ache", "unwell", "sore", "discomfort", "pain scale", "body map"], category: "Spark UK Care & PECS" },
+  { id: "spark_you", label: "You / Your", filename: "spark_you.svg", svgPath: "/symbols/spark_you.svg", tags: ["you", "your", "yourself", "core", "pronoun"], category: "Spark 360 Core" },
+  { id: "spark_we", label: "We / Us", filename: "spark_we.svg", svgPath: "/symbols/spark_we.svg", tags: ["we", "us", "our", "together", "group", "core"], category: "Spark 360 Core" },
+  { id: "spark_yes", label: "Yes", filename: "spark_yes.svg", svgPath: "/symbols/spark_yes.svg", tags: ["yes", "agree", "ok", "okay", "correct", "core"], category: "Spark 360 Core" },
+  { id: "spark_no", label: "No / Not", filename: "spark_no.svg", svgPath: "/symbols/spark_no.svg", tags: ["no", "not", "decline", "refuse", "core"], category: "Spark 360 Core" },
+  { id: "spark_then", label: "Then / Next", filename: "spark_then.svg", svgPath: "/symbols/spark_then.svg", tags: ["then", "later", "after", "sequence", "transition", "core"], category: "Spark 360 Core" },
+  { id: "spark_have", label: "Have / Get", filename: "spark_have.svg", svgPath: "/symbols/spark_have.svg", tags: ["have", "get", "keep", "hold", "core"], category: "Spark 360 Core" },
+  { id: "spark_calm", label: "Calm & Breathe", filename: "spark_calm.svg", svgPath: "/symbols/spark_calm.svg", tags: ["calm", "breathe", "steady", "relax", "regulate", "sensory"], category: "Spark 360 Core" },
+  { id: "spark_tired", label: "Tired", filename: "spark_tired.svg", svgPath: "/symbols/spark_tired.svg", tags: ["tired", "sleepy", "exhausted", "fatigue", "rest"], category: "Spark 360 Core" },
+  { id: "spark_scared", label: "Scared / Overwhelmed", filename: "spark_scared.svg", svgPath: "/symbols/spark_scared.svg", tags: ["scared", "afraid", "frightened", "overwhelmed", "anxious"], category: "Spark 360 Core" },
+  { id: "spark_feel", label: "Feel / Emotion", filename: "spark_feel.svg", svgPath: "/symbols/spark_feel.svg", tags: ["feel", "feeling", "feelings", "emotion", "mood"], category: "Spark 360 Core" },
+  { id: "spark_cup_of_tea", label: "Cup of Tea", filename: "spark_cup_of_tea.svg", svgPath: "/symbols/spark_cup_of_tea.svg", tags: ["cup of tea", "cuppa", "brew", "tea", "hot drink"], category: "Spark 360 Core" },
+  { id: "spark_epilepsy_safety", label: "Epilepsy & Seizure Safety", filename: "spark_epilepsy_safety.svg", svgPath: "/symbols/spark_epilepsy_safety.svg", tags: ["epilepsy", "seizure", "recovery", "rescue", "safety", "neurology"], category: "Spark 360 Core" },
+  { id: "spark_adhd_focus", label: "Focus & Step Plan", filename: "spark_adhd_focus.svg", svgPath: "/symbols/spark_adhd_focus.svg", tags: ["adhd", "focus", "task", "checklist", "plan", "homework", "step"], category: "Spark 360 Core" },
+  { id: "spark_ear_defenders", label: "Ear Defenders", filename: "spark_ear_defenders.svg", svgPath: "/symbols/spark_ear_defenders.svg", tags: ["ear defenders", "noise", "loud", "sensory", "headphones", "autism"], category: "Spark 360 Core" },
+  ...(healthIconsManifest as MulberrySymbol[]),
 ];
 
 const UK_SYNONYM_MAP: Record<string, string[]> = {

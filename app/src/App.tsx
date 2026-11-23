@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { AudienceProvider } from "./context/AudienceLensContext";
 import StudioWorkspace from "./StudioWorkspace";
 import { LandingPage } from "./components/public/LandingPage";
 import {
@@ -13,7 +14,8 @@ export type { QuickCard, AppTab } from "./StudioWorkspace";
 
 export default function App() {
   return (
-    <Routes>
+    <AudienceProvider>
+      <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/about-symbols" element={<AboutSymbolsPage />} />
       <Route path="/sectors/adult-social-care" element={<SectorPage sectorKey="adult-social-care" />} />
@@ -26,5 +28,6 @@ export default function App() {
       <Route path="/studio" element={<StudioWorkspace />} />
       <Route path="*" element={<LandingPage />} />
     </Routes>
+    </AudienceProvider>
   );
 }
