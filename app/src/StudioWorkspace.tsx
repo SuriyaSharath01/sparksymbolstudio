@@ -294,6 +294,8 @@ function StudioWorkspace() {
   const [liveSearchResults, setLiveSearchResults] = useState<SymbolAsset[]>([]);
   const [isSearchingSymbols, setIsSearchingSymbols] = useState<boolean>(false);
   const [showLaunchpad, setShowLaunchpad] = useState<boolean>(false);
+  const [showExportMenu, setShowExportMenu] = useState<boolean>(false);
+  const [showMoreToolsMenu, setShowMoreToolsMenu] = useState<boolean>(false);
   const [sequenceMode, setSequenceMode] = useState<'full' | 'now_next' | 'now_next_then'>('full');
   const [customProfiles, setCustomProfiles] = useState<SupportProfileDNA[]>(() => {
     try {
@@ -815,6 +817,10 @@ function StudioWorkspace() {
   }, [activeTab, customBoard, activeTemplate, activePreset, activeStory, sentenceStripItems]);
   const quickSearchInputRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
+    const requestedTab = searchParams.get("tab") as AppTab | null;
+    if (requestedTab && ['studio', 'templates', 'packs', 'wants', 'community', 'media', 'easyread', 'stories', 'focus'].includes(requestedTab)) {
+      setActiveTab(requestedTab);
+    }
     const rawSentence = searchParams.get("sentence")?.trim();
     if (!rawSentence || seededFromUrlRef.current === rawSentence) return;
     seededFromUrlRef.current = rawSentence;
@@ -950,7 +956,7 @@ function StudioWorkspace() {
                 </Link>
               </nav>
 
-              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <div className="relative hidden sm:block">
                   <input
                     ref={quickSearchInputRef}
@@ -1001,56 +1007,65 @@ function StudioWorkspace() {
                   <span>{lowArousalMode ? 'Low-Arousal: ON' : 'Low-Arousal'}</span>
                 </button>
 
-                <label
-                  className={`hidden lg:flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
-                    lowArousalMode
-                      ? 'border-emerald-900/70 bg-slate-800/80 text-slate-100 hover:bg-slate-800'
-                      : 'border-slate-700 bg-slate-800/80 text-slate-200 hover:border-slate-600 hover:bg-slate-800 hover:text-white'
-                  }`}
-                >
-                  <Upload className="h-3.5 w-3.5" />
-                  <span title="Load a saved board file (Open Board Format .obf or .json)">Load</span>
-                  <input type="file" accept=".obf,.json,application/json" onChange={handleImportObf} className="hidden" />
-                </label>
+                <div className="relative shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setShowExportMenu((v) => !v)}
+                    aria-expanded={showExportMenu}
+                    className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-3 text-xs font-extrabold shadow-sm transition ${
+                      lowArousalMode
+                        ? 'bg-emerald-300 text-slate-950 hover:bg-emerald-200'
+                        : 'bg-gradient-to-r from-amber-500 to-[#E36C2B] text-white hover:from-amber-400 hover:to-[#d45f20]'
+                    }`}
+                  >
+                    <Printer className="h-3.5 w-3.5" />
+                    <span>Print &amp; Export</span>
+                    <span className="text-[10px] opacity-80">▾</span>
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={handleExportObf}
-                  className={`hidden lg:flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
-                    lowArousalMode
-                      ? 'border-emerald-900/70 bg-slate-800/80 text-slate-100 hover:bg-slate-800'
-                      : 'border-slate-700 bg-slate-800/80 text-slate-200 hover:border-slate-600 hover:bg-slate-800 hover:text-white'
-                  }`}
-                >
-                  <Download className="h-3.5 w-3.5" />
-                  <span title="Save this board as a portable Open Board Format (.obf) file">Save</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => triggerPrint('a4')}
-                  className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-bold transition ${
-                    lowArousalMode
-                      ? 'border-emerald-500/40 bg-emerald-800/70 text-white hover:bg-emerald-800'
-                      : 'border-amber-400/40 bg-slate-800 text-amber-200 hover:border-amber-400 hover:bg-slate-800/90 hover:text-white'
-                  }`}
-                >
-                  <Printer className="h-3.5 w-3.5" />
-                  <span>Print A4</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => triggerPrint('pocket')}
-                  className={`flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-3 text-xs font-extrabold shadow-sm transition ${
-                    lowArousalMode
-                      ? 'bg-emerald-300 text-slate-950 hover:bg-emerald-200'
-                      : 'bg-gradient-to-r from-amber-500 to-[#E36C2B] text-white hover:from-amber-400 hover:to-[#d45f20]'
-                  }`}
-                >
-                  <Printer className="h-3.5 w-3.5" />
-                  <span>Pocket Cards</span>
-                </button>
+                  {showExportMenu && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setShowExportMenu(false)} />
+                      <div className="absolute right-0 mt-1.5 z-50 w-52 rounded-xl border border-slate-200 bg-white p-1.5 text-slate-800 shadow-xl">
+                        <button
+                          type="button"
+                          onClick={() => { setShowExportMenu(false); triggerPrint('a4'); }}
+                          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-bold hover:bg-slate-100"
+                        >
+                          <Printer className="h-3.5 w-3.5 text-[#E36C2B]" />
+                          <span>Print A4 Sheet</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { setShowExportMenu(false); triggerPrint('pocket'); }}
+                          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-bold hover:bg-slate-100"
+                        >
+                          <Printer className="h-3.5 w-3.5 text-slate-600" />
+                          <span>Print Pocket / Lanyard Cards</span>
+                        </button>
+                        <div className="my-1 border-t border-slate-100" />
+                        <button
+                          type="button"
+                          onClick={() => { setShowExportMenu(false); handleExportObf(); }}
+                          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-semibold hover:bg-slate-100"
+                        >
+                          <Download className="h-3.5 w-3.5 text-slate-500" />
+                          <span>Save Board (.obf)</span>
+                        </button>
+                        <label className="flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-semibold hover:bg-slate-100">
+                          <Upload className="h-3.5 w-3.5 text-slate-500" />
+                          <span>Load Saved Board</span>
+                          <input
+                            type="file"
+                            accept=".obf,.json,application/json"
+                            onChange={(e) => { setShowExportMenu(false); handleImportObf(e); }}
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -1329,28 +1344,69 @@ function StudioWorkspace() {
         <div className="flex flex-1 flex-col min-w-0 overflow-hidden">
           {/* Compact Mobile Tab Strip */}
           {activeTab !== 'focus' && (
-            <div className="md:hidden shrink-0 border-b border-slate-200 bg-white px-3 py-2 flex items-center gap-1.5 overflow-x-auto">
-              {[
-                { id: 'studio' as AppTab, label: 'Canvas' },
-                { id: 'templates' as AppTab, label: 'Builder' },
-                { id: 'packs' as AppTab, label: 'Packs' },
-                { id: 'wants' as AppTab, label: 'Choices' },
-                { id: 'community' as AppTab, label: 'Schedules' },
-                { id: 'easyread' as AppTab, label: 'Easy Read' },
-                { id: 'stories' as AppTab, label: 'Stories' },
-                { id: 'focus' as AppTab, label: 'Focus' },
-              ].map((t) => (
+            <div className="md:hidden relative shrink-0 border-b border-slate-200 bg-white px-3 py-2 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5">
+                {[
+                  { id: 'easyread' as AppTab, label: 'Easy Read' },
+                  { id: 'templates' as AppTab, label: 'Board Builder' },
+                  { id: 'packs' as AppTab, label: 'Packs' },
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => { setShowMoreToolsMenu(false); setActiveTab(t.id); }}
+                    className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                      activeTab === t.id
+                        ? 'bg-slate-900 text-white shadow-xs'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="relative shrink-0">
                 <button
-                  key={t.id}
                   type="button"
-                  onClick={() => setActiveTab(t.id)}
-                  className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-bold ${
-                    activeTab === t.id ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'
+                  onClick={() => setShowMoreToolsMenu((v) => !v)}
+                  className={`rounded-lg border px-2.5 py-1.5 text-xs font-bold transition ${
+                    ['studio', 'wants', 'community', 'stories', 'media'].includes(activeTab)
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  {t.label}
+                  More Tools ▾
                 </button>
-              ))}
+                {showMoreToolsMenu && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setShowMoreToolsMenu(false)} />
+                    <div className="absolute right-0 mt-1.5 z-50 w-52 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl">
+                      {[
+                        { id: 'studio' as AppTab, label: 'Studio Canvas' },
+                        { id: 'wants' as AppTab, label: 'Choice & Request Boards' },
+                        { id: 'community' as AppTab, label: 'Visual Schedules' },
+                        { id: 'stories' as AppTab, label: 'Social Stories' },
+                        { id: 'media' as AppTab, label: 'Resident Photos' },
+                        { id: 'focus' as AppTab, label: 'Resident Focus Mode' },
+                      ].map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => { setShowMoreToolsMenu(false); setActiveTab(t.id); }}
+                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs font-bold transition ${
+                            activeTab === t.id
+                              ? 'bg-amber-50 text-[#B84710]'
+                              : 'text-slate-700 hover:bg-slate-100'
+                          }`}
+                        >
+                          <span>{t.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           )}
 
@@ -1713,7 +1769,7 @@ function StudioWorkspace() {
                   onClick={() => setShowGovernanceDrawer(true)}
                   className="rounded-md bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800 transition"
                 >
-                  AIS, DNA &amp; Print Stamp
+                  Clinical Settings
                 </button>
               </div>
             </footer>

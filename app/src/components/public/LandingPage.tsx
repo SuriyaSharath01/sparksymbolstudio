@@ -11,6 +11,7 @@ import {
   ClipboardCheck,
 } from 'lucide-react';
 import { PublicLayout } from './PublicLayout';
+import { usePersona } from '../../context/PersonaContext';
 import {
   getMulberryCatalog,
   loadOpenMojiCatalog,
@@ -68,6 +69,7 @@ function classifyTone(word: string): string {
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
+  const { resolvePersonaSymbol } = usePersona();
   const [symbols, setSymbols] = useState<SymbolAsset[]>(() => getMulberryCatalog());
   const [inputText, setInputText] = useState<string>('I want a cup of tea');
   const [hideAbstract, setHideAbstract] = useState<boolean>(false);
@@ -93,26 +95,43 @@ export const LandingPage: React.FC = () => {
     .slice(0, 12);
 
   const HERO_VERIFIED_FALLBACKS: Record<string, string> = {
-    want: '/symbols/spark_want.svg',
-    help: '/symbols/spark_help.svg',
-    wait: '/symbols/wait_,_to.svg',
-    quiet: '/symbols/quiet.svg',
-    stop: '/symbols/stop_sign.svg',
-    listen: '/symbols/communication_aid_listen_to_me.svg',
-    cup: '/symbols/mug_2.svg',
-    tea: '/symbols/spark_cup_of_tea.svg',
-    drink: '/symbols/drink_,_to.svg',
-    break: '/symbols/break_time_1.svg',
-    wash: '/symbols/clean_hands.svg',
-    hands: '/symbols/clean_hands.svg',
-  };
+  "i": "/symbols/spark-core/i_me.svg",
+  "me": "/symbols/spark-core/i_me.svg",
+  "my": "/symbols/spark-core/i_me.svg",
+  "you": "/symbols/spark-core/you.svg",
+  "we": "/symbols/spark-core/we.svg",
+  "yes": "/symbols/spark-core/yes.svg",
+  "no": "/symbols/spark-core/no.svg",
+  "want": "/symbols/spark_want.svg",
+  "help": "/symbols/spark-core/help.svg",
+  "wait": "/symbols/spark-core/wait.svg",
+  "quiet": "/symbols/spark-core/calm.svg",
+  "calm": "/symbols/spark-core/calm.svg",
+  "listen": "/symbols/spark-core/listen.svg",
+  "ask": "/symbols/spark-core/ask.svg",
+  "tea": "/symbols/spark-core/cup_of_tea.svg",
+  "cup": "/symbols/spark-core/cup_of_tea.svg",
+  "break": "/symbols/spark-core/quiet_break.svg",
+  "doctor": "/symbols/spark-core/doctor.svg",
+  "nurse": "/symbols/spark-core/nurse.svg",
+  "hospital": "/symbols/spark-core/hospital_passport.svg",
+  "clinic": "/symbols/spark-core/clinic.svg",
+  "home": "/symbols/spark-core/home.svg",
+  "safe": "/symbols/spark-core/safe.svg",
+  "stop": "/symbols/stop_sign.svg",
+  "drink": "/symbols/drink_,_to.svg",
+  "wash": "/symbols/clean_hands.svg",
+  "hands": "/symbols/clean_hands.svg"
+};
 
   const tokens: DemoToken[] = words.map((rawWord) => {
     const clean = rawWord.replace(/^[^\w]+|[^\w]+$/g, '');
     const lower = (clean || rawWord).toLowerCase();
     const isAbstract = ABSTRACT_WORDS.has(lower);
     const match = isAbstract ? undefined : searchLocalSymbols(clean || rawWord, symbols)[0];
-    const resolvedSrc = isAbstract ? undefined : (HERO_VERIFIED_FALLBACKS[lower] || match?.imagePath);
+    const rawSrc = isAbstract ? undefined : (HERO_VERIFIED_FALLBACKS[lower] || match?.imagePath);
+    const sparkMatch = rawSrc?.match(/^\/symbols\/spark-core\/([^/]+)\.svg$/);
+    const resolvedSrc = sparkMatch ? `/symbols/spark-core/${resolvePersonaSymbol(sparkMatch[1])}.svg` : rawSrc;
     return {
       word: clean || rawWord,
       label: match?.label || clean || rawWord,
@@ -138,7 +157,7 @@ export const LandingPage: React.FC = () => {
 
   const openInStudio = () => {
     const phrase = visibleTokens.map((t) => t.word).join(' ').trim();
-    navigate(phrase ? `/studio?sentence=${encodeURIComponent(phrase)}` : '/studio');
+    navigate(phrase ? `/studio?tab=easyread&sentence=${encodeURIComponent(phrase)}` : '/studio?tab=easyread');
   };
 
   return (

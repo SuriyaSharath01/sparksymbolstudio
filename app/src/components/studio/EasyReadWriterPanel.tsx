@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   BookOpen,
@@ -221,7 +222,12 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   const [pickerQuery, setPickerQuery] = useState<string>('');
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
+  const [erSearchParams] = useSearchParams();
   const { resolvePersonaSymbol } = usePersona();
+  useEffect(() => {
+    const incoming = erSearchParams.get('sentence')?.trim();
+    if (incoming) setRawInput(incoming);
+  }, [erSearchParams]);
   const lookupIndex = useMemo(() => buildSymbolLookupIndex(symbols), [symbols]);
 
   const scrubResult = useMemo(() => scrubClinicalText(rawInput), [rawInput]);
