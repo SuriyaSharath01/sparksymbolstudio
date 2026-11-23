@@ -15,6 +15,7 @@ import {
 import type { MulberrySymbol } from '../../data/symbols';
 import { scrubClinicalText } from '../../utils/piiScrubber';
 import { AUDIENCE_LENSES, useAudienceLens, type AudienceLens } from '../../context/AudienceLensContext';
+import { usePersona } from '../../context/PersonaContext';
 import {
   buildSymbolLookupIndex,
   classifySemanticTone,
@@ -220,6 +221,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   const [pickerQuery, setPickerQuery] = useState<string>('');
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
+  const { resolvePersonaSymbol } = usePersona();
   const lookupIndex = useMemo(() => buildSymbolLookupIndex(symbols), [symbols]);
 
   const scrubResult = useMemo(() => scrubClinicalText(rawInput), [rawInput]);
@@ -252,9 +254,13 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
             : 'none';
 
         const override = wordOverrides[key];
-        const finalSvg = override?.hideSymbol
+        const rawSvg = override?.hideSymbol
           ? null
           : override?.svgPath ?? autoMatch?.svgPath ?? null;
+        const sparkMatch = rawSvg?.match(/^\/symbols\/spark-core\/([^/]+)\.svg$/);
+        const finalSvg = sparkMatch
+          ? `/symbols/spark-core/${resolvePersonaSymbol(sparkMatch[1])}.svg`
+          : rawSvg;
         const finalCaption = override?.caption ?? seg.raw;
         const finalOverlay = override?.overlay ?? autoOverlay;
 
@@ -277,7 +283,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
       const leadSymbol = tokens.find((t) => t.svgPath)?.svgPath || null;
       return { pIdx, line, tokens, leadSymbol };
     });
-  }, [effectiveText, hideSmallWords, lookupIndex, lens, wordOverrides]);
+  }, [effectiveText, hideSmallWords, lookupIndex, lens, wordOverrides, resolvePersonaSymbol]);
 
   // Build Zero-PII QR-Bridge payload & offline QR DataURL
   const qrBridgeUrl = useMemo(() => {

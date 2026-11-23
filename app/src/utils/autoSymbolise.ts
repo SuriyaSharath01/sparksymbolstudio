@@ -358,10 +358,16 @@ export function buildSymbolLookupIndex(symbols: MulberrySymbol[]): SymbolLookupI
   const exactLabel = new Map<string, MulberrySymbol>();
   const exactTag = new Map<string, MulberrySymbol>();
 
+  const sparkCoreBoost = (sym: MulberrySymbol): number => {
+    if (!sym.svgPath.startsWith('/symbols/spark-core/')) return 0;
+    const isPersonaVariant = /_(girl|boy|woman|man|older_woman|older_man)\.svg$/i.test(sym.svgPath);
+    return isPersonaVariant ? 5000 : 10000;
+  };
+
   const setIfBetter = (map: Map<string, MulberrySymbol>, key: string, sym: MulberrySymbol) => {
     if (!key) return;
     const prev = map.get(key);
-    if (!prev || symbolPriority(sym) > symbolPriority(prev)) {
+    if (!prev || symbolPriority(sym) + sparkCoreBoost(sym) > symbolPriority(prev) + sparkCoreBoost(prev)) {
       map.set(key, sym);
     }
   };

@@ -202,7 +202,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'faith_3',
         label: 'Respectful Family & Community Links / सम्मान और जुड़ाव',
-        symbol: '/symbols/community.svg',
+        symbol: '/symbols/group_work.svg',
         instruction: 'Support meaningful cultural visits, music, and familiar symbols with dignity.',
       },
     ],
@@ -219,7 +219,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'sh_1',
         label: 'Current Mood & Comfort',
-        symbol: '/symbols/feelings.svg',
+        symbol: '/symbols/happy_lady.svg',
         instruction: 'Confirm how the person is feeling, resting, or engaging at handover.',
       },
       {
@@ -410,7 +410,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'nnt_3',
         label: 'THEN: Preferred Reward',
-        symbol: '/symbols/then.svg',
+        symbol: '/symbols/spark-core/then.svg',
         instruction: 'Pair completion with a motivating activity, break, or choice.',
       },
     ],
@@ -426,7 +426,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'feel_1',
         label: 'How Do I Feel Now?',
-        symbol: '/symbols/feelings.svg',
+        symbol: '/symbols/happy_lady.svg',
         instruction: 'Name or point to calm, tired, worried, frustrated, or uncomfortable.',
       },
       {
@@ -440,7 +440,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'feel_3',
         label: 'Choose Safe Next Step',
-        symbol: '/symbols/choice.svg',
+        symbol: '/symbols/spark-core/decide.svg',
         instruction: 'Pick a safe action card to reset and return when ready.',
       },
     ],
@@ -469,7 +469,7 @@ export const RESOURCE_REGISTRY: Record<string, SupportPack> = {
       {
         id: 'lang_3',
         label: 'Are You Comfortable? / మీకు సౌకర్యంగా ఉందా?',
-        symbol: '/symbols/comfort.svg',
+        symbol: '/symbols/spark-core/calm.svg',
         instruction: 'Check comfort and pain in a familiar language during care or visits.',
       },
     ],
