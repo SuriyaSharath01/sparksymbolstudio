@@ -1,3 +1,4 @@
+import { KioskTalkerView } from './KioskTalkerView';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -8,7 +9,6 @@ import {
   FileSpreadsheet,
   Lock,
   ShieldCheck,
-  Volume2,
 } from 'lucide-react';
 import { PublicLayout } from './PublicLayout';
 import { RESOURCE_REGISTRY_LIST, type SupportPack } from '../../data/resource-registry';
@@ -544,68 +544,4 @@ export const TrustPage: React.FC = () => {
   );
 };
 
-export const KioskPage: React.FC = () => {
-  const [spoken, setSpoken] = useState<string>('Tap a card to speak');
-  const quickCards = [
-    { label: 'I need help', phrase: 'I need help' },
-    { label: 'Cup of tea', phrase: 'I would like a cup of tea' },
-    { label: 'Quiet break', phrase: 'I need a quiet break please' },
-    { label: 'Toilet', phrase: 'I need the toilet' },
-    { label: 'Pain / Sore', phrase: 'Something feels sore or uncomfortable' },
-    { label: 'All done', phrase: 'I am finished with this now' },
-  ];
-
-  const speak = (phrase: string) => {
-    setSpoken(phrase);
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(phrase);
-      utter.lang = 'en-GB';
-      utter.rate = 0.92;
-      window.speechSynthesis.speak(utter);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-950 text-white p-6 flex flex-col justify-between">
-      <div>
-        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-amber-400">
-              Spark Live Kiosk Talker
-            </div>
-            <h1 className="text-2xl font-extrabold mt-0.5">{spoken}</h1>
-          </div>
-          <Link
-            to="/studio"
-            className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-bold text-slate-200 hover:bg-slate-800 transition"
-          >
-            Exit to Studio
-          </Link>
-        </div>
-
-        <div className="max-w-5xl mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {quickCards.map((c) => (
-            <button
-              key={c.label}
-              type="button"
-              onClick={() => speak(c.phrase)}
-              className="rounded-2xl border-2 border-slate-800 bg-slate-900 hover:border-amber-400 hover:bg-slate-800/90 p-7 text-left transition flex flex-col justify-between min-h-[150px]"
-            >
-              <span className="text-2xl font-extrabold text-white">{c.label}</span>
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 mt-4">
-                <Volume2 className="h-4 w-4" />
-                <span>Tap to speak</span>
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto w-full pt-8 text-xs text-slate-500 flex justify-between">
-        <span>Spark Symbol Studio • Kiosk View</span>
-        <Link to="/" className="hover:text-slate-300">Platform Home</Link>
-      </div>
-    </div>
-  );
-};
+export const KioskPage: React.FC = () => <KioskTalkerView />;

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <circle cx="128" cy="128" r="98" fill="#FEE2E2" stroke="#DC2626" stroke-width="12"/>
-  <path d="M88 88l80 80M168 88l-80 80" fill="none" stroke="#DC2626" stroke-width="18" stroke-linecap="round"/>
+<svg data-spark-living="true" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="98" fill="var(--spark-tint, #FEE2E2)" stroke="var(--spark-danger, #DC2626)" stroke-width="12"/>
+  <path d="M88 88l80 80M168 88l-80 80" fill="none" stroke="var(--spark-danger, #DC2626)" stroke-width="18" stroke-linecap="round"/>
 </svg>

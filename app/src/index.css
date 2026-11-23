@@ -201,3 +201,46 @@ select:focus-visible {
   outline: 2px solid #d45a1a;
   outline-offset: 2px;
 }
+
+
+/* Spark Living SVG Theme Engine (Colour / High-Contrast / Crisp Mono) */
+.spark-inline-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.spark-theme-color {
+  --spark-stroke: #0F172A;
+  --spark-accent: #D45A1A;
+  --spark-success: #15803D;
+  --spark-danger: #DC2626;
+  --spark-surface: #FFFFFF;
+  --spark-tint: #FEF3C7;
+}
+
+.spark-theme-mono {
+  --spark-stroke: #0F172A;
+  --spark-accent: #334155;
+  --spark-success: #0F172A;
+  --spark-danger: #0F172A;
+  --spark-surface: #FFFFFF;
+  --spark-tint: #F1F5F9;
+}
+
+.spark-theme-mono.spark-legacy-img img {
+  filter: grayscale(100%) contrast(1.2);
+}
+
+.spark-theme-high-contrast {
+  --spark-stroke: #000000;
+  --spark-accent: #000000;
+  --spark-success: #000000;
+  --spark-danger: #B91C1C;
+  --spark-surface: #FFF04B;
+  --spark-tint: #FFF04B;
+}
+
+.spark-theme-high-contrast.spark-legacy-img img {
+  filter: grayscale(100%) contrast(1.85);
+}

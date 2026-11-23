@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<svg data-spark-living="true" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <rect x="24" y="92" width="54" height="72" rx="12" fill="#E2E8F0" stroke="#64748B" stroke-width="7"/>
-  <path d="M96 128h54m0 0-18-18m18 18-18 18" fill="none" stroke="#0F172A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="168" y="76" width="66" height="104" rx="14" fill="#FED7AA" stroke="#D45A1A" stroke-width="8"/>
+  <path d="M96 128h54m0 0-18-18m18 18-18 18" fill="none" stroke="var(--spark-stroke, #0F172A)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="168" y="76" width="66" height="104" rx="14" fill="var(--spark-tint, #FED7AA)" stroke="var(--spark-accent, #D45A1A)" stroke-width="8"/>
 </svg>

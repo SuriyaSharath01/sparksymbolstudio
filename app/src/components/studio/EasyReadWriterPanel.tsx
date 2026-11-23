@@ -1,8 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   BookOpen,
+  ExternalLink,
   FileText,
   Printer,
+  QrCode,
   RotateCcw,
   Search,
   ShieldCheck,
@@ -24,6 +26,8 @@ import {
   toneUnderlineClasses,
   type GrammarOverlay,
 } from '../../utils/autoSymbolise';
+import { getCachedSparkSvg, SparkSymbol, type SymbolTheme } from '../common/SparkSymbol';
+import { buildKioskQrUrl, generateQrDataUrl } from '../../utils/qrBridge';
 
 interface Props {
   symbols: MulberrySymbol[];
@@ -48,6 +52,12 @@ const PAPER_TINTS: { id: PaperTintId; name: string; hex: string; swatchClass: st
   { id: 'cream', name: 'Low-Arousal Cream', hex: '#FAF8F0', swatchClass: 'bg-[#FAF8F0] border-amber-300' },
   { id: 'mint', name: 'Calm Mint', hex: '#F1F7F4', swatchClass: 'bg-[#F1F7F4] border-emerald-300' },
   { id: 'yellow', name: 'Dyslexia Yellow', hex: '#FEFCE8', swatchClass: 'bg-[#FEFCE8] border-yellow-400' },
+];
+
+const SYMBOL_THEMES: { id: SymbolTheme; label: string }[] = [
+  { id: 'color', label: 'Calm Colour' },
+  { id: 'high-contrast', label: 'High-Contrast' },
+  { id: 'mono', label: 'Crisp Mono' },
 ];
 
 const STARTER_TEMPLATES: {
@@ -196,16 +206,19 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
 
   const [viewMode, setViewMode] = useState<DocumentViewMode>('a4-writer');
   const [paperTint, setPaperTint] = useState<PaperTintId>('white');
+  const [symbolTheme, setSymbolTheme] = useState<SymbolTheme>('color');
   const [symbolSize, setSymbolSize] = useState<SymbolSizeId>('md');
   const [hideSmallWords, setHideSmallWords] = useState<boolean>(true);
   const [colourfulSemantics, setColourfulSemantics] = useState<boolean>(true);
   const [boxedCards, setBoxedCards] = useState<boolean>(false);
   const [openDyslexic, setOpenDyslexic] = useState<boolean>(false);
   const [autoScrubPii, setAutoScrubPii] = useState<boolean>(true);
+  const [showQrBridge, setShowQrBridge] = useState<boolean>(true);
 
   const [wordOverrides, setWordOverrides] = useState<Record<string, WordOverride>>({});
   const [selectedTokenKey, setSelectedTokenKey] = useState<string | null>(null);
   const [pickerQuery, setPickerQuery] = useState<string>('');
+  const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
   const lookupIndex = useMemo(() => buildSymbolLookupIndex(symbols), [symbols]);
 
@@ -266,6 +279,48 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
     });
   }, [effectiveText, hideSmallWords, lookupIndex, lens, wordOverrides]);
 
+  // Build Zero-PII QR-Bridge payload & offline QR DataURL
+  const qrBridgeUrl = useMemo(() => {
+    const seen = new Set<string>();
+    const keyCards: { w: string; s?: string }[] = [];
+    for (const p of paragraphs) {
+      for (const tok of p.tokens) {
+        if (!tok.svgPath || tok.isRedactedToken) continue;
+        const label = tok.caption.replace(/[.,!?;:]+$/, '').trim();
+        const dedupeKey = label.toLowerCase();
+        if (!label || seen.has(dedupeKey)) continue;
+        seen.add(dedupeKey);
+        keyCards.push({ w: label, s: tok.svgPath });
+      }
+    }
+
+    return buildKioskQrUrl({
+      t: docTitle || 'Spark Communication Sheet',
+      sub: docSubtitle || undefined,
+      th: symbolTheme,
+      l: paragraphs.map((p) => p.line),
+      c: keyCards,
+    });
+  }, [paragraphs, docTitle, docSubtitle, symbolTheme]);
+
+  useEffect(() => {
+    if (!showQrBridge) {
+      setQrDataUrl('');
+      return;
+    }
+    let active = true;
+    generateQrDataUrl(qrBridgeUrl)
+      .then((url) => {
+        if (active) setQrDataUrl(url);
+      })
+      .catch(() => {
+        if (active) setQrDataUrl('');
+      });
+    return () => {
+      active = false;
+    };
+  }, [qrBridgeUrl, showQrBridge]);
+
   const selectedToken = useMemo(() => {
     if (!selectedTokenKey) return null;
     for (const p of paragraphs) {
@@ -283,6 +338,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
 
   const activePaper = PAPER_TINTS.find((t) => t.id === paperTint) || PAPER_TINTS[0];
   const activeLensMeta = AUDIENCE_LENSES.find((l) => l.id === lens) || AUDIENCE_LENSES[2];
+  const isHighContrast = symbolTheme === 'high-contrast';
 
   const loadTemplate = (tpl: (typeof STARTER_TEMPLATES)[number]) => {
     setLens(tpl.lens);
@@ -339,6 +395,20 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
       ? '"OpenDyslexic", "Comic Sans MS", Arial, sans-serif'
       : 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
+    const renderPrintSymbol = (svgPath: string) => {
+      const cached = getCachedSparkSvg(svgPath);
+      if (cached) {
+        return `<span class="spark-theme-${symbolTheme}" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;">${cached}</span>`;
+      }
+      const legacyFilter =
+        symbolTheme === 'high-contrast'
+          ? 'filter:grayscale(100%) contrast(1.85);'
+          : symbolTheme === 'mono'
+            ? 'filter:grayscale(100%) contrast(1.2);'
+            : '';
+      return `<img src="${absUrl(svgPath)}" alt="" style="width:100%;height:100%;object-fit:contain;${legacyFilter}" />`;
+    };
+
     const toneHex = (tone: string) =>
       tone === 'who'
         ? '#f59e0b'
@@ -357,38 +427,40 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
         ? paragraphs
             .map(
               (p) => `
-            <div style="display:flex;align-items:center;gap:18px;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;background:#ffffff;break-inside:avoid;">
-              <div style="width:88px;height:88px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-                ${p.leadSymbol ? `<img src="${absUrl(p.leadSymbol)}" alt="" style="width:76px;height:76px;object-fit:contain;" />` : '<span style="font-size:11px;color:#94a3b8;font-weight:700;">TEXT</span>'}
+            <div style="display:flex;align-items:center;gap:18px;border:${isHighContrast ? '2px solid #000' : '1px solid #e2e8f0'};border-radius:12px;padding:14px 16px;margin-bottom:14px;background:${isHighContrast ? '#FFF04B' : '#ffffff'};break-inside:avoid;">
+              <div style="width:84px;height:84px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                ${p.leadSymbol ? renderPrintSymbol(p.leadSymbol) : '<span style="font-size:11px;color:#94a3b8;font-weight:700;">TEXT</span>'}
               </div>
-              <p style="margin:0;font-size:18px;line-height:1.5;font-weight:600;color:#0f172a;">${escapeHtml(p.line)}</p>
+              <p style="margin:0;font-size:18px;line-height:1.5;font-weight:700;color:#000000;">${escapeHtml(p.line)}</p>
             </div>`
             )
             .join('')
         : paragraphs
             .map(
               (p) => `
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 12px;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid #e2e8f0;break-inside:avoid;">
+            <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 12px;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid ${isHighContrast ? '#000' : '#e2e8f0'};break-inside:avoid;">
               ${p.tokens
                 .map((t) => {
                   const col = toneHex(t.tone);
                   if (!t.svgPath) {
-                    return `<span style="padding:0 2px 5px;font-size:${fontPx}px;font-weight:600;color:#334155;">${escapeHtml(t.caption)}</span>`;
+                    return `<span style="padding:0 2px 5px;font-size:${fontPx}px;font-weight:700;color:${isHighContrast ? '#000' : '#334155'};">${escapeHtml(t.caption)}</span>`;
                   }
-                  const wrapperStyle = boxedCards
-                    ? `border:2px solid ${colourfulSemantics ? col : '#cbd5e1'};border-radius:10px;padding:6px 8px;background:#ffffff;`
-                    : `padding:2px 4px;background:transparent;`;
+                  const wrapperStyle = isHighContrast
+                    ? 'border:2px solid #000000;border-radius:10px;padding:6px 8px;background:#FFF04B;'
+                    : boxedCards
+                      ? `border:2px solid ${colourfulSemantics ? col : '#cbd5e1'};border-radius:10px;padding:6px 8px;background:#ffffff;`
+                      : 'padding:2px 4px;background:transparent;';
                   const barHtml =
-                    !boxedCards && colourfulSemantics
-                      ? `<span style="display:block;width:28px;height:3px;border-radius:99px;background:${col};margin-top:3px;"></span>`
+                    !boxedCards && !isHighContrast && colourfulSemantics
+                      ? `<span style="display:block;width:28px;height:3px;border-radius:99px;background:${symbolTheme === 'mono' ? '#334155' : col};margin-top:3px;"></span>`
                       : '';
                   return `
                     <div style="display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:${imgPx + 12}px;${wrapperStyle}">
                       <div style="position:relative;width:${imgPx}px;height:${imgPx}px;display:flex;align-items:center;justify-content:center;">
-                        <img src="${absUrl(t.svgPath)}" alt="" style="width:100%;height:100%;object-fit:contain;" />
+                        ${renderPrintSymbol(t.svgPath)}
                         ${overlayPrintHtml(t.overlay)}
                       </div>
-                      <span style="margin-top:5px;font-size:${fontPx}px;font-weight:700;color:#0f172a;text-align:center;line-height:1.2;">${escapeHtml(t.caption)}</span>
+                      <span style="margin-top:5px;font-size:${fontPx}px;font-weight:800;color:#000000;text-align:center;line-height:1.2;">${escapeHtml(t.caption)}</span>
                       ${barHtml}
                     </div>`;
                 })
@@ -396,6 +468,17 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
             </div>`
             )
             .join('');
+
+    const qrPrintHtml =
+      showQrBridge && qrDataUrl
+        ? `<div style="display:flex;align-items:center;gap:10px;border:1.5px solid #0f172a;border-radius:10px;padding:6px 10px;background:#ffffff;">
+             <img src="${qrDataUrl}" alt="Scan for Mobile Live Talker" style="width:54px;height:54px;display:block;" />
+             <div style="font-size:10px;line-height:1.35;color:#0f172a;">
+               <div style="font-weight:900;text-transform:uppercase;letter-spacing:0.04em;">Scan to Speak</div>
+               <div style="color:#475569;font-weight:600;">Opens pocket Live Talker<br/>Zero-PII • Works offline</div>
+             </div>
+           </div>`
+        : '';
 
     const html = `<!doctype html>
 <html lang="en-GB">
@@ -405,10 +488,14 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
   <style>
     @page { size: A4 portrait; margin: 14mm; }
     * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { margin: 0; font-family: ${fontStack}; background: ${activePaper.hex}; color: #0f172a; }
+    body { margin: 0; font-family: ${fontStack}; background: ${isHighContrast ? '#FFFFFF' : activePaper.hex}; color: #0f172a; }
+    .spark-inline-svg { width: 100%; height: 100%; display: block; }
+    .spark-theme-color { --spark-stroke:#0F172A; --spark-accent:#D45A1A; --spark-success:#15803D; --spark-danger:#DC2626; --spark-surface:#FFFFFF; --spark-tint:#FEF3C7; }
+    .spark-theme-mono { --spark-stroke:#0F172A; --spark-accent:#334155; --spark-success:#0F172A; --spark-danger:#0F172A; --spark-surface:#FFFFFF; --spark-tint:#F1F5F9; }
+    .spark-theme-high-contrast { --spark-stroke:#000000; --spark-accent:#000000; --spark-success:#000000; --spark-danger:#B91C1C; --spark-surface:#FFF04B; --spark-tint:#FFF04B; }
     .sheet { padding: 8px; min-height: 262mm; display: flex; flex-direction: column; justify-content: space-between; }
     .hdr { border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
-    .ftr { border-top: 1px solid #cbd5e1; padding-top: 10px; margin-top: 24px; display: flex; justify-content: space-between; font-size: 11px; color: #475569; }
+    .ftr { border-top: 1px solid #cbd5e1; padding-top: 12px; margin-top: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; font-size: 11px; color: #475569; }
   </style>
 </head>
 <body>
@@ -416,8 +503,8 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
     <div>
       <div class="hdr">
         <div>
-          <div style="font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#d45a1a;">Spark Symbol Studio • ${escapeHtml(activeLensMeta.shortLabel)}</div>
-          <h1 style="margin:4px 0 2px;font-size:24px;font-weight:900;color:#0f172a;">${escapeHtml(docTitle)}</h1>
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:${isHighContrast ? '#000' : '#d45a1a'};">Spark Symbol Studio • ${escapeHtml(activeLensMeta.shortLabel)}</div>
+          <h1 style="margin:4px 0 2px;font-size:24px;font-weight:900;color:#000000;">${escapeHtml(docTitle)}</h1>
           <div style="font-size:12px;font-weight:600;color:#475569;">${escapeHtml(docSubtitle)}</div>
         </div>
         <div style="text-align:right;font-size:11px;color:#475569;font-weight:700;">
@@ -428,8 +515,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
       ${bodyHtml}
     </div>
     <div class="ftr">
-      <span>Prepared by: <strong>${escapeHtml(careInitials || 'Spark Studio')}</strong> • ${escapeHtml(careReviewNote || 'Zero-PII Local Session')}</span>
-      <span>Spark Symbol Studio • 360° Accessible Communication</span>
+      <div>
+        <div>Prepared by: <strong>${escapeHtml(careInitials || 'Spark Studio')}</strong> • ${escapeHtml(careReviewNote || 'Zero-PII Local Session')}</div>
+        <div style="margin-top:3px;font-weight:700;color:#0f172a;">Spark Symbol Studio • 360° Accessible Communication</div>
+      </div>
+      ${qrPrintHtml}
     </div>
   </div>
 </body>
@@ -482,14 +572,14 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                   Spark Symbol Writer (A4)
                 </h1>
                 <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-extrabold text-slate-700 uppercase">
-                  Phrase-First Engine
+                  Living SVG + QR-Bridge
                 </span>
                 <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-extrabold text-emerald-800 uppercase">
                   Zero-PII Local
                 </span>
               </div>
               <p className="text-xs text-slate-500">
-                Built for kids, teens, adults, communities, schools &amp; care. Type plain English and click any word or phrase to customise.
+                Built for kids, teens, adults, schools &amp; care. Switch visual styles live and scan the A4 QR code to open a pocket talker.
               </p>
             </div>
           </div>
@@ -538,11 +628,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
           </div>
         </div>
 
-        {/* 360° Audience Lens Switcher */}
+        {/* 360° Audience Lens + Living SVG Style Switcher */}
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50/90 p-2">
           <div className="flex flex-wrap items-center gap-1.5">
             <span className="px-1.5 text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
-              Audience Lens:
+              Lens:
             </span>
             {AUDIENCE_LENSES.map((item) => {
               const active = lens === item.id;
@@ -551,7 +641,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                   key={item.id}
                   type="button"
                   onClick={() => setLens(item.id)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                  className={`rounded-lg px-2.5 py-1.5 text-xs font-bold transition ${
                     active
                       ? 'bg-slate-900 text-white shadow-2xs'
                       : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900'
@@ -562,14 +652,35 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               );
             })}
           </div>
-          <span className="hidden xl:inline text-[11px] font-medium text-slate-500 pr-2">
-            {activeLensMeta.tagline}
-          </span>
+
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="px-1 text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+              Style:
+            </span>
+            <div className="inline-flex rounded-lg border border-slate-200 bg-white p-0.5 text-xs font-bold">
+              {SYMBOL_THEMES.map((st) => (
+                <button
+                  key={st.id}
+                  type="button"
+                  onClick={() => setSymbolTheme(st.id)}
+                  className={`rounded-md px-2.5 py-1 transition ${
+                    symbolTheme === st.id
+                      ? st.id === 'high-contrast'
+                        ? 'bg-black text-[#FFF04B] font-black'
+                        : 'bg-slate-900 text-white'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {st.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Formatting Controls Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-1.5">
               <span className="text-[11px] font-bold text-slate-500">Paper:</span>
               {PAPER_TINTS.map((tint) => (
@@ -640,6 +751,17 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               <span>OpenDyslexic</span>
             </label>
 
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-950">
+              <input
+                type="checkbox"
+                checked={showQrBridge}
+                onChange={(e) => setShowQrBridge(e.target.checked)}
+                className="accent-[#D45A1A]"
+              />
+              <QrCode className="h-3.5 w-3.5 text-[#D45A1A]" />
+              <span>QR-Bridge</span>
+            </label>
+
             <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-900">
               <input
                 type="checkbox"
@@ -681,7 +803,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* Main Split Workspace: Left Plain-English Input + Right Floating A4 Canvas */}
+      {/* Main Split Workspace */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 items-start">
         <div className="lg:col-span-4 space-y-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs space-y-3">
@@ -716,7 +838,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
                   Write or Paste Plain English
                 </label>
-                <span className="text-[10px] font-bold text-slate-400">Live sync → A4</span>
+                <span className="text-[10px] font-bold text-slate-400">Live sync → A4 + QR</span>
               </div>
               <textarea
                 rows={7}
@@ -728,9 +850,6 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 placeholder="Type sentences here. Put each step or idea on a new line..."
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm leading-relaxed text-slate-900 focus:border-[#D45A1A] focus:bg-white focus:outline-none"
               />
-              <p className="mt-1 text-[11px] text-slate-500">
-                Smart phrases like <strong>cup of tea</strong>, <strong>hospital passport</strong>, <strong>quiet break</strong>, <strong>ear defenders</strong>, and <strong>brush your teeth</strong> automatically pair into single clean concepts.
-              </p>
             </div>
           </div>
 
@@ -741,9 +860,7 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                   <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#D45A1A]">
                     Word &amp; Grammar Inspector
                   </p>
-                  <h3 className="text-sm font-black text-slate-900">
-                    “{selectedToken.caption}”
-                  </h3>
+                  <h3 className="text-sm font-black text-slate-900">“{selectedToken.caption}”</h3>
                 </div>
                 <div className="flex items-center gap-1">
                   {selectedToken.hasOverride && (
@@ -851,23 +968,23 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               </div>
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-center">
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-4 text-center space-y-1.5">
               <p className="text-xs font-extrabold text-slate-700">
                 Click any word or phrase on the A4 sheet →
               </p>
-              <p className="mt-1 text-[11px] text-slate-500">
-                Swap from {symbols.length.toLocaleString('en-GB')} symbols (Mulberry + Health Icons CC0 + Spark 360° Core + OpenMoji), edit text, or add grammar overlays.
+              <p className="text-[11px] text-slate-500">
+                Try flipping <strong>Style</strong> above to <strong>High-Contrast</strong> or <strong>Crisp Mono</strong>, or scan the QR code at the bottom of the A4 page with your phone.
               </p>
             </div>
           )}
         </div>
 
-        {/* Right Column: Clean Widgit-Grade Floating A4 Sheet */}
+        {/* Right Column: Clean Floating A4 Sheet */}
         <div className="lg:col-span-8">
           <div className="rounded-2xl border border-slate-200/80 bg-slate-200/60 p-4 sm:p-6">
             <article
               style={{
-                backgroundColor: activePaper.hex,
+                backgroundColor: isHighContrast ? '#FFFFFF' : activePaper.hex,
                 fontFamily: openDyslexic
                   ? '"OpenDyslexic", "Comic Sans MS", system-ui, sans-serif'
                   : undefined,
@@ -877,7 +994,11 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
               <div>
                 <header className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-900 pb-4 mb-7">
                   <div>
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#D45A1A]">
+                    <p
+                      className={`text-[10px] font-extrabold uppercase tracking-widest ${
+                        isHighContrast ? 'text-black' : 'text-[#D45A1A]'
+                      }`}
+                    >
                       Spark Symbol Studio • {activeLensMeta.shortLabel}
                     </p>
                     <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-950">
@@ -902,22 +1023,25 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     {paragraphs.map((p) => (
                       <div
                         key={p.pIdx}
-                        className="flex items-center gap-5 rounded-xl border border-slate-200/90 bg-white/90 p-4"
+                        className={`flex items-center gap-5 rounded-xl p-4 ${
+                          isHighContrast
+                            ? 'border-2 border-black bg-[#FFF04B] text-black'
+                            : 'border border-slate-200/90 bg-white/90 text-slate-900'
+                        }`}
                       >
                         <div className="flex h-20 w-20 shrink-0 items-center justify-center p-1">
                           {p.leadSymbol ? (
-                            <img
+                            <SparkSymbol
                               src={p.leadSymbol}
                               alt=""
-                              className="h-full w-full object-contain"
+                              theme={symbolTheme}
+                              className="h-full w-full"
                             />
                           ) : (
                             <span className="text-[10px] font-bold text-slate-400">TEXT</span>
                           )}
                         </div>
-                        <p className="text-base font-semibold leading-relaxed text-slate-900">
-                          {p.line}
-                        </p>
+                        <p className="text-base font-bold leading-relaxed">{p.line}</p>
                       </div>
                     ))}
                   </div>
@@ -926,7 +1050,9 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                     {paragraphs.map((p) => (
                       <div
                         key={p.pIdx}
-                        className="flex flex-wrap items-end gap-x-3 gap-y-4 border-b border-slate-200/80 pb-6 last:border-b-0"
+                        className={`flex flex-wrap items-end gap-x-3 gap-y-4 border-b pb-6 last:border-b-0 ${
+                          isHighContrast ? 'border-black/40' : 'border-slate-200/80'
+                        }`}
                       >
                         {p.tokens.map((tok) => {
                           const isSelected = selectedTokenKey === tok.key;
@@ -944,7 +1070,9 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                                     ? 'bg-emerald-100 text-emerald-900 font-extrabold'
                                     : isSelected
                                       ? 'bg-slate-900 text-white'
-                                      : 'text-slate-600 hover:bg-slate-200/70'
+                                      : isHighContrast
+                                        ? 'text-black font-bold hover:bg-yellow-200'
+                                        : 'text-slate-600 hover:bg-slate-200/70'
                                 }`}
                                 title="Click to add a symbol for this word"
                               >
@@ -962,33 +1090,38 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                                 setPickerQuery(tok.cleanWord);
                               }}
                               className={`group inline-flex flex-col items-center justify-end transition ${
-                                boxedCards
-                                  ? `rounded-xl border-2 px-2.5 py-2 ${toneBorderClasses(tok.tone, colourfulSemantics)}`
-                                  : 'rounded-lg px-1.5 py-1 bg-transparent hover:bg-slate-100/80'
-                              } ${
-                                isSelected
-                                  ? 'ring-2 ring-slate-900 ring-offset-2'
-                                  : ''
-                              }`}
+                                isHighContrast
+                                  ? 'rounded-xl border-2 border-black bg-[#FFF04B] px-2.5 py-2'
+                                  : boxedCards
+                                    ? `rounded-xl border-2 px-2.5 py-2 ${toneBorderClasses(tok.tone, colourfulSemantics)}`
+                                    : 'rounded-lg px-1.5 py-1 bg-transparent hover:bg-slate-100/80'
+                              } ${isSelected ? 'ring-2 ring-slate-900 ring-offset-2' : ''}`}
                               title={`Click to swap symbol or add grammar overlay for "${tok.caption}"`}
                             >
                               <span className={`relative flex items-center justify-center ${tileImgClass}`}>
-                                <img
+                                <SparkSymbol
                                   src={tok.svgPath}
                                   alt={tok.symbolLabel}
-                                  className="h-full w-full object-contain"
+                                  theme={symbolTheme}
+                                  className="h-full w-full"
                                 />
                                 {renderOverlayVisual(tok.overlay)}
                               </span>
                               <span
-                                className={`mt-1.5 font-bold leading-tight text-slate-900 text-center ${tileTextClass}`}
+                                className={`mt-1.5 font-bold leading-tight text-center ${
+                                  isHighContrast ? 'text-black font-extrabold' : 'text-slate-900'
+                                } ${tileTextClass}`}
                               >
                                 {tok.caption}
                               </span>
-                              {!boxedCards && colourfulSemantics && (
+                              {!boxedCards && !isHighContrast && colourfulSemantics && (
                                 <span
                                   aria-hidden="true"
-                                  className={`mt-1 h-[3px] w-7 rounded-full ${toneUnderlineClasses(tok.tone, true)}`}
+                                  className={`mt-1 h-[3px] w-7 rounded-full ${
+                                    symbolTheme === 'mono'
+                                      ? 'bg-slate-600'
+                                      : toneUnderlineClasses(tok.tone, true)
+                                  }`}
                                 />
                               )}
                             </button>
@@ -1000,12 +1133,46 @@ export const EasyReadWriterPanel: React.FC<Props> = ({
                 )}
               </div>
 
-              <footer className="mt-10 flex flex-wrap items-center justify-between gap-2 border-t border-slate-300/80 pt-3 text-[11px] text-slate-500">
-                <span>
-                  Prepared by <strong className="text-slate-800">{careInitials || 'Spark Studio'}</strong> •{' '}
-                  {careReviewNote || 'Zero-PII Local Session'}
-                </span>
-                <span className="font-semibold">Spark Symbol Studio • 360° Accessible Communication</span>
+              {/* A4 Governance Footer + Live Zero-PII QR-Bridge */}
+              <footer className="mt-10 flex flex-wrap items-end justify-between gap-4 border-t border-slate-300/80 pt-4 text-[11px] text-slate-500">
+                <div className="space-y-1">
+                  <div>
+                    Prepared by <strong className="text-slate-800">{careInitials || 'Spark Studio'}</strong> •{' '}
+                    {careReviewNote || 'Zero-PII Local Session'}
+                  </div>
+                  <div className="font-semibold text-slate-700">
+                    Spark Symbol Studio • 360° Accessible Communication
+                  </div>
+                </div>
+
+                {showQrBridge && qrDataUrl && (
+                  <div className="flex items-center gap-2.5 rounded-xl border border-slate-900/20 bg-white px-2.5 py-2 shadow-2xs">
+                    <img
+                      src={qrDataUrl}
+                      alt="Scan for Mobile Live Talker"
+                      className="h-14 w-14 shrink-0 rounded-sm"
+                    />
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-slate-900">
+                        Scan to Speak
+                      </p>
+                      <p className="text-[10px] leading-snug text-slate-500">
+                        Pocket Live Talker
+                        <br />
+                        Zero-PII • Offline
+                      </p>
+                      <a
+                        href={qrBridgeUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#D45A1A] hover:underline"
+                      >
+                        <span>Open Talker</span>
+                        <ExternalLink className="h-2.5 w-2.5" />
+                      </a>
+                    </div>
+                  </div>
+                )}
               </footer>
             </article>
           </div>

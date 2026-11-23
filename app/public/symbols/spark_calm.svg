@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <circle cx="128" cy="128" r="102" fill="#ECFDF5" stroke="#10B981" stroke-width="8"/>
-  <path d="M58 112c22-24 48-24 70 0s48 24 70 0" fill="none" stroke="#059669" stroke-width="12" stroke-linecap="round"/>
-  <path d="M58 152c22-24 48-24 70 0s48 24 70 0" fill="none" stroke="#34D399" stroke-width="12" stroke-linecap="round"/>
-  <circle cx="128" cy="70" r="14" fill="#FBBF24" stroke="#0F172A" stroke-width="5"/>
+<svg data-spark-living="true" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="102" fill="var(--spark-tint, #ECFDF5)" stroke="var(--spark-success, #15803D)" stroke-width="8"/>
+  <path d="M58 112c22-24 48-24 70 0s48 24 70 0" fill="none" stroke="var(--spark-success, #15803D)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M58 152c22-24 48-24 70 0s48 24 70 0" fill="none" stroke="var(--spark-success, #15803D)" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="128" cy="70" r="14" fill="#FBBF24" stroke="var(--spark-stroke, #0F172A)" stroke-width="5"/>
 </svg>

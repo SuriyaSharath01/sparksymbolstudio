@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <circle cx="128" cy="128" r="108" fill="#FEF3C7" stroke="#F59E0B" stroke-width="6"/>
-  <circle cx="84" cy="94" r="22" fill="#FFFFFF" stroke="#0F172A" stroke-width="7"/>
-  <path d="M46 186c0-26 17-44 38-44s38 18 38 44" fill="#38BDF8" stroke="#0F172A" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="172" cy="94" r="22" fill="#FFFFFF" stroke="#0F172A" stroke-width="7"/>
-  <path d="M134 186c0-26 17-44 38-44s38 18 38 44" fill="#34D399" stroke="#0F172A" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="128" cy="84" r="25" fill="#FDE68A" stroke="#0F172A" stroke-width="7"/>
-  <path d="M84 196c0-30 20-50 44-50s44 20 44 50" fill="#F59E0B" stroke="#0F172A" stroke-width="7" stroke-linecap="round"/>
+<svg data-spark-living="true" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="108" fill="var(--spark-tint, #FEF3C7)" stroke="var(--spark-accent, #D45A1A)" stroke-width="6"/>
+  <circle cx="84" cy="94" r="22" fill="var(--spark-surface, #FFFFFF)" stroke="var(--spark-stroke, #0F172A)" stroke-width="7"/>
+  <path d="M46 186c0-26 17-44 38-44s38 18 38 44" fill="#38BDF8" stroke="var(--spark-stroke, #0F172A)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="172" cy="94" r="22" fill="var(--spark-surface, #FFFFFF)" stroke="var(--spark-stroke, #0F172A)" stroke-width="7"/>
+  <path d="M134 186c0-26 17-44 38-44s38 18 38 44" fill="var(--spark-success, #15803D)" stroke="var(--spark-stroke, #0F172A)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="128" cy="84" r="25" fill="var(--spark-tint, #FDE68A)" stroke="var(--spark-stroke, #0F172A)" stroke-width="7"/>
+  <path d="M84 196c0-30 20-50 44-50s44 20 44 50" fill="var(--spark-accent, #D45A1A)" stroke="var(--spark-stroke, #0F172A)" stroke-width="7" stroke-linecap="round"/>
 </svg>
