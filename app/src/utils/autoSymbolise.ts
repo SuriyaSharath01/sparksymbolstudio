@@ -1,3 +1,4 @@
+import { SPARK_CORE_MANIFEST_OVERRIDES } from '../data/spark-core-symbols';
 import type { MulberrySymbol } from '../data/symbols';
 import type { AudienceLens } from '../context/AudienceLensContext';
 
@@ -632,6 +633,7 @@ export function resolveTokenSymbol(
 
   // 0. Tier-0 Spark Core overrides (always preferred + persona-aware)
   if (SPARK_CORE_EASY_READ_OVERRIDES[clean]) return SPARK_CORE_EASY_READ_OVERRIDES[clean];
+  if (SPARK_CORE_MANIFEST_OVERRIDES[clean]) return SPARK_CORE_MANIFEST_OVERRIDES[clean];
 
   // 1. Locked multi-word phrase match
   if (LOCKED_PHRASES[clean]) return LOCKED_PHRASES[clean];

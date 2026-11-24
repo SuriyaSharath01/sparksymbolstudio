@@ -1,4 +1,18 @@
 import type { MulberrySymbol } from './symbols';
+import sparkCoreManifest from './spark-core-250.json';
+
+interface SparkManifestEntry {
+  id: number;
+  slug: string;
+  label: string;
+  category: string;
+  fitzgerald: string;
+  personaEligible: boolean;
+  batch: number;
+  status: string;
+  svgPath: string;
+  aliases: string[];
+}
 
 const CORE_META: Record<string, { label: string; tags: string[] }> = {
   i_me: { label: 'I / Me', tags: ['i', 'me', 'my', 'myself', 'self', 'core', 'pronoun', 'persona'] },
@@ -58,7 +72,13 @@ function formatFallbackLabel(id: string): string {
     .join(' ');
 }
 
-export const SPARK_CORE_48_SYMBOLS: MulberrySymbol[] = Object.keys(CORE_META).map((id) => {
+const SPARK_CATEGORY = 'Spark Core';
+
+const doneManifestSymbols: SparkManifestEntry[] = (
+  (sparkCoreManifest as { symbols?: SparkManifestEntry[] }).symbols || []
+).filter((entry) => entry.status === 'done');
+
+const existingSymbols: MulberrySymbol[] = Object.keys(CORE_META).map((id) => {
   const meta = CORE_META[id];
   return {
     id: `spark_core_${id}`,
@@ -66,6 +86,61 @@ export const SPARK_CORE_48_SYMBOLS: MulberrySymbol[] = Object.keys(CORE_META).ma
     filename: `${id}.svg`,
     svgPath: `/symbols/spark-core/${id}.svg`,
     tags: meta ? [...meta.tags, 'spark core', 'spark', 'aac'] : [id.replace(/_/g, ' '), 'spark core', 'spark'],
-    category: 'Spark Core (Inclusive 48)',
+    category: SPARK_CATEGORY,
   };
 });
+
+const manifestExtraSymbols: MulberrySymbol[] = doneManifestSymbols
+  .filter((entry) => !CORE_META[entry.slug])
+  .map((entry) => ({
+    id: `spark_core_${entry.slug}`,
+    label: entry.label,
+    filename: `${entry.slug}.svg`,
+    svgPath: entry.svgPath,
+    tags: Array.from(
+      new Set([
+        entry.label.toLowerCase(),
+        entry.slug.replace(/_/g, ' '),
+        ...entry.aliases.map((a) => a.toLowerCase()),
+        entry.category.toLowerCase(),
+        'spark core',
+        'spark',
+        'aac',
+      ])
+    ),
+    category: SPARK_CATEGORY,
+  }));
+
+export const SPARK_CORE_48_SYMBOLS: MulberrySymbol[] = [
+  ...existingSymbols,
+  ...manifestExtraSymbols,
+];
+
+function cleanLookupKey(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export const SPARK_CORE_MANIFEST_OVERRIDES: Record<string, { svgPath: string; label: string }> = {};
+
+for (const entry of doneManifestSymbols) {
+  const candidates = [
+    entry.slug.replace(/_/g, ' '),
+    entry.label,
+    ...entry.label.split('/'),
+    ...entry.aliases,
+  ];
+  for (const raw of candidates) {
+    const trimmed = raw.toLowerCase().trim();
+    const cleaned = cleanLookupKey(raw);
+    if (trimmed && !SPARK_CORE_MANIFEST_OVERRIDES[trimmed]) {
+      SPARK_CORE_MANIFEST_OVERRIDES[trimmed] = { svgPath: entry.svgPath, label: entry.label };
+    }
+    if (cleaned && !SPARK_CORE_MANIFEST_OVERRIDES[cleaned]) {
+      SPARK_CORE_MANIFEST_OVERRIDES[cleaned] = { svgPath: entry.svgPath, label: entry.label };
+    }
+  }
+}
