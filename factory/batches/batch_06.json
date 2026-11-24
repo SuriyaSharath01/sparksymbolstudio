@@ -1,0 +1,370 @@
+[
+  {
+    "id": 127,
+    "slug": "next",
+    "label": "Next",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/next.svg",
+    "aliases": [
+      "next",
+      "following",
+      "after"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: three simple boxes in a row with the middle box highlighted and a forward arrow"
+  },
+  {
+    "id": 129,
+    "slug": "now",
+    "label": "Now",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/now.svg",
+    "aliases": [
+      "now",
+      "right now",
+      "immediately"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: downward bold pointer arrow aimed directly at a crisp present-moment dot"
+  },
+  {
+    "id": 130,
+    "slug": "later",
+    "label": "Later",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/later.svg",
+    "aliases": [
+      "later",
+      "soon",
+      "in a bit"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean clock face with a small forward arrow pointing past it to the right"
+  },
+  {
+    "id": 132,
+    "slug": "today",
+    "label": "Today",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/today.svg",
+    "aliases": [
+      "today"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple wall calendar grid with the current day square highlighted clearly in warm orange"
+  },
+  {
+    "id": 133,
+    "slug": "tomorrow",
+    "label": "Tomorrow",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tomorrow.svg",
+    "aliases": [
+      "tomorrow"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple calendar grid with an arrow stepping right to the next day square"
+  },
+  {
+    "id": 134,
+    "slug": "yesterday",
+    "label": "Yesterday",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/yesterday.svg",
+    "aliases": [
+      "yesterday"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple calendar grid with an arrow stepping left to the previous day square"
+  },
+  {
+    "id": 135,
+    "slug": "morning",
+    "label": "Morning",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/morning.svg",
+    "aliases": [
+      "morning",
+      "am"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm golden sun rising gently above a low green hill horizon"
+  },
+  {
+    "id": 136,
+    "slug": "afternoon",
+    "label": "Afternoon",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/afternoon.svg",
+    "aliases": [
+      "afternoon",
+      "midday",
+      "pm"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bright warm sun high in a clear soft blue sky"
+  },
+  {
+    "id": 137,
+    "slug": "evening",
+    "label": "Evening",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/evening.svg",
+    "aliases": [
+      "evening",
+      "dusk"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm orange sun setting low behind a calm horizon"
+  },
+  {
+    "id": 138,
+    "slug": "night",
+    "label": "Night",
+    "category": "Time & Sequence",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/night.svg",
+    "aliases": [
+      "night",
+      "bedtime",
+      "overnight"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: deep calm navy circle featuring a pale crescent moon and three tiny stars"
+  },
+  {
+    "id": 139,
+    "slug": "loud",
+    "label": "Loud / Noisy",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/loud.svg",
+    "aliases": [
+      "loud",
+      "noisy",
+      "noise"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: speaker horn emitting bold expanding curved sound waves"
+  },
+  {
+    "id": 140,
+    "slug": "quiet",
+    "label": "Quiet",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/quiet.svg",
+    "aliases": [
+      "quiet",
+      "hush",
+      "silent",
+      "shh"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: calm person gently holding one index finger vertically in front of closed lips"
+  },
+  {
+    "id": 141,
+    "slug": "hot",
+    "label": "Hot",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/hot.svg",
+    "aliases": [
+      "hot",
+      "warm",
+      "boiling"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: thermometer with high red mercury and gentle rising heat waves"
+  },
+  {
+    "id": 142,
+    "slug": "cold",
+    "label": "Cold",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/cold.svg",
+    "aliases": [
+      "cold",
+      "chilly",
+      "freezing"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: crisp symmetrical pale blue snowflake"
+  },
+  {
+    "id": 143,
+    "slug": "big",
+    "label": "Big",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/big.svg",
+    "aliases": [
+      "big",
+      "large",
+      "huge"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: large orange circle beside a tiny grey circle to show big scale clearly"
+  },
+  {
+    "id": 144,
+    "slug": "small",
+    "label": "Small",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/small.svg",
+    "aliases": [
+      "small",
+      "little",
+      "tiny"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: tiny orange circle beside a large faint grey circle to show small scale clearly"
+  },
+  {
+    "id": 145,
+    "slug": "fast",
+    "label": "Fast",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/fast.svg",
+    "aliases": [
+      "fast",
+      "quick",
+      "hurry"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: sleek hare running swiftly with three clean horizontal motion lines"
+  },
+  {
+    "id": 146,
+    "slug": "slow",
+    "label": "Slow",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/slow.svg",
+    "aliases": [
+      "slow",
+      "gentle",
+      "steady"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: calm friendly tortoise walking steadily forward"
+  },
+  {
+    "id": 147,
+    "slug": "good",
+    "label": "Good",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/good.svg",
+    "aliases": [
+      "good",
+      "great",
+      "well",
+      "nice"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean warm green thumbs-up hand gesture"
+  },
+  {
+    "id": 148,
+    "slug": "bad",
+    "label": "Bad",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bad.svg",
+    "aliases": [
+      "bad",
+      "poor",
+      "wrong"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean muted red thumbs-down hand gesture"
+  },
+  {
+    "id": 149,
+    "slug": "same",
+    "label": "Same",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/same.svg",
+    "aliases": [
+      "same",
+      "equal",
+      "identical"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two identical rounded blue squares placed neatly side by side"
+  },
+  {
+    "id": 150,
+    "slug": "different",
+    "label": "Different",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 6,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/different.svg",
+    "aliases": [
+      "different",
+      "other",
+      "change"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: one rounded blue square placed beside one bright amber triangle"
+  }
+]

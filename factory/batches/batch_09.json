@@ -1,0 +1,427 @@
+[
+  {
+    "id": 201,
+    "slug": "school",
+    "label": "School",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/school.svg",
+    "aliases": [
+      "school",
+      "primary",
+      "secondary"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: welcoming British brick school building with clock gable and front gate"
+  },
+  {
+    "id": 202,
+    "slug": "college",
+    "label": "College",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/college.svg",
+    "aliases": [
+      "college",
+      "sixth form"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: modern college campus building with wide glass entrance doors"
+  },
+  {
+    "id": 203,
+    "slug": "university",
+    "label": "University",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/university.svg",
+    "aliases": [
+      "university",
+      "uni",
+      "degree"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: classic academic graduation cap resting neatly atop a closed hardcover book"
+  },
+  {
+    "id": 204,
+    "slug": "classroom",
+    "label": "Classroom",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/classroom.svg",
+    "aliases": [
+      "classroom",
+      "lecture",
+      "lesson"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: tidy classroom desk and chair facing a clean green board"
+  },
+  {
+    "id": 205,
+    "slug": "library",
+    "label": "Library",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/library.svg",
+    "aliases": [
+      "library",
+      "bookshelf"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: neat wooden bookshelf lined with tidy upright colourful books"
+  },
+  {
+    "id": 206,
+    "slug": "book",
+    "label": "Book",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/book.svg",
+    "aliases": [
+      "book",
+      "notebook",
+      "diary"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean closed hardcover book with a small ribbon bookmark"
+  },
+  {
+    "id": 207,
+    "slug": "pen",
+    "label": "Pen / Pencil",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/pen.svg",
+    "aliases": [
+      "pen",
+      "pencil"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: classic yellow wooden pencil angled neatly across a crisp line"
+  },
+  {
+    "id": 208,
+    "slug": "laptop",
+    "label": "Laptop",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/laptop.svg",
+    "aliases": [
+      "laptop",
+      "computer",
+      "pc"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: sleek open modern laptop computer with blank light screen"
+  },
+  {
+    "id": 209,
+    "slug": "phone",
+    "label": "Phone",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/phone.svg",
+    "aliases": [
+      "phone",
+      "mobile",
+      "call"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean modern smartphone with a simple handset call icon on screen"
+  },
+  {
+    "id": 210,
+    "slug": "tablet",
+    "label": "Tablet / iPad",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tablet.svg",
+    "aliases": [
+      "tablet",
+      "ipad",
+      "aac device"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: landscape tablet displaying a clean 2x3 symbol grid layout"
+  },
+  {
+    "id": 211,
+    "slug": "timetable",
+    "label": "Timetable",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/timetable.svg",
+    "aliases": [
+      "timetable",
+      "schedule",
+      "rota"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: structured weekly schedule grid with neat coloured time blocks"
+  },
+  {
+    "id": 212,
+    "slug": "homework",
+    "label": "Homework",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/homework.svg",
+    "aliases": [
+      "homework",
+      "assignment",
+      "revision"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: open notebook with a pencil beside a small desk lamp"
+  },
+  {
+    "id": 213,
+    "slug": "exam",
+    "label": "Exam / Test",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/exam.svg",
+    "aliases": [
+      "exam",
+      "test",
+      "assessment"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean paper sheet with ticked checkboxes and a pencil beside it"
+  },
+  {
+    "id": 214,
+    "slug": "group",
+    "label": "Group / Team",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": true,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/group.svg",
+    "aliases": [
+      "group",
+      "team",
+      "club"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: four friendly people seated together around a circular table"
+  },
+  {
+    "id": 215,
+    "slug": "work",
+    "label": "Work",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/work.svg",
+    "aliases": [
+      "work",
+      "job",
+      "office",
+      "shift"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean leather briefcase resting beside a neat desk"
+  },
+  {
+    "id": 216,
+    "slug": "meeting",
+    "label": "Meeting",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": true,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/meeting.svg",
+    "aliases": [
+      "meeting",
+      "review",
+      "handover"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: three people sitting round a table discussing calmly with small speech bubbles"
+  },
+  {
+    "id": 217,
+    "slug": "task",
+    "label": "Task",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/task.svg",
+    "aliases": [
+      "task",
+      "job",
+      "chore",
+      "checklist"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple clipboard showing three tidy lines with one green tick"
+  },
+  {
+    "id": 218,
+    "slug": "goal",
+    "label": "Goal",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/goal.svg",
+    "aliases": [
+      "goal",
+      "target",
+      "aim"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean bullseye target with a single steady arrow hitting the centre"
+  },
+  {
+    "id": 219,
+    "slug": "calendar",
+    "label": "Appointment",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/calendar.svg",
+    "aliases": [
+      "calendar",
+      "appointment",
+      "date"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean monthly calendar page with a ringed appointment circle and tiny clock"
+  },
+  {
+    "id": 220,
+    "slug": "message",
+    "label": "Message",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/message.svg",
+    "aliases": [
+      "message",
+      "email",
+      "letter",
+      "text"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean crisp envelope paired with a friendly chat speech bubble"
+  },
+  {
+    "id": 221,
+    "slug": "question",
+    "label": "Question",
+    "category": "Education & Work",
+    "fitzgerald": "pink",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/question.svg",
+    "aliases": [
+      "question",
+      "query"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bold friendly dark-teal question mark inside a clean speech bubble"
+  },
+  {
+    "id": 222,
+    "slug": "answer",
+    "label": "Answer",
+    "category": "Education & Work",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/answer.svg",
+    "aliases": [
+      "answer",
+      "reply",
+      "response"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean speech bubble containing a bright green tick mark"
+  },
+  {
+    "id": 223,
+    "slug": "rule",
+    "label": "Rule / Boundary",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/rule.svg",
+    "aliases": [
+      "rule",
+      "rules",
+      "boundary",
+      "guidelines"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: neat scroll document with a small balance scale emblem"
+  },
+  {
+    "id": 224,
+    "slug": "choice",
+    "label": "Choice",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/choice.svg",
+    "aliases": [
+      "choice",
+      "option",
+      "options"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean forked path signpost pointing left and right to two neat circles"
+  },
+  {
+    "id": 225,
+    "slug": "plan",
+    "label": "Plan",
+    "category": "Education & Work",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 9,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/plan.svg",
+    "aliases": [
+      "plan",
+      "plan ahead",
+      "strategy"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple stepped path with three numbered stepping-stone circles leading to a star"
+  }
+]

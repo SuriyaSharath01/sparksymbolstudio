@@ -1,0 +1,391 @@
+[
+  {
+    "id": 177,
+    "slug": "coffee",
+    "label": "Coffee",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/coffee.svg",
+    "aliases": [
+      "coffee",
+      "latte",
+      "americano"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: ceramic mug filled with rich dark coffee and gentle rising steam"
+  },
+  {
+    "id": 178,
+    "slug": "water",
+    "label": "Water",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/water.svg",
+    "aliases": [
+      "water",
+      "hydration"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clear glass filled with cool refreshing light-blue water"
+  },
+  {
+    "id": 179,
+    "slug": "juice",
+    "label": "Juice",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/juice.svg",
+    "aliases": [
+      "juice",
+      "squash"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: tall glass of bright orange juice with a small orange slice on the rim"
+  },
+  {
+    "id": 180,
+    "slug": "breakfast",
+    "label": "Breakfast",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/breakfast.svg",
+    "aliases": [
+      "breakfast",
+      "cereal"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bowl of cereal with a spoon beside a slice of golden toast"
+  },
+  {
+    "id": 181,
+    "slug": "lunch",
+    "label": "Lunch",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/lunch.svg",
+    "aliases": [
+      "lunch",
+      "sandwich"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: fresh triangular sandwich on a plate beside a crisp apple"
+  },
+  {
+    "id": 182,
+    "slug": "dinner",
+    "label": "Dinner",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/dinner.svg",
+    "aliases": [
+      "dinner",
+      "supper",
+      "evening meal"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm plated hot meal with knife and fork placed neatly on either side"
+  },
+  {
+    "id": 183,
+    "slug": "snack",
+    "label": "Snack",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/snack.svg",
+    "aliases": [
+      "snack",
+      "biscuit",
+      "treat"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: small plate with two simple oat biscuits and grapes"
+  },
+  {
+    "id": 184,
+    "slug": "fruit",
+    "label": "Fruit",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/fruit.svg",
+    "aliases": [
+      "fruit",
+      "apple",
+      "banana"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bright red apple and ripe yellow banana side by side"
+  },
+  {
+    "id": 185,
+    "slug": "bread",
+    "label": "Bread / Toast",
+    "category": "Food & Drink",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bread.svg",
+    "aliases": [
+      "bread",
+      "toast"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two neat slices of lightly toasted wholemeal bread"
+  },
+  {
+    "id": 187,
+    "slug": "break",
+    "label": "Break",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/break.svg",
+    "aliases": [
+      "break",
+      "pause",
+      "interval"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple pause bars icon beside a warm mug showing a short rest period"
+  },
+  {
+    "id": 188,
+    "slug": "play",
+    "label": "Play",
+    "category": "Leisure & Community",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/play.svg",
+    "aliases": [
+      "play",
+      "game",
+      "fun"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two smiling people enjoying a simple tabletop board game together"
+  },
+  {
+    "id": 189,
+    "slug": "music",
+    "label": "Music",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/music.svg",
+    "aliases": [
+      "music",
+      "song",
+      "headphones"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: comfortable over-ear headphones beside two clean floating musical notes"
+  },
+  {
+    "id": 190,
+    "slug": "tv",
+    "label": "TV / Film",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tv.svg",
+    "aliases": [
+      "tv",
+      "television",
+      "film",
+      "video"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean modern flat-screen television resting on a simple stand"
+  },
+  {
+    "id": 191,
+    "slug": "art",
+    "label": "Art / Drawing",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/art.svg",
+    "aliases": [
+      "art",
+      "draw",
+      "drawing",
+      "paint"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: wooden paint palette with soft colour dabs and a simple paintbrush"
+  },
+  {
+    "id": 192,
+    "slug": "exercise",
+    "label": "Exercise",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": true,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/exercise.svg",
+    "aliases": [
+      "exercise",
+      "gym",
+      "sport",
+      "fitness"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person stretching happily in sportswear on a simple exercise mat"
+  },
+  {
+    "id": 193,
+    "slug": "park",
+    "label": "Park",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/park.svg",
+    "aliases": [
+      "park",
+      "walk in the park"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: sunny public park with a leafy tree, winding path, and wooden park bench"
+  },
+  {
+    "id": 194,
+    "slug": "shop",
+    "label": "Shop",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/shop.svg",
+    "aliases": [
+      "shop",
+      "shopping",
+      "supermarket",
+      "store"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly local shopfront with striped awning and a simple shopping basket"
+  },
+  {
+    "id": 195,
+    "slug": "cafe",
+    "label": "Café",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/cafe.svg",
+    "aliases": [
+      "cafe",
+      "café",
+      "coffee shop"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: cosy café table with two chairs and a steaming mug on top"
+  },
+  {
+    "id": 196,
+    "slug": "bus",
+    "label": "Bus",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bus.svg",
+    "aliases": [
+      "bus",
+      "coach"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean British local passenger bus seen from friendly side-angle view"
+  },
+  {
+    "id": 197,
+    "slug": "train",
+    "label": "Train",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/train.svg",
+    "aliases": [
+      "train",
+      "station",
+      "rail"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: sleek modern UK passenger train on a simple track"
+  },
+  {
+    "id": 198,
+    "slug": "car",
+    "label": "Car / Taxi",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/car.svg",
+    "aliases": [
+      "car",
+      "taxi",
+      "drive"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly compact hatchback car seen from clean side view"
+  },
+  {
+    "id": 199,
+    "slug": "bike",
+    "label": "Bike",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bike.svg",
+    "aliases": [
+      "bike",
+      "bicycle",
+      "cycle"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean modern commuter hybrid bicycle seen from crisp side profile"
+  },
+  {
+    "id": 200,
+    "slug": "celebrate",
+    "label": "Celebrate",
+    "category": "Leisure & Community",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 8,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/celebrate.svg",
+    "aliases": [
+      "celebrate",
+      "birthday",
+      "party",
+      "gift"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: festive birthday cake with one lit candle and tiny colourful bunting"
+  }
+]

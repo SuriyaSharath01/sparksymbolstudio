@@ -1,0 +1,398 @@
+[
+  {
+    "id": 151,
+    "slug": "in",
+    "label": "In / Inside",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/in.svg",
+    "aliases": [
+      "in",
+      "inside",
+      "into"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: small solid orange ball sitting neatly inside an open-top box"
+  },
+  {
+    "id": 152,
+    "slug": "out",
+    "label": "Out / Outside",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/out.svg",
+    "aliases": [
+      "out",
+      "outside"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: small solid orange ball jumping out of an open box with an outward arrow"
+  },
+  {
+    "id": 153,
+    "slug": "on",
+    "label": "On",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/on.svg",
+    "aliases": [
+      "on",
+      "on top"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: small solid orange ball resting cleanly on top of a closed box"
+  },
+  {
+    "id": 154,
+    "slug": "off",
+    "label": "Off",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/off.svg",
+    "aliases": [
+      "off",
+      "switch off"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple light switch clicked neatly to the off position with a small arrow"
+  },
+  {
+    "id": 155,
+    "slug": "up",
+    "label": "Up",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/up.svg",
+    "aliases": [
+      "up",
+      "upstairs",
+      "higher"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bold clean arrow pointing straight upwards"
+  },
+  {
+    "id": 156,
+    "slug": "down",
+    "label": "Down",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/down.svg",
+    "aliases": [
+      "down",
+      "downstairs",
+      "lower"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bold clean arrow pointing straight downwards"
+  },
+  {
+    "id": 157,
+    "slug": "under",
+    "label": "Under",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/under.svg",
+    "aliases": [
+      "under",
+      "below",
+      "underneath"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: small solid orange ball resting beneath a simple flat wooden table"
+  },
+  {
+    "id": 158,
+    "slug": "here",
+    "label": "Here",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/here.svg",
+    "aliases": [
+      "here"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bold downward pointer arrow pointing directly at a close ground spot"
+  },
+  {
+    "id": 159,
+    "slug": "there",
+    "label": "There",
+    "category": "Prepositions",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/there.svg",
+    "aliases": [
+      "there",
+      "over there"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: pointing hand aiming diagonally across towards a distant marker dot"
+  },
+  {
+    "id": 160,
+    "slug": "ready",
+    "label": "Ready",
+    "category": "Descriptors",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/ready.svg",
+    "aliases": [
+      "ready",
+      "set",
+      "prepared"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: confident smiling person standing ready with a small green tick badge"
+  },
+  {
+    "id": 162,
+    "slug": "bedroom",
+    "label": "Bedroom",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bedroom.svg",
+    "aliases": [
+      "bedroom",
+      "my room"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: tidy bedroom showing a single bed, bedside lamp, and small window"
+  },
+  {
+    "id": 163,
+    "slug": "toilet",
+    "label": "Toilet",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/toilet.svg",
+    "aliases": [
+      "toilet",
+      "loo",
+      "bathroom",
+      "wc"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean simple white ceramic toilet drawn in clear side-three-quarter view"
+  },
+  {
+    "id": 164,
+    "slug": "shower",
+    "label": "Shower",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/shower.svg",
+    "aliases": [
+      "shower",
+      "wash"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: modern showerhead spraying gentle neat blue water droplets downwards"
+  },
+  {
+    "id": 165,
+    "slug": "bath",
+    "label": "Bath",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bath.svg",
+    "aliases": [
+      "bath",
+      "bathtub"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean white bathtub filled with warm water and soft bubbles"
+  },
+  {
+    "id": 166,
+    "slug": "kitchen",
+    "label": "Kitchen",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/kitchen.svg",
+    "aliases": [
+      "kitchen"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple kitchen counter with kettle, sink tap, and neat wall cupboard"
+  },
+  {
+    "id": 167,
+    "slug": "garden",
+    "label": "Garden",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/garden.svg",
+    "aliases": [
+      "garden",
+      "yard",
+      "outdoors"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: green lawn garden with wooden fence, blooming flower, and leafy tree"
+  },
+  {
+    "id": 168,
+    "slug": "bed",
+    "label": "Bed",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bed.svg",
+    "aliases": [
+      "bed"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: cosy single wooden bed with white pillow and neatly folded duvet"
+  },
+  {
+    "id": 169,
+    "slug": "chair",
+    "label": "Chair",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/chair.svg",
+    "aliases": [
+      "chair",
+      "seat"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple sturdy wooden chair seen at a clear three-quarter angle"
+  },
+  {
+    "id": 170,
+    "slug": "door",
+    "label": "Door",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/door.svg",
+    "aliases": [
+      "door",
+      "entrance",
+      "exit"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean panelled wooden door with a simple round brass handle"
+  },
+  {
+    "id": 171,
+    "slug": "clothes",
+    "label": "Clothes",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/clothes.svg",
+    "aliases": [
+      "clothes",
+      "dress",
+      "get dressed",
+      "outfit"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: folded clean t-shirt and pair of trousers laid out neatly"
+  },
+  {
+    "id": 172,
+    "slug": "shoes",
+    "label": "Shoes",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/shoes.svg",
+    "aliases": [
+      "shoes",
+      "trainers",
+      "boots"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: pair of comfortable everyday lace-up trainers side by side"
+  },
+  {
+    "id": 173,
+    "slug": "bag",
+    "label": "Bag",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bag.svg",
+    "aliases": [
+      "bag",
+      "backpack",
+      "rucksack"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: practical everyday canvas backpack with front zip pocket"
+  },
+  {
+    "id": 174,
+    "slug": "key",
+    "label": "Key",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/key.svg",
+    "aliases": [
+      "key",
+      "keys"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple brass house key attached to a plain key ring"
+  },
+  {
+    "id": 175,
+    "slug": "money",
+    "label": "Money",
+    "category": "Home & Daily Living",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 7,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/money.svg",
+    "aliases": [
+      "money",
+      "cash",
+      "pay",
+      "card"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple British bank note beside two round coins"
+  }
+]

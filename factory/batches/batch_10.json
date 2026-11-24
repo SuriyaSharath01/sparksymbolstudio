@@ -1,0 +1,394 @@
+[
+  {
+    "id": 226,
+    "slug": "support_plan",
+    "label": "Support Plan",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/support_plan.svg",
+    "aliases": [
+      "support plan",
+      "care plan",
+      "ehcp",
+      "pbs plan"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: neat folder with a gentle heart-in-hands emblem and ticked care steps"
+  },
+  {
+    "id": 227,
+    "slug": "social_story",
+    "label": "Social Story",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/social_story.svg",
+    "aliases": [
+      "social story",
+      "story"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: open illustrated storybook showing two simple people talking kindly on the pages"
+  },
+  {
+    "id": 230,
+    "slug": "hospital",
+    "label": "Hospital",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/hospital.svg",
+    "aliases": [
+      "hospital",
+      "ward",
+      "a&e"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: large clean hospital building with prominent medical cross and ambulance bay"
+  },
+  {
+    "id": 231,
+    "slug": "medicine",
+    "label": "Medicine",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/medicine.svg",
+    "aliases": [
+      "medicine",
+      "medication",
+      "tablets",
+      "pills"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean medicine bottle beside two simple oval tablets"
+  },
+  {
+    "id": 232,
+    "slug": "injection",
+    "label": "Injection / Test",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/injection.svg",
+    "aliases": [
+      "injection",
+      "jab",
+      "vaccine",
+      "blood test"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple clean medical syringe and small adhesive plaster"
+  },
+  {
+    "id": 233,
+    "slug": "first_aid",
+    "label": "First Aid",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/first_aid.svg",
+    "aliases": [
+      "first aid",
+      "plaster",
+      "bandage",
+      "injury"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean green first-aid kit box with a crisp white cross on the front"
+  },
+  {
+    "id": 234,
+    "slug": "emergency",
+    "label": "Emergency",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/emergency.svg",
+    "aliases": [
+      "emergency",
+      "999",
+      "ambulance",
+      "urgent"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: flashing emergency beacon light beside a clean rescue phone icon"
+  },
+  {
+    "id": 235,
+    "slug": "seizure",
+    "label": "Seizure",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/seizure.svg",
+    "aliases": [
+      "seizure",
+      "epilepsy",
+      "fit"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: head silhouette with gentle electric zigzag pulse lines inside a calm clinical circle"
+  },
+  {
+    "id": 236,
+    "slug": "recovery_position",
+    "label": "Recovery Position",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": true,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/recovery_position.svg",
+    "aliases": [
+      "recovery position"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clear side-view diagram of a person resting safely on their side with top knee bent and head tilted"
+  },
+  {
+    "id": 237,
+    "slug": "breathing",
+    "label": "Deep Breath",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/breathing.svg",
+    "aliases": [
+      "deep breath",
+      "breathe",
+      "breathing"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: calm person inhaling gently with smooth circular blue airflow curves in and out"
+  },
+  {
+    "id": 238,
+    "slug": "consent",
+    "label": "Consent",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/consent.svg",
+    "aliases": [
+      "consent",
+      "permission",
+      "agree"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two hands shaking warmly beside a clean ticked agreement page"
+  },
+  {
+    "id": 239,
+    "slug": "privacy",
+    "label": "Privacy",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/privacy.svg",
+    "aliases": [
+      "privacy",
+      "private",
+      "knock"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: closed bedroom door with a gentle hand knocking politely on it"
+  },
+  {
+    "id": 240,
+    "slug": "independence",
+    "label": "Independence",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": true,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/independence.svg",
+    "aliases": [
+      "independence",
+      "independent",
+      "by myself"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: confident person standing proudly holding their own front-door key"
+  },
+  {
+    "id": 241,
+    "slug": "routine",
+    "label": "Routine",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/routine.svg",
+    "aliases": [
+      "routine",
+      "daily routine"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean circular loop of three everyday icons: sun, meal, and moon"
+  },
+  {
+    "id": 242,
+    "slug": "change",
+    "label": "Change",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/change.svg",
+    "aliases": [
+      "change",
+      "transition",
+      "swap"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two neat curved arrows swapping a square into a circle smoothly"
+  },
+  {
+    "id": 243,
+    "slug": "handwashing",
+    "label": "Wash Hands",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/handwashing.svg",
+    "aliases": [
+      "wash hands",
+      "handwashing",
+      "clean hands"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two hands rubbing together with soft soap bubbles under a running tap"
+  },
+  {
+    "id": 244,
+    "slug": "toothbrushing",
+    "label": "Brush Teeth",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/toothbrushing.svg",
+    "aliases": [
+      "brush teeth",
+      "toothbrushing",
+      "teeth"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean toothbrush with a small dab of toothpaste next to a sparkling white tooth"
+  },
+  {
+    "id": 245,
+    "slug": "wheelchair",
+    "label": "Wheelchair",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/wheelchair.svg",
+    "aliases": [
+      "wheelchair",
+      "mobility"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean modern manual wheelchair drawn in clear side view"
+  },
+  {
+    "id": 246,
+    "slug": "hoist",
+    "label": "Safe Transfer",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/hoist.svg",
+    "aliases": [
+      "hoist",
+      "transfer",
+      "sling"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean clinical mobile hoist frame with soft blue support sling"
+  },
+  {
+    "id": 247,
+    "slug": "ear_defenders",
+    "label": "Ear Defenders",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/ear_defenders.svg",
+    "aliases": [
+      "ear defenders",
+      "ear plugs",
+      "sensory headphones"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: sturdy padded acoustic ear defenders drawn cleanly in front view"
+  },
+  {
+    "id": 248,
+    "slug": "sensory_blanket",
+    "label": "Weighted Blanket",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/sensory_blanket.svg",
+    "aliases": [
+      "weighted blanket",
+      "blanket",
+      "sensory comfort"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: cosy quilted weighted blanket folded neatly with soft stitched squares"
+  },
+  {
+    "id": 249,
+    "slug": "safe_space",
+    "label": "Safe Space",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/safe_space.svg",
+    "aliases": [
+      "safe space",
+      "quiet room",
+      "calm corner"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: cosy quiet corner with a soft beanbag, warm lamp, and protective arch"
+  },
+  {
+    "id": 250,
+    "slug": "soft_food",
+    "label": "Soft Food",
+    "category": "Care, Health & Safety",
+    "fitzgerald": "orange",
+    "personaEligible": false,
+    "batch": 10,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/soft_food.svg",
+    "aliases": [
+      "soft food",
+      "pureed",
+      "iddsi",
+      "thickened"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: smooth bowl of mashed soft food with a clean spoon resting neatly beside it"
+  }
+]
