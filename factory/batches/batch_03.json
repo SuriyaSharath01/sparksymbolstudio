@@ -1,1 +1,418 @@
-[]
+[
+  {
+    "id": 51,
+    "slug": "start",
+    "label": "Start",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/start.svg",
+    "aliases": [
+      "start",
+      "begin"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean sage-green play triangle icon inside a soft rounded square"
+  },
+  {
+    "id": 52,
+    "slug": "try",
+    "label": "Try",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/try.svg",
+    "aliases": [
+      "try",
+      "attempt",
+      "have a go"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: determined person stepping up onto a low step with steady posture"
+  },
+  {
+    "id": 53,
+    "slug": "find",
+    "label": "Find",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/find.svg",
+    "aliases": [
+      "find",
+      "search",
+      "locate"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean magnifying glass discovering a small bright star"
+  },
+  {
+    "id": 54,
+    "slug": "keep",
+    "label": "Keep",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/keep.svg",
+    "aliases": [
+      "keep",
+      "store",
+      "save"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: neat storage box with lid partly open and an inward downward arrow"
+  },
+  {
+    "id": 55,
+    "slug": "share",
+    "label": "Share",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/share.svg",
+    "aliases": [
+      "share",
+      "divide"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two friendly people dividing a plate of simple snacks between them"
+  },
+  {
+    "id": 56,
+    "slug": "turn",
+    "label": "Turn",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/turn.svg",
+    "aliases": [
+      "turn",
+      "rotate",
+      "swap"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean circular curved arrow showing a smooth clockwise turn"
+  },
+  {
+    "id": 57,
+    "slug": "push",
+    "label": "Push",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/push.svg",
+    "aliases": [
+      "push",
+      "press"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person leaning gently forward with both palms pushing a simple box"
+  },
+  {
+    "id": 58,
+    "slug": "pull",
+    "label": "Pull",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/pull.svg",
+    "aliases": [
+      "pull",
+      "tug"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person leaning gently back pulling a simple handle on a wheeled cart"
+  },
+  {
+    "id": 59,
+    "slug": "read",
+    "label": "Read",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/read.svg",
+    "aliases": [
+      "read",
+      "reading"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: calm person holding and reading an open hardcover book"
+  },
+  {
+    "id": 60,
+    "slug": "write",
+    "label": "Write",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/write.svg",
+    "aliases": [
+      "write",
+      "writing",
+      "note"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: hand holding a pen writing clean wavy lines on a sheet of paper"
+  },
+  {
+    "id": 61,
+    "slug": "learn",
+    "label": "Learn",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/learn.svg",
+    "aliases": [
+      "learn",
+      "study"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person reading beside a small glowing lightbulb icon above"
+  },
+  {
+    "id": 62,
+    "slug": "think",
+    "label": "Think",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/think.svg",
+    "aliases": [
+      "think",
+      "wonder",
+      "reflect"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person sitting calmly with a clean fluffy thought bubble above their head"
+  },
+  {
+    "id": 63,
+    "slug": "understand",
+    "label": "Understand",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/understand.svg",
+    "aliases": [
+      "understand",
+      "get it",
+      "clear"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: smiling person with a bright warm lightbulb shining clearly above head"
+  },
+  {
+    "id": 64,
+    "slug": "remember",
+    "label": "Remember",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/remember.svg",
+    "aliases": [
+      "remember",
+      "recall"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person tapping temple lightly beside a tidy knot tied on a ribbon"
+  },
+  {
+    "id": 65,
+    "slug": "forget",
+    "label": "Forget",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/forget.svg",
+    "aliases": [
+      "forget",
+      "forgot"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: puzzled person looking at a faint faded dashed thought cloud"
+  },
+  {
+    "id": 66,
+    "slug": "feel",
+    "label": "Feel",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/feel.svg",
+    "aliases": [
+      "feel",
+      "feeling",
+      "sense"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person placing both palms softly over their chest with gentle warm waves"
+  },
+  {
+    "id": 67,
+    "slug": "walk",
+    "label": "Walk",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/walk.svg",
+    "aliases": [
+      "walk",
+      "walking",
+      "stroll"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: side profile of a person walking steadily at a relaxed pace"
+  },
+  {
+    "id": 68,
+    "slug": "sit",
+    "label": "Sit",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/sit.svg",
+    "aliases": [
+      "sit",
+      "sitting",
+      "seat"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person sitting comfortably upright on a simple wooden chair"
+  },
+  {
+    "id": 69,
+    "slug": "stand",
+    "label": "Stand",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/stand.svg",
+    "aliases": [
+      "stand",
+      "standing",
+      "stand up"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person standing upright beside a chair with a subtle upward arrow"
+  },
+  {
+    "id": 70,
+    "slug": "sleep",
+    "label": "Sleep",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/sleep.svg",
+    "aliases": [
+      "sleep",
+      "sleeping",
+      "nap"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person resting peacefully asleep in bed under a soft duvet with a crescent moon"
+  },
+  {
+    "id": 71,
+    "slug": "rest",
+    "label": "Rest",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/rest.svg",
+    "aliases": [
+      "rest",
+      "relax",
+      "lie down"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person reclining peacefully on a comfy sofa cushion with eyes softly closed"
+  },
+  {
+    "id": 72,
+    "slug": "eat",
+    "label": "Eat",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/eat.svg",
+    "aliases": [
+      "eat",
+      "eating",
+      "meal"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person sitting at a table lifting a fork neatly towards their mouth from a plate"
+  },
+  {
+    "id": 73,
+    "slug": "drink",
+    "label": "Drink",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/drink.svg",
+    "aliases": [
+      "drink",
+      "drinking",
+      "sip"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person holding a simple glass of water and taking a calm sip"
+  },
+  {
+    "id": 74,
+    "slug": "wash",
+    "label": "Wash",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/wash.svg",
+    "aliases": [
+      "wash",
+      "rinse"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: bar of soap with gentle bubbles under running clean water from a tap"
+  },
+  {
+    "id": 75,
+    "slug": "clean",
+    "label": "Clean",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 3,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/clean.svg",
+    "aliases": [
+      "clean",
+      "tidy",
+      "wipe"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: soft yellow cloth wiping a surface with three crisp sparkle stars"
+  }
+]

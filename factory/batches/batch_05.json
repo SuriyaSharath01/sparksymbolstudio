@@ -1,1 +1,398 @@
-[]
+[
+  {
+    "id": 102,
+    "slug": "happy",
+    "label": "Happy",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/happy.svg",
+    "aliases": [
+      "happy",
+      "glad",
+      "cheerful",
+      "joy"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: brightly smiling person face and shoulders radiating warmth"
+  },
+  {
+    "id": 103,
+    "slug": "sad",
+    "label": "Sad",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/sad.svg",
+    "aliases": [
+      "sad",
+      "upset",
+      "unhappy",
+      "down"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with downturned mouth and a single gentle teardrop on cheek"
+  },
+  {
+    "id": 104,
+    "slug": "angry",
+    "label": "Angry",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/angry.svg",
+    "aliases": [
+      "angry",
+      "cross",
+      "mad",
+      "furious"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with furrowed brows, tense expression, and small jagged stress lines above"
+  },
+  {
+    "id": 105,
+    "slug": "worried",
+    "label": "Worried",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/worried.svg",
+    "aliases": [
+      "worried",
+      "concerned",
+      "nervous"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with raised inner eyebrows and hands held lightly near chin"
+  },
+  {
+    "id": 106,
+    "slug": "anxious",
+    "label": "Anxious",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/anxious.svg",
+    "aliases": [
+      "anxious",
+      "panicky",
+      "stressed"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person hugging arms lightly with subtle wavy tension lines around shoulders"
+  },
+  {
+    "id": 107,
+    "slug": "scared",
+    "label": "Scared",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/scared.svg",
+    "aliases": [
+      "scared",
+      "afraid",
+      "frightened"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with wide eyes pulling hands protectively up near face"
+  },
+  {
+    "id": 108,
+    "slug": "excited",
+    "label": "Excited",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/excited.svg",
+    "aliases": [
+      "excited",
+      "thrilled",
+      "eager"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: joyful person raising both arms slightly with small celebratory sparkles"
+  },
+  {
+    "id": 109,
+    "slug": "bored",
+    "label": "Bored",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/bored.svg",
+    "aliases": [
+      "bored",
+      "fed up"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person resting chin in palm looking sideways with a flat unamused expression"
+  },
+  {
+    "id": 110,
+    "slug": "tired",
+    "label": "Tired",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tired.svg",
+    "aliases": [
+      "tired",
+      "sleepy",
+      "exhausted",
+      "knackered"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person yawning gently with heavy drooping eyelids"
+  },
+  {
+    "id": 111,
+    "slug": "confused",
+    "label": "Confused",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/confused.svg",
+    "aliases": [
+      "confused",
+      "puzzled",
+      "unsure"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person tilting head slightly with furrowed brow and a small curved squiggle above"
+  },
+  {
+    "id": 112,
+    "slug": "frustrated",
+    "label": "Frustrated",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/frustrated.svg",
+    "aliases": [
+      "frustrated",
+      "annoyed",
+      "stuck"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with tight frown holding hands up in exasperation"
+  },
+  {
+    "id": 113,
+    "slug": "overwhelmed",
+    "label": "Overwhelmed",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/overwhelmed.svg",
+    "aliases": [
+      "overwhelmed",
+      "overloaded",
+      "too much"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person gently covering both ears with swirling sensory lines surrounding them"
+  },
+  {
+    "id": 114,
+    "slug": "lonely",
+    "label": "Lonely",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/lonely.svg",
+    "aliases": [
+      "lonely",
+      "isolated",
+      "left out"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: single person sitting quietly on a bench with empty space beside them"
+  },
+  {
+    "id": 115,
+    "slug": "proud",
+    "label": "Proud",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/proud.svg",
+    "aliases": [
+      "proud",
+      "achieved"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: smiling person standing tall with a small golden rosette star on chest"
+  },
+  {
+    "id": 116,
+    "slug": "embarrassed",
+    "label": "Embarrassed",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/embarrassed.svg",
+    "aliases": [
+      "embarrassed",
+      "shy",
+      "awkward"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with softly blushing cheeks glancing shyly down"
+  },
+  {
+    "id": 117,
+    "slug": "surprised",
+    "label": "Surprised",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/surprised.svg",
+    "aliases": [
+      "surprised",
+      "shocked",
+      "amazed"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person with raised eyebrows and round open mouth in pleasant surprise"
+  },
+  {
+    "id": 119,
+    "slug": "unsafe",
+    "label": "Unsafe",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": false,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/unsafe.svg",
+    "aliases": [
+      "unsafe",
+      "danger",
+      "hazard",
+      "risk"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: muted amber warning triangle with a bold exclamation mark inside"
+  },
+  {
+    "id": 120,
+    "slug": "comfortable",
+    "label": "Comfortable",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/comfortable.svg",
+    "aliases": [
+      "comfortable",
+      "comfy",
+      "cosy"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: relaxed smiling person settled comfortably in a soft armchair"
+  },
+  {
+    "id": 121,
+    "slug": "uncomfortable",
+    "label": "Uncomfortable",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/uncomfortable.svg",
+    "aliases": [
+      "uncomfortable",
+      "uneasy",
+      "awkward"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person fidgeting awkwardly in a stiff chair with a tense frown"
+  },
+  {
+    "id": 122,
+    "slug": "pain",
+    "label": "Pain / Hurt",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/pain.svg",
+    "aliases": [
+      "pain",
+      "hurt",
+      "sore",
+      "ache"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person holding a sore shoulder with a soft red starburst pain indicator"
+  },
+  {
+    "id": 123,
+    "slug": "unwell",
+    "label": "Unwell / Sick",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/unwell.svg",
+    "aliases": [
+      "unwell",
+      "sick",
+      "ill",
+      "poorly"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person wrapped in a light blanket with a thermometer and tired eyes"
+  },
+  {
+    "id": 124,
+    "slug": "hungry",
+    "label": "Hungry",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/hungry.svg",
+    "aliases": [
+      "hungry",
+      "starving",
+      "peckish"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person rubbing tummy gently with a thought bubble showing a simple bowl of food"
+  },
+  {
+    "id": 125,
+    "slug": "thirsty",
+    "label": "Thirsty",
+    "category": "Feelings & Sensory",
+    "fitzgerald": "blue",
+    "personaEligible": true,
+    "batch": 5,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/thirsty.svg",
+    "aliases": [
+      "thirsty",
+      "dry",
+      "parched"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person pointing to throat with a thought bubble showing a cool glass of water"
+  }
+]

@@ -1,1 +1,276 @@
-[]
+[
+  {
+    "id": 7,
+    "slug": "my",
+    "label": "My / Mine",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/my.svg",
+    "aliases": [
+      "my",
+      "mine"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person holding both hands gently over their own chest in a welcoming self-gesture"
+  },
+  {
+    "id": 8,
+    "slug": "your",
+    "label": "Your",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/your.svg",
+    "aliases": [
+      "your",
+      "yours"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: open palm gesture reaching gently outward toward another person"
+  },
+  {
+    "id": 11,
+    "slug": "please",
+    "label": "Please",
+    "category": "Social & Core",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/please.svg",
+    "aliases": [
+      "please"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person placing an open flat hand gently on chest in a polite Makaton-style gesture"
+  },
+  {
+    "id": 12,
+    "slug": "thank_you",
+    "label": "Thank You",
+    "category": "Social & Core",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/thank_you.svg",
+    "aliases": [
+      "thank you",
+      "thanks",
+      "cheers"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: smiling person moving an open flat hand gently forward from their chin"
+  },
+  {
+    "id": 13,
+    "slug": "hello",
+    "label": "Hello",
+    "category": "Social & Core",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/hello.svg",
+    "aliases": [
+      "hello",
+      "hi",
+      "hey"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly person smiling and waving one raised hand"
+  },
+  {
+    "id": 14,
+    "slug": "goodbye",
+    "label": "Goodbye",
+    "category": "Social & Core",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/goodbye.svg",
+    "aliases": [
+      "goodbye",
+      "bye",
+      "see you"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly person turning slightly while waving one hand goodbye"
+  },
+  {
+    "id": 15,
+    "slug": "sorry",
+    "label": "Sorry",
+    "category": "Social & Core",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/sorry.svg",
+    "aliases": [
+      "sorry",
+      "apologise",
+      "excuse me"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: kind person with gentle apologetic expression placing hand over heart"
+  },
+  {
+    "id": 16,
+    "slug": "what",
+    "label": "What",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/what.svg",
+    "aliases": [
+      "what"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: curious person shrugging slightly with open palms beside a simple floating question mark shape"
+  },
+  {
+    "id": 17,
+    "slug": "who",
+    "label": "Who",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/who.svg",
+    "aliases": [
+      "who"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: silhouette outline of a neutral person head and shoulders paired with a clean question symbol"
+  },
+  {
+    "id": 18,
+    "slug": "where",
+    "label": "Where",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": false,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/where.svg",
+    "aliases": [
+      "where"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple folded map with a clean location pin marker hovering above it"
+  },
+  {
+    "id": 19,
+    "slug": "when",
+    "label": "When",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": false,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/when.svg",
+    "aliases": [
+      "when"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clean analogue clock face beside a small calendar page"
+  },
+  {
+    "id": 20,
+    "slug": "why",
+    "label": "Why",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/why.svg",
+    "aliases": [
+      "why"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: thoughtful person with finger lightly on chin and a small thought cloud above"
+  },
+  {
+    "id": 21,
+    "slug": "how",
+    "label": "How",
+    "category": "Questions",
+    "fitzgerald": "pink",
+    "personaEligible": false,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/how.svg",
+    "aliases": [
+      "how"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two simple interlocking cogs with a small curved step arrow showing a process"
+  },
+  {
+    "id": 22,
+    "slug": "more",
+    "label": "More",
+    "category": "Core Modifiers",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/more.svg",
+    "aliases": [
+      "more",
+      "extra",
+      "again"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two hands gently bringing fingertips together in the classic AAC gesture for more"
+  },
+  {
+    "id": 23,
+    "slug": "finished",
+    "label": "Finished",
+    "category": "Core Modifiers",
+    "fitzgerald": "slate",
+    "personaEligible": false,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/finished.svg",
+    "aliases": [
+      "finished",
+      "all done",
+      "done",
+      "over"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: chequered finish flag beside a clean green tick showing completion"
+  },
+  {
+    "id": 24,
+    "slug": "want",
+    "label": "Want",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/want.svg",
+    "aliases": [
+      "want",
+      "would like",
+      "wish"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person reaching both open hands gently towards themselves with an eager warm expression"
+  },
+  {
+    "id": 25,
+    "slug": "need",
+    "label": "Need",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 1,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/need.svg",
+    "aliases": [
+      "need",
+      "must",
+      "require"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person holding hands close to chest with a clear focused expression and a small priority star"
+  }
+]

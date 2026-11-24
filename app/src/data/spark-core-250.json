@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
   "total": 250,
-  "done": 133,
-  "todo": 117,
-  "generatedAt": "2026-11-24T00:59:59.465Z",
+  "done": 36,
+  "todo": 214,
+  "generatedAt": "2026-11-24T10:21:25.791Z",
   "symbols": [
     {
       "id": 1,
@@ -114,7 +114,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/my.svg",
       "aliases": [
         "my",
@@ -130,7 +130,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/your.svg",
       "aliases": [
         "your",
@@ -184,7 +184,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/please.svg",
       "aliases": [
         "please"
@@ -199,7 +199,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/thank_you.svg",
       "aliases": [
         "thank you",
@@ -216,7 +216,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/hello.svg",
       "aliases": [
         "hello",
@@ -233,7 +233,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/goodbye.svg",
       "aliases": [
         "goodbye",
@@ -250,7 +250,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/sorry.svg",
       "aliases": [
         "sorry",
@@ -267,7 +267,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/what.svg",
       "aliases": [
         "what"
@@ -282,7 +282,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/who.svg",
       "aliases": [
         "who"
@@ -297,7 +297,7 @@
       "fitzgerald": "pink",
       "personaEligible": false,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/where.svg",
       "aliases": [
         "where"
@@ -312,7 +312,7 @@
       "fitzgerald": "pink",
       "personaEligible": false,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/when.svg",
       "aliases": [
         "when"
@@ -327,7 +327,7 @@
       "fitzgerald": "pink",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/why.svg",
       "aliases": [
         "why"
@@ -342,7 +342,7 @@
       "fitzgerald": "pink",
       "personaEligible": false,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/how.svg",
       "aliases": [
         "how"
@@ -357,7 +357,7 @@
       "fitzgerald": "slate",
       "personaEligible": false,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/more.svg",
       "aliases": [
         "more",
@@ -374,7 +374,7 @@
       "fitzgerald": "slate",
       "personaEligible": false,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/finished.svg",
       "aliases": [
         "finished",
@@ -392,7 +392,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/want.svg",
       "aliases": [
         "want",
@@ -409,7 +409,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 1,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/need.svg",
       "aliases": [
         "need",
@@ -426,7 +426,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/go.svg",
       "aliases": [
         "go",
@@ -460,7 +460,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/stop.svg",
       "aliases": [
         "stop",
@@ -611,7 +611,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/like.svg",
       "aliases": [
         "like",
@@ -628,7 +628,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/dislike.svg",
       "aliases": [
         "dislike",
@@ -645,7 +645,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/come.svg",
       "aliases": [
         "come",
@@ -661,7 +661,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/say.svg",
       "aliases": [
         "say",
@@ -678,7 +678,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/tell.svg",
       "aliases": [
         "tell",
@@ -695,7 +695,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/show.svg",
       "aliases": [
         "show",
@@ -712,7 +712,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/give.svg",
       "aliases": [
         "give",
@@ -729,7 +729,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/take.svg",
       "aliases": [
         "take",
@@ -746,7 +746,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/get.svg",
       "aliases": [
         "get",
@@ -763,7 +763,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/make.svg",
       "aliases": [
         "make",
@@ -780,7 +780,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/do.svg",
       "aliases": [
         "do",
@@ -797,7 +797,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/put.svg",
       "aliases": [
         "put",
@@ -814,7 +814,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/open.svg",
       "aliases": [
         "open",
@@ -830,7 +830,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 2,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/close.svg",
       "aliases": [
         "close",
@@ -846,7 +846,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/start.svg",
       "aliases": [
         "start",
@@ -862,7 +862,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/try.svg",
       "aliases": [
         "try",
@@ -879,7 +879,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/find.svg",
       "aliases": [
         "find",
@@ -896,7 +896,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/keep.svg",
       "aliases": [
         "keep",
@@ -913,7 +913,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/share.svg",
       "aliases": [
         "share",
@@ -929,7 +929,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/turn.svg",
       "aliases": [
         "turn",
@@ -946,7 +946,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/push.svg",
       "aliases": [
         "push",
@@ -962,7 +962,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/pull.svg",
       "aliases": [
         "pull",
@@ -978,7 +978,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/read.svg",
       "aliases": [
         "read",
@@ -994,7 +994,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/write.svg",
       "aliases": [
         "write",
@@ -1011,7 +1011,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/learn.svg",
       "aliases": [
         "learn",
@@ -1027,7 +1027,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/think.svg",
       "aliases": [
         "think",
@@ -1044,7 +1044,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/understand.svg",
       "aliases": [
         "understand",
@@ -1061,7 +1061,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/remember.svg",
       "aliases": [
         "remember",
@@ -1077,7 +1077,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/forget.svg",
       "aliases": [
         "forget",
@@ -1093,7 +1093,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/feel.svg",
       "aliases": [
         "feel",
@@ -1110,7 +1110,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/walk.svg",
       "aliases": [
         "walk",
@@ -1127,7 +1127,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/sit.svg",
       "aliases": [
         "sit",
@@ -1144,7 +1144,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/stand.svg",
       "aliases": [
         "stand",
@@ -1161,7 +1161,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/sleep.svg",
       "aliases": [
         "sleep",
@@ -1178,7 +1178,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/rest.svg",
       "aliases": [
         "rest",
@@ -1195,7 +1195,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/eat.svg",
       "aliases": [
         "eat",
@@ -1212,7 +1212,7 @@
       "fitzgerald": "green",
       "personaEligible": true,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/drink.svg",
       "aliases": [
         "drink",
@@ -1229,7 +1229,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/wash.svg",
       "aliases": [
         "wash",
@@ -1245,7 +1245,7 @@
       "fitzgerald": "green",
       "personaEligible": false,
       "batch": 3,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/clean.svg",
       "aliases": [
         "clean",
@@ -1363,7 +1363,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/child.svg",
       "aliases": [
         "child",
@@ -1379,7 +1379,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/baby.svg",
       "aliases": [
         "baby",
@@ -1395,7 +1395,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/family.svg",
       "aliases": [
         "family",
@@ -1411,7 +1411,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/mum.svg",
       "aliases": [
         "mum",
@@ -1428,7 +1428,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/dad.svg",
       "aliases": [
         "dad",
@@ -1445,7 +1445,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/friend.svg",
       "aliases": [
         "friend",
@@ -1513,7 +1513,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/dentist.svg",
       "aliases": [
         "dentist",
@@ -1529,7 +1529,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/therapist.svg",
       "aliases": [
         "therapist",
@@ -1548,7 +1548,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/pharmacist.svg",
       "aliases": [
         "pharmacist",
@@ -1564,7 +1564,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/teacher.svg",
       "aliases": [
         "teacher",
@@ -1580,7 +1580,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/tutor.svg",
       "aliases": [
         "tutor",
@@ -1597,7 +1597,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/student.svg",
       "aliases": [
         "student",
@@ -1614,7 +1614,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/classmate.svg",
       "aliases": [
         "classmate",
@@ -1631,7 +1631,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/manager.svg",
       "aliases": [
         "manager",
@@ -1649,7 +1649,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/visitor.svg",
       "aliases": [
         "visitor",
@@ -1665,7 +1665,7 @@
       "fitzgerald": "yellow",
       "personaEligible": true,
       "batch": 4,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/everyone.svg",
       "aliases": [
         "everyone",
@@ -1701,7 +1701,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/happy.svg",
       "aliases": [
         "happy",
@@ -1719,7 +1719,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/sad.svg",
       "aliases": [
         "sad",
@@ -1737,7 +1737,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/angry.svg",
       "aliases": [
         "angry",
@@ -1755,7 +1755,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/worried.svg",
       "aliases": [
         "worried",
@@ -1772,7 +1772,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/anxious.svg",
       "aliases": [
         "anxious",
@@ -1789,7 +1789,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/scared.svg",
       "aliases": [
         "scared",
@@ -1806,7 +1806,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/excited.svg",
       "aliases": [
         "excited",
@@ -1823,7 +1823,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/bored.svg",
       "aliases": [
         "bored",
@@ -1839,7 +1839,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/tired.svg",
       "aliases": [
         "tired",
@@ -1857,7 +1857,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/confused.svg",
       "aliases": [
         "confused",
@@ -1874,7 +1874,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/frustrated.svg",
       "aliases": [
         "frustrated",
@@ -1891,7 +1891,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/overwhelmed.svg",
       "aliases": [
         "overwhelmed",
@@ -1908,7 +1908,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/lonely.svg",
       "aliases": [
         "lonely",
@@ -1925,7 +1925,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/proud.svg",
       "aliases": [
         "proud",
@@ -1941,7 +1941,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/embarrassed.svg",
       "aliases": [
         "embarrassed",
@@ -1958,7 +1958,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/surprised.svg",
       "aliases": [
         "surprised",
@@ -1992,7 +1992,7 @@
       "fitzgerald": "blue",
       "personaEligible": false,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/unsafe.svg",
       "aliases": [
         "unsafe",
@@ -2010,7 +2010,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/comfortable.svg",
       "aliases": [
         "comfortable",
@@ -2027,7 +2027,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/uncomfortable.svg",
       "aliases": [
         "uncomfortable",
@@ -2044,7 +2044,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/pain.svg",
       "aliases": [
         "pain",
@@ -2062,7 +2062,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/unwell.svg",
       "aliases": [
         "unwell",
@@ -2080,7 +2080,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/hungry.svg",
       "aliases": [
         "hungry",
@@ -2097,7 +2097,7 @@
       "fitzgerald": "blue",
       "personaEligible": true,
       "batch": 5,
-      "status": "done",
+      "status": "todo",
       "svgPath": "/symbols/spark-core/thirsty.svg",
       "aliases": [
         "thirsty",

@@ -1,1 +1,271 @@
-[]
+[
+  {
+    "id": 26,
+    "slug": "go",
+    "label": "Go",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/go.svg",
+    "aliases": [
+      "go",
+      "leave",
+      "head out"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person stepping briskly forward alongside a clean green forward arrow"
+  },
+  {
+    "id": 28,
+    "slug": "stop",
+    "label": "Stop",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/stop.svg",
+    "aliases": [
+      "stop",
+      "halt",
+      "pause"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: clear muted red octagon with a raised open palm centred inside"
+  },
+  {
+    "id": 37,
+    "slug": "like",
+    "label": "Like",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/like.svg",
+    "aliases": [
+      "like",
+      "enjoy",
+      "love"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: smiling person giving a warm thumbs-up beside a small muted heart"
+  },
+  {
+    "id": 38,
+    "slug": "dislike",
+    "label": "Don't Like",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/dislike.svg",
+    "aliases": [
+      "dislike",
+      "don't like",
+      "hate"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person frowning gently and giving a clear thumbs-down gesture"
+  },
+  {
+    "id": 39,
+    "slug": "come",
+    "label": "Come",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/come.svg",
+    "aliases": [
+      "come",
+      "come here"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly person beckoning warmly with one hand and an inward curved arrow"
+  },
+  {
+    "id": 40,
+    "slug": "say",
+    "label": "Say / Speak",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/say.svg",
+    "aliases": [
+      "say",
+      "speak",
+      "talk"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: side profile of a friendly person talking into a clean empty speech bubble"
+  },
+  {
+    "id": 41,
+    "slug": "tell",
+    "label": "Tell",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tell.svg",
+    "aliases": [
+      "tell",
+      "explain",
+      "inform"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two people facing each other as one speaks clearly with a directional speech bubble"
+  },
+  {
+    "id": 42,
+    "slug": "show",
+    "label": "Show",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/show.svg",
+    "aliases": [
+      "show",
+      "demonstrate",
+      "point out"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person holding up a simple picture card for someone else to view"
+  },
+  {
+    "id": 43,
+    "slug": "give",
+    "label": "Give",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/give.svg",
+    "aliases": [
+      "give",
+      "hand over",
+      "pass"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two hands handing a small neat gift box forward to another open hand"
+  },
+  {
+    "id": 44,
+    "slug": "take",
+    "label": "Take",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/take.svg",
+    "aliases": [
+      "take",
+      "grab",
+      "accept"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: hand gently picking up a simple object with an inward arrow"
+  },
+  {
+    "id": 45,
+    "slug": "get",
+    "label": "Get",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/get.svg",
+    "aliases": [
+      "get",
+      "receive",
+      "collect"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person receiving a small parcel into open outstretched hands"
+  },
+  {
+    "id": 46,
+    "slug": "make",
+    "label": "Make",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/make.svg",
+    "aliases": [
+      "make",
+      "create",
+      "build"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two hands assembling colourful simple wooden building blocks"
+  },
+  {
+    "id": 47,
+    "slug": "do",
+    "label": "Do",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": true,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/do.svg",
+    "aliases": [
+      "do",
+      "act",
+      "complete"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: person ticking off a task on a simple clipboard with a pen"
+  },
+  {
+    "id": 48,
+    "slug": "put",
+    "label": "Put",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/put.svg",
+    "aliases": [
+      "put",
+      "place",
+      "set down"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: hand lowering a small cube neatly onto a flat shelf with a downward arrow"
+  },
+  {
+    "id": 49,
+    "slug": "open",
+    "label": "Open",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/open.svg",
+    "aliases": [
+      "open",
+      "unlock"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple wooden door swinging open with a gentle curved outward arrow"
+  },
+  {
+    "id": 50,
+    "slug": "close",
+    "label": "Close",
+    "category": "Core Verbs",
+    "fitzgerald": "green",
+    "personaEligible": false,
+    "batch": 2,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/close.svg",
+    "aliases": [
+      "close",
+      "shut"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: simple wooden door closing neatly with an inward curved arrow"
+  }
+]

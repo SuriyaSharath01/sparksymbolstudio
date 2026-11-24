@@ -1,1 +1,271 @@
-[]
+[
+  {
+    "id": 82,
+    "slug": "child",
+    "label": "Child",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/child.svg",
+    "aliases": [
+      "child",
+      "kid"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: cheerful young child standing happily wearing everyday clothes"
+  },
+  {
+    "id": 83,
+    "slug": "baby",
+    "label": "Baby",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/baby.svg",
+    "aliases": [
+      "baby",
+      "infant"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: peaceful smiling baby wrapped neatly in a soft pastel blanket"
+  },
+  {
+    "id": 84,
+    "slug": "family",
+    "label": "Family",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/family.svg",
+    "aliases": [
+      "family",
+      "relatives"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm multi-generational family of four standing happily together"
+  },
+  {
+    "id": 85,
+    "slug": "mum",
+    "label": "Mum",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/mum.svg",
+    "aliases": [
+      "mum",
+      "mother",
+      "mummy"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm smiling mother embracing a small child gently"
+  },
+  {
+    "id": 86,
+    "slug": "dad",
+    "label": "Dad",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/dad.svg",
+    "aliases": [
+      "dad",
+      "father",
+      "daddy"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: warm smiling father standing kindly with hand on child shoulder"
+  },
+  {
+    "id": 87,
+    "slug": "friend",
+    "label": "Friend",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/friend.svg",
+    "aliases": [
+      "friend",
+      "mate",
+      "pal"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two smiling friends standing side by side with an arm warmly around shoulder"
+  },
+  {
+    "id": 91,
+    "slug": "dentist",
+    "label": "Dentist",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/dentist.svg",
+    "aliases": [
+      "dentist",
+      "dental"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly dentist in clinical tunic holding a tiny dental mirror beside a clean tooth icon"
+  },
+  {
+    "id": 92,
+    "slug": "therapist",
+    "label": "Therapist",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/therapist.svg",
+    "aliases": [
+      "therapist",
+      "salt",
+      "speech therapist",
+      "ot",
+      "physio"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly therapist sitting at a small table holding communication picture cards"
+  },
+  {
+    "id": 93,
+    "slug": "pharmacist",
+    "label": "Pharmacist",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/pharmacist.svg",
+    "aliases": [
+      "pharmacist",
+      "chemist"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly pharmacist standing behind a counter beside a clean green cross medicine bottle"
+  },
+  {
+    "id": 94,
+    "slug": "teacher",
+    "label": "Teacher",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/teacher.svg",
+    "aliases": [
+      "teacher",
+      "educator"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly teacher standing beside a simple classroom board pointing calmly"
+  },
+  {
+    "id": 95,
+    "slug": "tutor",
+    "label": "Tutor / Lecturer",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/tutor.svg",
+    "aliases": [
+      "tutor",
+      "lecturer",
+      "professor"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly college tutor holding a folder beside a simple lectern"
+  },
+  {
+    "id": 96,
+    "slug": "student",
+    "label": "Student",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/student.svg",
+    "aliases": [
+      "student",
+      "learner",
+      "pupil"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly student wearing a backpack holding two notebooks"
+  },
+  {
+    "id": 97,
+    "slug": "classmate",
+    "label": "Classmate",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/classmate.svg",
+    "aliases": [
+      "classmate",
+      "peer",
+      "colleague"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: two smiling learners sitting side by side sharing a desk"
+  },
+  {
+    "id": 98,
+    "slug": "manager",
+    "label": "Manager",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/manager.svg",
+    "aliases": [
+      "manager",
+      "lead",
+      "supervisor",
+      "boss"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: approachable team manager in smart attire holding a neat clipboard"
+  },
+  {
+    "id": 99,
+    "slug": "visitor",
+    "label": "Visitor",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/visitor.svg",
+    "aliases": [
+      "visitor",
+      "guest"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: friendly guest arriving at an open doorway wearing a small visitor lanyard"
+  },
+  {
+    "id": 100,
+    "slug": "everyone",
+    "label": "Everyone",
+    "category": "People & Pronouns",
+    "fitzgerald": "yellow",
+    "personaEligible": true,
+    "batch": 4,
+    "status": "todo",
+    "svgPath": "/symbols/spark-core/everyone.svg",
+    "aliases": [
+      "everyone",
+      "everybody",
+      "all",
+      "people"
+    ],
+    "visualPrompt": "Clean modern UK AAC symbol illustration, crisp uniform dark charcoal outlines, warm muted flat colours, centred icon with generous margin on a pure solid white background, zero text, zero letters, zero numbers, no border frame, high legibility for Easy Read: diverse inclusive group of five smiling people arranged in a friendly semi-circle"
+  }
+]
